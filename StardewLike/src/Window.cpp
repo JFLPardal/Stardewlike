@@ -1,0 +1,51 @@
+#include "Window.h"
+#include <vector>
+#include "DrawableEntity.h"
+
+Window::Window()
+	:m_isOpen(true)
+	,m_Window(sf::VideoMode(1024, 768), "Nice Window :')")
+{
+	m_Window.setVerticalSyncEnabled(true);
+}
+
+bool Window::PollEvent(sf::Event& aEvent)
+{
+	return m_Window.pollEvent(aEvent);
+}
+
+void Window::ProcessEvent(sf::Event & aEvent)
+{
+	if (aEvent.type == sf::Event::Closed)
+	{
+		m_isOpen = false;
+	}
+	if (aEvent.type == sf::Event::KeyPressed)
+	{
+		printf("key pressed: %d\n", aEvent.key.code);
+	}
+	if (aEvent.type == sf::Event::MouseButtonPressed)
+	{
+		printf("mouse pressed: %d %d %d\n", aEvent.mouseButton.x, aEvent.mouseButton.y, aEvent.mouseButton.button);
+	}
+	if (aEvent.type == sf::Event::MouseMoved)
+	{
+		printf("mouse moved: %d %d\n", aEvent.mouseMove.x, aEvent.mouseMove.y);
+	}
+}
+/*
+void Window::Draw(const std::vector<sf::Drawable*>& aDrawableEntities)
+{
+	m_Window.clear();
+	for (auto& entity : aDrawableEntities)
+		m_Window.draw(*entity);
+	m_Window.display();
+}*/
+
+void Window::Draw(const std::vector<std::shared_ptr<DrawableEntity>>& aDrawableEntities)
+{
+	m_Window.clear();
+	for (auto& entity : aDrawableEntities)
+		m_Window.draw(*entity);
+	m_Window.display();
+}
