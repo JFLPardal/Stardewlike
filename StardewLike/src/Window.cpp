@@ -1,6 +1,8 @@
 #include "Window.h"
 #include <vector>
+
 #include "DrawableEntity.h"
+#include "GameObject.h"
 
 Window::Window()
 	:m_isOpen(true)
@@ -49,3 +51,12 @@ void Window::Draw(const std::vector<std::shared_ptr<DrawableEntity>>& aDrawableE
 		m_Window.draw(*entity);
 	m_Window.display();
 }
+/*
+void Window::Draw(const std::vector<std::unique_ptr<GameObject>>& aGameObjects)
+{
+	m_Window.clear();
+	for (auto& entity : aGameObjects)
+		if(entity.HasComponent<SpriteRenderer>())
+			m_Window.draw(*entity);
+	m_Window.display();
+}*/
