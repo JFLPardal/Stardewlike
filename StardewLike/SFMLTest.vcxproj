@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Components\Component.cpp" />
     <ClCompile Include="src\Components\Transform.cpp" />
     <ClCompile Include="src\DrawableEntity.cpp" />
     <ClCompile Include="src\GameApp.cpp" />

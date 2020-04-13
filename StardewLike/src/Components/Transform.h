@@ -9,5 +9,5 @@ public:
 
 	int X() const { return m_x; }
 private:
-	int m_x;
+	int m_x = 43;
 };

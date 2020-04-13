@@ -44,8 +44,8 @@ GameApp::GameApp(Window& aWindow)
 	// create Game Entities
 	std::unique_ptr<GameObject> player = std::make_unique<GameObject>();
 	player->AddComponent<Transform>(); // TODO move add transform to the GO constructor
-	//int d = player->GetComponent<Transform>().X();
-
+	if(player->GetComponent<Transform>())
+		printf("x: %d\n", player->GetComponent<Transform>()->X());
 	//m_GameObjects.push_back(std::move(player));
 
 	m_Drawables.push_back(cherry01);
