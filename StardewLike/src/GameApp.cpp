@@ -6,6 +6,7 @@
 #include "DrawableEntity.h"
 #include "GameObject.h"
 #include "Components/Transform.h"
+#include "Components/SpriteRenderer.h"
 
 GameApp::GameApp(Window& aWindow)
 	:m_GameWindow(aWindow)
@@ -43,11 +44,17 @@ GameApp::GameApp(Window& aWindow)
 
 	// create Game Entities
 	std::unique_ptr<GameObject> player = std::make_unique<GameObject>();
-	player->AddComponent<Transform>(); // TODO move add transform to the GO constructor
-	if(player->GetComponent<Transform>())
+	
+	// component testing
+	//player->AddComponent<Transform>(); // TODO move add transform to the GO constructor
+	if (player->GetComponent<Transform>())
 		printf("x: %d\n", player->GetComponent<Transform>()->X());
-	//m_GameObjects.push_back(std::move(player));
+	else printf("no trasform \n");
 
+	player->AddComponent<SpriteRenderer>();
+	if (player->GetComponent<SpriteRenderer>()) printf("has renderer\n");
+
+	//m_GameObjects.push_back(std::move(player));
 	m_Drawables.push_back(cherry01);
 }
 

@@ -1,15 +1,16 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include <typeinfo>
 #include "Components/Component.h"
 //class Component;
 
 
-using ComponentTypeId = unsigned int;
+typedef unsigned int ComponentTypeId;
 
-ComponentTypeId inline GetNextTypeId()
+inline ComponentTypeId GetNextTypeId()
 {
-	static ComponentTypeId componentTypeId = -1;
+	static ComponentTypeId componentTypeId = 0;
 	return componentTypeId++;
 }
 
@@ -17,18 +18,23 @@ template <typename T>
 inline ComponentTypeId GetTypeId(int s)
 {
 	static ComponentTypeId m_currentTypeId = GetNextTypeId();
+
+	if (DEBUG)
+		printf("getting typeId for %s: %d\n", typeid(T).name(), m_currentTypeId);
+
 	return m_currentTypeId;
 }
 
 class GameObject
 {
-private:
-	std::vector<std::unique_ptr<Component>> m_componentList; // TODO encapsulate this in a IComponentList
 public:
 	template <typename T, typename... TArgs>
 	T& AddComponent(TArgs&&... args)	// TODO same component can be added twice to the same object
 	{
 		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
+		
+		m_componentTypeIdList.push_back(std::move(GetTypeId<T>(1)));
+
 		// instantiate the component
 		T* newComponent(new T(std::forward<TArgs>(args)...));
 		//newComponent->SetOwner(*this);
@@ -45,14 +51,18 @@ public:
 	{
 		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
 		unsigned int d = GetTypeId<T>(7);
-		/*for (auto& component : m_componentList)
+		for (ComponentTypeId& componentTypeId : m_componentTypeIdList)
 		{
-			if (d == GetTypeId<*component>()) // this doesn't work
-			{*/
+			if (d == componentTypeId) 
+			{
 				auto ptr(m_componentList[0].get());
 				return static_cast<T*>(ptr);
-			//}
-		//}
-		//return nullptr;
+			}
+		}
+		return nullptr;
 	}
+
+private:
+	std::vector<std::unique_ptr<Component>> m_componentList; // TODO encapsulate this in a IComponentList
+	std::vector<ComponentTypeId> m_componentTypeIdList;
 };

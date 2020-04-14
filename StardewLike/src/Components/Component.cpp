@@ -2,5 +2,5 @@
 
 Component::Component()
 {
-
+	printf("creating Component\n");
 }
