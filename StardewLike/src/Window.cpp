@@ -24,23 +24,23 @@ void Window::ProcessEvent(sf::Event & aEvent)
 	}
 	if (aEvent.type == sf::Event::KeyPressed)
 	{
-		printf("key pressed: %d\n", aEvent.key.code);
+		//printf("key pressed: %d\n", aEvent.key.code);
 	}
 	if (aEvent.type == sf::Event::MouseButtonPressed)
 	{
-		printf("mouse pressed: %d %d %d\n", aEvent.mouseButton.x, aEvent.mouseButton.y, aEvent.mouseButton.button);
+		//printf("mouse pressed: %d %d %d\n", aEvent.mouseButton.x, aEvent.mouseButton.y, aEvent.mouseButton.button);
 	}
 	if (aEvent.type == sf::Event::MouseMoved)
 	{
-		printf("mouse moved: %d %d\n", aEvent.mouseMove.x, aEvent.mouseMove.y);
+		//printf("mouse moved: %d %d\n", aEvent.mouseMove.x, aEvent.mouseMove.y);
 	}
 }
 /*
 void Window::Draw(const std::vector<sf::Drawable*>& aDrawableEntities)
 {
 	m_Window.clear();
-	for (auto& entity : aDrawableEntities)
-		m_Window.draw(*entity);
+	for (auto& gameObject : aDrawableEntities)
+		m_Window.draw(*gameObject);
 	m_Window.display();
 }*/
 
@@ -51,12 +51,12 @@ void Window::Draw(const std::vector<std::shared_ptr<DrawableEntity>>& aDrawableE
 		m_Window.draw(*entity);
 	m_Window.display();
 }
-/*
+
 void Window::Draw(const std::vector<std::unique_ptr<GameObject>>& aGameObjects)
 {
 	m_Window.clear();
-	for (auto& entity : aGameObjects)
-		if(entity.HasComponent<SpriteRenderer>())
-			m_Window.draw(*entity);
+	for (auto& gameObject : aGameObjects)
+		m_Window.draw(gameObject->GetRenderer());
+		//if(gameObject->IsDrawable())
 	m_Window.display();
-}*/
+}

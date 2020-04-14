@@ -3,10 +3,11 @@
 
 Transform::Transform()
 {
-	printf("creating transform!\n");
+	m_transform.setPosition(500, 500);
+	printf("transform\n");
 }
 
 void Transform::Update()
 {
-	printf("updating Transform\n");
+	m_transform.move(1, 0);
 }

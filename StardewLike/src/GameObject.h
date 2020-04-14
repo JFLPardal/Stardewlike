@@ -2,9 +2,10 @@
 #include <vector>
 #include <memory>
 #include <typeinfo>
-#include "Components/Component.h"
-//class Component;
 
+#include "Components/Component.h"
+#include "Components/SpriteRenderer.h"
+//class Component;
 
 typedef unsigned int ComponentTypeId;
 
@@ -15,7 +16,7 @@ inline ComponentTypeId GetNextTypeId()
 }
 
 template <typename T>
-inline ComponentTypeId GetTypeId(int s)
+inline ComponentTypeId GetTypeId()
 {
 	static ComponentTypeId m_currentTypeId = GetNextTypeId();
 
@@ -28,18 +29,24 @@ inline ComponentTypeId GetTypeId(int s)
 class GameObject
 {
 public:
+	void Start();
+	void Update();
+	//void Draw();
+
+	inline bool IsDrawable() const { return m_isDrawable; }
+	sf::Drawable& GetRenderer() const { return static_cast<sf::Drawable&>(*m_renderer); }
+
 	template <typename T, typename... TArgs>
 	T& AddComponent(TArgs&&... args)	// TODO same component can be added twice to the same object
 	{
 		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
 		
-		m_componentTypeIdList.push_back(std::move(GetTypeId<T>(1)));
+		m_componentTypeIdList.push_back(std::move(GetTypeId<T>()));
 
 		// instantiate the component
 		T* newComponent(new T(std::forward<TArgs>(args)...));
-		//newComponent->SetOwner(*this);
+		newComponent->SetOwner(*this);
 		std::unique_ptr<Component> newComponentPtr { newComponent };
-		printf("%d", m_componentList.size());
 		
 		// add it to the component list
 		m_componentList.emplace_back(std::move(newComponentPtr));
@@ -50,19 +57,22 @@ public:
 	T* GetComponent()
 	{
 		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
-		unsigned int d = GetTypeId<T>(7);
+		unsigned int thisComponentTypeId = GetTypeId<T>();
 		for (ComponentTypeId& componentTypeId : m_componentTypeIdList)
 		{
-			if (d == componentTypeId) 
+			if (thisComponentTypeId == componentTypeId) 
 			{
-				auto ptr(m_componentList[0].get());
+				auto ptr(m_componentList[thisComponentTypeId].get());
 				return static_cast<T*>(ptr);
 			}
 		}
 		return nullptr;
 	}
 
+
 private:
+	bool m_isDrawable = false;
+	SpriteRenderer* m_renderer = nullptr;
 	std::vector<std::unique_ptr<Component>> m_componentList; // TODO encapsulate this in a IComponentList
 	std::vector<ComponentTypeId> m_componentTypeIdList;
 };

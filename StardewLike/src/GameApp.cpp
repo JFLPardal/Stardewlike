@@ -8,6 +8,8 @@
 #include "Components/Transform.h"
 #include "Components/SpriteRenderer.h"
 
+void InitPlayerComponents(GameObject& player);
+
 GameApp::GameApp(Window& aWindow)
 	:m_GameWindow(aWindow)
 {
@@ -46,16 +48,18 @@ GameApp::GameApp(Window& aWindow)
 	std::unique_ptr<GameObject> player = std::make_unique<GameObject>();
 	
 	// component testing
-	//player->AddComponent<Transform>(); // TODO move add transform to the GO constructor
-	if (player->GetComponent<Transform>())
-		printf("x: %d\n", player->GetComponent<Transform>()->X());
-	else printf("no trasform \n");
-
-	player->AddComponent<SpriteRenderer>();
-	if (player->GetComponent<SpriteRenderer>()) printf("has renderer\n");
+	InitPlayerComponents(*player);
 
 	//m_GameObjects.push_back(std::move(player));
 	m_Drawables.push_back(cherry01);
+	m_GameObjects.push_back(std::move(player));
+}
+
+void InitPlayerComponents(GameObject& player)
+{
+	player.AddComponent<Transform>(); // TODO move add transform to the GO constructor
+	player.AddComponent<SpriteRenderer>("assets\\cherry.png");
+	player.Start();
 }
 
 GameApp::~GameApp()
@@ -65,14 +69,15 @@ GameApp::~GameApp()
 
 void GameApp::Update()
 {
-	for (auto& drawable : m_Drawables)
+	for (auto& gameObject : m_GameObjects)
 	{
-		drawable->update();
+		gameObject->Update();
 	}
 }
 
 void GameApp::Draw() const
 {
 	//m_GameWindow.Draw(m_Tilemap);
-	m_GameWindow.Draw(m_Drawables);
+	//m_GameWindow.Draw(m_Drawables);
+	m_GameWindow.Draw(m_GameObjects);
 }
