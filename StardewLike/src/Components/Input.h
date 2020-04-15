@@ -19,12 +19,13 @@ public:
 	}
 	
 	// TODO last argument of remove is probably wrong
+	/*
 	void OnInputMoveRemoveObserver(std::function<void(short, short)> functionToCall)
 	{
 		printf("function removed to the OnInputMove\n");
 		std::remove(e_onInputMove.begin(), e_onInputMove.end(), functionToCall);
 	}
-	
+	*/
 	std::vector<std::function<void(short,short)>> e_onInputMove;
 private:
 	void OnInputMove(short x, short y);

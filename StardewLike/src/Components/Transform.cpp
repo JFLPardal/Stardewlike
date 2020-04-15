@@ -24,5 +24,4 @@ void Transform::UpdateMovement(short x, short y)
 
 void Transform::Update()
 {
-	m_owner->GetComponent<Input>()->OnInputMoveRemoveObserver([&f = m_transform](short a, short b) {f.setPosition(f.getPosition().x + a, f.getPosition().y + b); });
 }
