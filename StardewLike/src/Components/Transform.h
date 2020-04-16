@@ -11,7 +11,7 @@ public:
 	void Start() override;
 	void Update() override;
 	
-	void UpdateMovement(short x, short y);
+	inline void UpdateMovement(short x, short y);
 	
 	inline sf::Vector2f GetPosition() { return m_transform.getPosition(); }
 	inline int X() const { return m_x; }

@@ -10,13 +10,14 @@ void Input::Update()
 		printf("moving to the right\n");
 		xInput++;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 
 		printf("moving to the left\n");
 		xInput--;
 	}
-	OnInputMove(xInput, yInput);
+	if(xInput != 0 || yInput != 0)
+		OnInputMove(xInput, yInput);
 }
 
 void Input::OnInputMove(short x, short y)

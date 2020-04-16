@@ -11,7 +11,6 @@ public:
 	void OnInputMoveAddObserver(std::function<void(short, short)> functionToCall)
 	{
 		if (functionToCall != nullptr)
-
 		{
 			printf("function added to the OnInputMove\n");
 			e_onInputMove.emplace_back(functionToCall);
