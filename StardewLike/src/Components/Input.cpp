@@ -24,6 +24,6 @@ void Input::OnInputMove(short x, short y)
 {
 	for (auto& observer : e_onInputMove)
 	{
-		observer(x, y);
+		if(observer != nullptr) observer(x, y);
 	}
 }

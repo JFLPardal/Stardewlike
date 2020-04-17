@@ -1,6 +1,7 @@
 #include "SpriteRenderer.h"
 #include <cstdio>
 #include "Transform.h"
+#include "Input.h"	// TODO remove after Observer is in its class
 #include "../GameObject.h"
 
 SpriteRenderer::SpriteRenderer(const char* spriteFilePath)
@@ -21,6 +22,8 @@ SpriteRenderer::SpriteRenderer(const char* spriteFilePath)
 void SpriteRenderer::Start()
 {
 	m_transform = m_owner->GetComponent<Transform>();
+	int index = m_owner->GetComponent<Input>()->OnInputMoveAddObserver(std::function<void(short, short)>(std::bind(&SpriteRenderer::SetSpriteBasedOnDirection, this, std::placeholders::_1, std::placeholders::_2)));
+	//m_owner->GetComponent<Input>()->OnInputMoveRemoveObserver(index);
 }
 
 void SpriteRenderer::Update()
@@ -31,6 +34,18 @@ void SpriteRenderer::Update()
 void SpriteRenderer::draw(sf::RenderTarget& aTarget, sf::RenderStates aStates) const
 {
 	aTarget.draw(m_Sprite, aStates);
+}
+
+void SpriteRenderer::SetSpriteBasedOnDirection(short aX, short aY)
+{
+	if (aX > 0)
+	{
+		m_Sprite.setColor(sf::Color::Cyan);
+	}
+	else
+	{
+		m_Sprite.setColor(sf::Color::Magenta);
+	}
 }
 
 SpriteRenderer::~SpriteRenderer()
