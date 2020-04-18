@@ -1,6 +1,12 @@
 #include "GameObject.h"
 #include "Components/SpriteRenderer.h"
 
+GameObject::~GameObject()
+{
+	//delete m_renderer;
+	printf("destroyed GO\n");
+}
+
 void GameObject::Start()
 {
 	for (auto& component : m_componentList)

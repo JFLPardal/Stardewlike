@@ -22,8 +22,9 @@ SpriteRenderer::SpriteRenderer(const char* spriteFilePath)
 void SpriteRenderer::Start()
 {
 	m_transform = m_owner->GetComponent<Transform>();
-	int index = m_owner->GetComponent<Input>()->OnInputMoveAddObserver(std::function<void(short, short)>(std::bind(&SpriteRenderer::SetSpriteBasedOnDirection, this, std::placeholders::_1, std::placeholders::_2)));
-	//m_owner->GetComponent<Input>()->OnInputMoveRemoveObserver(index);
+	index = m_owner->GetComponent<Input>()->OnMoveKeyPressedRegister(std::function<void(short, short)>(std::bind(&SpriteRenderer::SetSpriteBasedOnDirection, this, std::placeholders::_1, std::placeholders::_2)));
+	//m_owner->GetComponent<Input>()->OnMoveKeyPressedUnregister(index);
+
 }
 
 void SpriteRenderer::Update()
@@ -50,5 +51,8 @@ void SpriteRenderer::SetSpriteBasedOnDirection(short aX, short aY)
 
 SpriteRenderer::~SpriteRenderer()
 {
-	printf(" spriteRenderer\n");
+	auto InputComponent = m_owner->GetComponent<Input>();
+	if(InputComponent) InputComponent->OnMoveKeyPressedUnregister(index);
+
+	printf("destroyed spriteRenderer component\n");
 }

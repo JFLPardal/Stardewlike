@@ -7,7 +7,7 @@ class Component
 {
 public:
 	Component();
-	virtual ~Component() { printf("destroying Component: "); };
+	virtual ~Component() { printf(" ^^^^^ destroyed Component ^^^^^\n"); };
 
 	virtual void Start();
 	virtual void Update() = 0;

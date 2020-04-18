@@ -29,6 +29,8 @@ inline ComponentTypeId GetTypeId()
 class GameObject
 {
 public:
+	~GameObject();
+	
 	void Start();
 	void Update();
 	//void Draw();
@@ -74,5 +76,5 @@ private:
 	bool m_isDrawable = false;
 	SpriteRenderer* m_renderer = nullptr;
 	std::vector<std::unique_ptr<Component>> m_componentList; // TODO encapsulate this in a IComponentList
-	std::vector<ComponentTypeId> m_componentTypeIdList;
+	std::vector<ComponentTypeId> m_componentTypeIdList; // this is being deleted before all the components can be unregistered
 };

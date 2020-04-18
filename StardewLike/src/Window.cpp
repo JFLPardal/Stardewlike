@@ -43,7 +43,7 @@ void Window::Draw(const std::vector<sf::Drawable*>& aDrawableEntities)
 		m_Window.draw(*gameObject);
 	m_Window.display();
 }*/
-
+/*
 void Window::Draw(const std::vector<std::shared_ptr<DrawableEntity>>& aDrawableEntities)
 {
 	m_Window.clear();
@@ -51,7 +51,7 @@ void Window::Draw(const std::vector<std::shared_ptr<DrawableEntity>>& aDrawableE
 		m_Window.draw(*entity);
 	m_Window.display();
 }
-
+*/
 void Window::Draw(const std::vector<std::unique_ptr<GameObject>>& aGameObjects)
 {
 	m_Window.clear();

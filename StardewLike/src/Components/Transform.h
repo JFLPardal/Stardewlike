@@ -1,12 +1,14 @@
 #pragma once
 #include "Component.h"
 #include "SFML/Graphics/Transformable.hpp"
+#include <list>
+#include <functional>
 
 class Transform : public Component
 {
 public:
 	Transform();
-	~Transform() { printf(" transform\n"); }
+	~Transform();
 
 	void Start() override;
 	void Update() override;
@@ -16,6 +18,6 @@ public:
 	inline sf::Vector2f GetPosition() { return m_transform.getPosition(); }
 	inline int X() const { return m_x; }
 private:
-	int m_x = 43;
+	size_t m_x = 43;
 	sf::Transformable m_transform;
 };

@@ -1,7 +1,8 @@
 #pragma once
 #include "Component.h"
 #include "SFML/Graphics.hpp"
-
+#include <list>
+#include <functional>
 class Transform;
 
 class SpriteRenderer : public Component, public sf::Drawable
@@ -19,4 +20,5 @@ private:
 	sf::Texture m_Texture;
 	sf::Sprite  m_Sprite;
 	Transform* m_transform;
+	size_t index;
 };

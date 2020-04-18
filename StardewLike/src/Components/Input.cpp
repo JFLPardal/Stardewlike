@@ -2,6 +2,11 @@
 #include "SFML/Window/Keyboard.hpp"
 #include "SFML/Graphics/Rect.hpp"
 
+Input::~Input()
+{
+	printf("destroyed input component\n");
+}
+
 void Input::Update()
 {
 	short xInput = 0, yInput = 0;
@@ -22,7 +27,7 @@ void Input::Update()
 
 void Input::OnInputMove(short x, short y)
 {
-	for (auto& observer : e_onInputMove)
+	for (auto& observer : m_OnMoveKeyPressedCallbacks)
 	{
 		if(observer != nullptr) observer(x, y);
 	}
