@@ -43,7 +43,7 @@ GameApp::GameApp(Window& aWindow)
 	//m_Drawables.push_back(m_Tilemap);
 	
 	//create cherry object
-	std::shared_ptr<DrawableEntity> cherry01 = std::make_shared<DrawableEntity>("assets\\cherry.png");
+	//std::shared_ptr<DrawableEntity> cherry01 = std::make_shared<DrawableEntity>("assets\\cherry.png");
 
 	// create Game Entities
 	std::unique_ptr<GameObject> player = std::make_unique<GameObject>();
@@ -52,7 +52,7 @@ GameApp::GameApp(Window& aWindow)
 	InitPlayerComponents(*player);
 
 	//m_GameObjects.push_back(std::move(player));
-	m_Drawables.push_back(cherry01);
+	//m_Drawables.push_back(cherry01);
 	m_GameObjects.push_back(std::move(player));
 }
 

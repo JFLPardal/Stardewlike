@@ -2,6 +2,14 @@
 #include "SFML/Window/Keyboard.hpp"
 #include "SFML/Graphics/Rect.hpp"
 
+#include "../IEvent.h"
+
+Input::Input()
+{
+	OnInputMoveEvent = std::make_unique<IEvent<void(short, short)>>();
+	printf("input\n");
+}
+
 Input::~Input()
 {
 	printf("destroyed input component\n");
@@ -21,14 +29,20 @@ void Input::Update()
 		printf("moving to the left\n");
 		xInput--;
 	}
-	if(xInput != 0 || yInput != 0)
-		OnInputMove(xInput, yInput);
+	if (xInput != 0 || yInput != 0)
+		OnInputMoveEvent->TriggerEvent<short, short>(xInput, yInput);
 }
 
-void Input::OnInputMove(short x, short y)
+size_t Input::OnMoveKeyPressedRegister(std::function<void(short, short)> functionToCall)
 {
-	for (auto& observer : m_OnMoveKeyPressedCallbacks)
+	if (functionToCall != nullptr)
 	{
-		if(observer != nullptr) observer(x, y);
+		return OnInputMoveEvent->AddFunctionToListeners(functionToCall);
 	}
+	return -1; // TODO change for exception?
+}
+
+void Input::OnMoveKeyPressedUnregister(size_t aIndex)
+{
+	OnInputMoveEvent->RemoveFunctionFromListeners(aIndex);
 }

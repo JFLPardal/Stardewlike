@@ -31,6 +31,7 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\IEvent.h" />
     <ClInclude Include="src\Components\Input.h" />
     <ClInclude Include="src\Components\Component.h" />
     <ClInclude Include="src\Components\SpriteRenderer.h" />
