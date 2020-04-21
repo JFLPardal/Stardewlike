@@ -97,10 +97,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)StardewLike\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)StardewLike\$(Configuration)\intermediate\</IntDir>
+    <CodeAnalysisRuleSet>CppRuleset.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)StardewLike\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)StardewLike\$(Configuration)\intermediate\</IntDir>
+    <CodeAnalysisRuleSet>CppRuleset.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <CodeAnalysisRuleSet>CppRuleset.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <CodeAnalysisRuleSet>CppRuleset.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

@@ -19,6 +19,6 @@ private:
 	// TODO optimize, this should store a pointer to a texture and all textures should be stored in a single class
 	sf::Texture m_Texture;
 	sf::Sprite  m_Sprite;
-	Transform* m_transform;
+	Transform* m_transform{nullptr};
 	size_t index;
 };

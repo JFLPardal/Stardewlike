@@ -12,14 +12,15 @@ template <typename FuncSignature>
 class IEvent
 {
 public:
-	int AddFunctionToListeners(std::function<FuncSignature> aFunctionToAdd)
+	// ATTENTION: call this function with the event's macro, defined in the header file, of the Component you are trying to use
+	int AddCallback(std::function<FuncSignature> aFunctionToAdd)
 	{
 		printf("function added to the OnInputMove\n");
 		m_CallbacksList.emplace_back(aFunctionToAdd);
 		return m_CallbacksList.size() - 1; // risky, if the RemoveObserver function deletes the item instead of just = nullptr, this can be a problem
 	}
 
-	void RemoveFunctionFromListeners(int aIndexToRemove)
+	void RemoveCallback(int aIndexToRemove)
 	{
 		printf("function removed to the OnInputMove\n");
 		m_CallbacksList[aIndexToRemove] = nullptr;

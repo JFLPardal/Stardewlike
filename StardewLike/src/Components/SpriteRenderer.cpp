@@ -1,7 +1,7 @@
 #include "SpriteRenderer.h"
 #include <cstdio>
 #include "Transform.h"
-#include "Input.h"	// TODO remove after Observer is in its class
+#include "Input.h"	
 #include "../GameObject.h"
 
 SpriteRenderer::SpriteRenderer(const char* spriteFilePath)
@@ -22,9 +22,7 @@ SpriteRenderer::SpriteRenderer(const char* spriteFilePath)
 void SpriteRenderer::Start()
 {
 	m_transform = m_owner->GetComponent<Transform>();
-	index = m_owner->GetComponent<Input>()->OnMoveKeyPressedRegister(std::function<void(short, short)>(std::bind(&SpriteRenderer::SetSpriteBasedOnDirection, this, std::placeholders::_1, std::placeholders::_2)));
-	//m_owner->GetComponent<Input>()->OnMoveKeyPressedUnregister(index);
-
+	index = m_owner->GetComponent<Input>()->OnInputMoveEvent->AddCallback(MOVE_KEY_PRESSED(&SpriteRenderer::SetSpriteBasedOnDirection));
 }
 
 void SpriteRenderer::Update()
@@ -52,7 +50,7 @@ void SpriteRenderer::SetSpriteBasedOnDirection(short aX, short aY)
 SpriteRenderer::~SpriteRenderer()
 {
 	auto InputComponent = m_owner->GetComponent<Input>();
-	if(InputComponent) InputComponent->OnMoveKeyPressedUnregister(index);
+	if (InputComponent) InputComponent->OnInputMoveEvent->RemoveCallback(index);
 
 	printf("destroyed spriteRenderer component\n");
 }

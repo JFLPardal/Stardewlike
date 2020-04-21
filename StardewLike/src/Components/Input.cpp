@@ -17,7 +17,9 @@ Input::~Input()
 
 void Input::Update()
 {
+	// won't support joystick movement with short 
 	short xInput = 0, yInput = 0;
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		printf("moving to the right\n");
@@ -31,18 +33,4 @@ void Input::Update()
 	}
 	if (xInput != 0 || yInput != 0)
 		OnInputMoveEvent->TriggerEvent<short, short>(xInput, yInput);
-}
-
-size_t Input::OnMoveKeyPressedRegister(std::function<void(short, short)> functionToCall)
-{
-	if (functionToCall != nullptr)
-	{
-		return OnInputMoveEvent->AddFunctionToListeners(functionToCall);
-	}
-	return -1; // TODO change for exception?
-}
-
-void Input::OnMoveKeyPressedUnregister(size_t aIndex)
-{
-	OnInputMoveEvent->RemoveFunctionFromListeners(aIndex);
 }

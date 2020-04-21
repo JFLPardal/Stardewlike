@@ -13,6 +13,6 @@ public:
 	virtual void Update() = 0;
 	void SetOwner(GameObject& aOwner);
 protected:
-	GameObject* m_owner;
+	GameObject* m_owner{nullptr};
 private:
 };

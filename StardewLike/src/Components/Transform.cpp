@@ -11,11 +11,7 @@ Transform::Transform()
 
 void Transform::Start()
 {
-	m_x = m_owner->GetComponent<Input>()->OnMoveKeyPressedRegister
-									(std::function<void(short, short)>
-										(std::bind(&Transform::UpdateMovement
-													,this
-													,std::placeholders::_1, std::placeholders::_2)));
+	m_x = m_owner->GetComponent<Input>()->OnInputMoveEvent->AddCallback(MOVE_KEY_PRESSED(&Transform::UpdateMovement));
 }
 
 void Transform::UpdateMovement(short x, short y)
@@ -30,6 +26,6 @@ void Transform::Update()
 Transform::~Transform()
 {
 	auto InputComponent = m_owner->GetComponent<Input>();
-	if(InputComponent) InputComponent->OnMoveKeyPressedUnregister(m_x);
+	if (InputComponent) InputComponent->OnInputMoveEvent->RemoveCallback(m_x);
 	printf("destroyed transform\n");
 }

@@ -11,9 +11,9 @@ bool Tilemap::Load(const std::string& aTileset, sf::Vector2u aTileSize, const in
 	m_Vertices.resize(aWidth * aHeight * 4);
 
 	// populate the vertex array, with one quad per tile
-	for (auto i = 0; i < aWidth; ++i)
+	for (size_t i = 0; i < aWidth; ++i)
 	{
-		for (auto j = 0; j < aHeight; ++j)
+		for (size_t j = 0; j < aHeight; ++j)
 		{
 			// get current tile number
 			int tileNumber = aTiles[i + j * aWidth];
