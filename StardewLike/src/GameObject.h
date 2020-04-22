@@ -1,11 +1,12 @@
 #pragma once
-#include <vector>
-#include <memory>
-#include <typeinfo>
-
 #include "Components/Component.h"
 #include "Components/SpriteRenderer.h"
-//class Component;
+
+/*
+	GameObject is the class that represents any entity on the game.
+	It consists in a collection of 'Component's that make up this GO, as well as some functionality like 
+	adding and removing components from a GO.
+*/
 
 typedef unsigned int ComponentTypeId;
 
@@ -35,7 +36,7 @@ public:
 	void Update();
 	//void Draw();
 
-	inline bool IsDrawable() const { return m_isDrawable; }
+	inline bool IsDrawable() const { return m_renderer != nullptr; }
 	sf::Drawable& GetRenderer() const { return static_cast<sf::Drawable&>(*m_renderer); }
 
 	template <typename T, typename... TArgs>
@@ -73,7 +74,6 @@ public:
 
 
 private:
-	bool m_isDrawable = false;
 	SpriteRenderer* m_renderer = nullptr;
 	std::vector<std::unique_ptr<Component>> m_componentList; // TODO encapsulate this in a IComponentList
 	std::vector<ComponentTypeId> m_componentTypeIdList; // this is being deleted before all the components can be unregistered

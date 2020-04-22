@@ -1,7 +1,15 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "GameApp.h"
 
+/*
+	Window is a wrapper around the function calls to the SFML library needed to create and 
+	draw to a window.
+
+	// TODO extract this from this class
+	Additionally it is responsible for polling the events that happen on the window like mouse movement,
+	keys pressed or windows resizing.
+*/
+
+class GameApp;
 class DrawableEntity;
 class GameObject;
 

@@ -1,5 +1,7 @@
+#include "pch.h"
 #include "DrawableEntity.h"
-#include "SFML/Graphics.hpp"
+
+//#include "SFML/Graphics.hpp"
 
 DrawableEntity::DrawableEntity(const char * aTextureFilePath)
 {	

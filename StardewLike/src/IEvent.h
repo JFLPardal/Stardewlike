@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 
 /*
 	This class is responsible for storing all the callback functions that should be called when a given action of interest (event) 
@@ -8,12 +7,15 @@
 	 TODO very inefficient way of doing the removal, the index is nulled and is not reused, furthermore, 
 	 every time a function is added there is a risk of needing to reallocate the vector that holds the callbacks
 */
+
+typedef size_t EventIndex;
+
 template <typename FuncSignature>
 class IEvent
 {
 public:
 	// ATTENTION: call this function with the event's macro, defined in the header file, of the Component you are trying to use
-	int AddCallback(std::function<FuncSignature> aFunctionToAdd)
+	EventIndex AddCallback(std::function<FuncSignature> aFunctionToAdd)
 	{
 		printf("function added to the OnInputMove\n");
 		m_CallbacksList.emplace_back(aFunctionToAdd);

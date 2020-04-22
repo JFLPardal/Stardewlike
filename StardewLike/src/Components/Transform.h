@@ -1,8 +1,9 @@
 #pragma once
 #include "Component.h"
-#include "SFML/Graphics/Transformable.hpp"
-#include <list>
-#include <functional>
+
+/*
+	Transform is responsible for updating the position, scale and rotation of the GO it is attached to.
+*/
 
 class Transform : public Component
 {
@@ -16,8 +17,7 @@ public:
 	inline void UpdateMovement(short x, short y);
 	
 	inline sf::Vector2f GetPosition() { return m_transform.getPosition(); }
-	inline int X() const { return m_x; }
 private:
-	size_t m_x = 43;
+	EventIndex m_eMoveKeyPressedIndex;
 	sf::Transformable m_transform;
 };

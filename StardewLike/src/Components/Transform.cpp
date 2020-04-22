@@ -1,6 +1,7 @@
+#include "pch.h"
 #include "Transform.h"
-#include <iostream>
-#include "../GameObject.h"
+
+#include "GameObject.h"
 #include "Input.h"
 
 Transform::Transform()
@@ -11,7 +12,7 @@ Transform::Transform()
 
 void Transform::Start()
 {
-	m_x = m_owner->GetComponent<Input>()->OnInputMoveEvent->AddCallback(MOVE_KEY_PRESSED(&Transform::UpdateMovement));
+	m_eMoveKeyPressedIndex = m_owner->GetComponent<Input>()->OnInputMoveEvent->AddCallback(MOVE_KEY_PRESSED(&Transform::UpdateMovement));
 }
 
 void Transform::UpdateMovement(short x, short y)
@@ -26,6 +27,6 @@ void Transform::Update()
 Transform::~Transform()
 {
 	auto InputComponent = m_owner->GetComponent<Input>();
-	if (InputComponent) InputComponent->OnInputMoveEvent->RemoveCallback(m_x);
+	if (InputComponent) InputComponent->OnInputMoveEvent->RemoveCallback(m_eMoveKeyPressedIndex);
 	printf("destroyed transform\n");
 }

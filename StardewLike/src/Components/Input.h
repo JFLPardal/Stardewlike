@@ -1,17 +1,13 @@
 #pragma once
 #include "Component.h"
-#include <functional>
-#include <memory>
+#include "IEvent.h"
 
-#include "../IEvent.h"
+/*
+	Input is responsible for getting the events that are keyboard and mouse related, and communicating them via 'IEvent'.
 
-// 0. Add SpriteRenderer's functions to the list of callbacks			DONE
-// 1. Make sure it I can remove functions from the observer list		DONE (poorly)
-//    Make sure remove is being called on destructor
-// 2. clean up the signature to add a function							DONE
-// 3. extract to an Observer class										DONE
-// 4. remove m_owener from the GetComponent call
-// 5. look at the scalability of events from the callee's perspective
+	EVENT_SOURCE:
+	* OnInputMoveEvent: Event that is triggered when the keys on the keyboard responsible for moving the player are pressed
+*/
 
 #define MOVE_KEY_PRESSED(callbackFunction) std::function<void(short, short)>(std::bind(callbackFunction, this, std::placeholders::_1, std::placeholders::_2))
 

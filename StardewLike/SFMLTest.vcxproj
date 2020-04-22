@@ -27,6 +27,12 @@
     <ClCompile Include="src\GameApp.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\Tilemap.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
@@ -39,6 +45,7 @@
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\DrawableEntity.h" />
     <ClInclude Include="src\GameApp.h" />
+    <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\Tilemap.h" />
     <ClInclude Include="src\Window.h" />
   </ItemGroup>
@@ -116,8 +123,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)StardewLike\src;$(SolutionDir)SFML\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +141,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>DEBUG=1;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)StardewLike\src;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,8 +157,10 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)StardewLike\src;$(SolutionDir)SFML\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=0;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,6 +179,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>DEBUG=0;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)StardewLike\src;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

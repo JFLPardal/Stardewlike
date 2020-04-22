@@ -1,8 +1,11 @@
 #pragma once
 #include "Component.h"
-#include "SFML/Graphics.hpp"
-#include <list>
-#include <functional>
+
+
+/*
+	SpriteRenderer is responsible for drawing the 'GameObject' it is attached to,
+	as well as update that GO's sprite based on conditions.	 
+*/
 class Transform;
 
 class SpriteRenderer : public Component, public sf::Drawable
@@ -20,5 +23,5 @@ private:
 	sf::Texture m_Texture;
 	sf::Sprite  m_Sprite;
 	Transform* m_transform{nullptr};
-	size_t index;
+	EventIndex m_eMoveKeyPressedIndex;
 };

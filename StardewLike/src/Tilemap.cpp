@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Tilemap.h"
 
 bool Tilemap::Load(const std::string& aTileset, sf::Vector2u aTileSize, const int* aTiles, unsigned int aWidth, unsigned int aHeight)

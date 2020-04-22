@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "GameApp.h"
 
 #include <SFML/Graphics.hpp>

@@ -1,5 +1,4 @@
 #pragma once
-#include "SFML/Graphics.hpp"
 
 class Tilemap : public sf::Drawable, public sf::Transformable
 {

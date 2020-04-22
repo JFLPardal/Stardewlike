@@ -1,4 +1,6 @@
+#include "pch.h"
 #include "GameObject.h"
+
 #include "Components/SpriteRenderer.h"
 
 GameObject::~GameObject()
@@ -14,7 +16,6 @@ void GameObject::Start()
 		component->Start();
 	}
 	m_renderer = GetComponent<SpriteRenderer>();
-	if (m_renderer) m_isDrawable = true;
 }
 
 void GameObject::Update()

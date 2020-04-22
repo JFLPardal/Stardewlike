@@ -1,5 +1,9 @@
 #pragma once
-#include <memory>
+
+/*
+	Component is responsible for defining the base behaviours a Component should have, as well has a reference to its owner 'GameObject'.
+	This is the base class for all the components on the engine.
+*/
 
 class GameObject;
 
@@ -14,5 +18,4 @@ public:
 	void SetOwner(GameObject& aOwner);
 protected:
 	GameObject* m_owner{nullptr};
-private:
 };

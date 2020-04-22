@@ -1,5 +1,4 @@
 #pragma once
-#include "SFML/Graphics.hpp"
 
 class DrawableEntity : public sf::Drawable, public sf::Transformable
 {

@@ -1,8 +1,10 @@
+#include "pch.h"
 #include "Input.h"
+
 #include "SFML/Window/Keyboard.hpp"
 #include "SFML/Graphics/Rect.hpp"
+#include "IEvent.h"
 
-#include "../IEvent.h"
 
 Input::Input()
 {

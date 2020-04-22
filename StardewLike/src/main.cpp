@@ -1,7 +1,7 @@
-#include <SFML/Graphics.hpp>
+#include "pch.h"
 
-#include "Window.h"
 #include "GameApp.h"
+#include "Window.h"
 
 int main()
 {

@@ -1,8 +1,9 @@
+#include "pch.h"
 #include "SpriteRenderer.h"
-#include <cstdio>
+
 #include "Transform.h"
 #include "Input.h"	
-#include "../GameObject.h"
+#include "GameObject.h"
 
 SpriteRenderer::SpriteRenderer(const char* spriteFilePath)
 {
@@ -22,7 +23,7 @@ SpriteRenderer::SpriteRenderer(const char* spriteFilePath)
 void SpriteRenderer::Start()
 {
 	m_transform = m_owner->GetComponent<Transform>();
-	index = m_owner->GetComponent<Input>()->OnInputMoveEvent->AddCallback(MOVE_KEY_PRESSED(&SpriteRenderer::SetSpriteBasedOnDirection));
+	m_eMoveKeyPressedIndex = m_owner->GetComponent<Input>()->OnInputMoveEvent->AddCallback(MOVE_KEY_PRESSED(&SpriteRenderer::SetSpriteBasedOnDirection));
 }
 
 void SpriteRenderer::Update()
@@ -50,7 +51,7 @@ void SpriteRenderer::SetSpriteBasedOnDirection(short aX, short aY)
 SpriteRenderer::~SpriteRenderer()
 {
 	auto InputComponent = m_owner->GetComponent<Input>();
-	if (InputComponent) InputComponent->OnInputMoveEvent->RemoveCallback(index);
+	if (InputComponent) InputComponent->OnInputMoveEvent->RemoveCallback(m_eMoveKeyPressedIndex);
 
 	printf("destroyed spriteRenderer component\n");
 }
