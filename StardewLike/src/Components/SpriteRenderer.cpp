@@ -46,7 +46,7 @@ void SpriteRenderer::Update()
 		m_sprite.setColor(sf::Color::Yellow);
 		break;
 	case left:
-		m_sprite.setColor(sf::Color::Transparent);
+		m_sprite.setColor(sf::Color::White);
 		break;
 	}
 }

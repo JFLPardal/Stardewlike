@@ -3,6 +3,7 @@
 #include "IEvent.h"
 
 class WindowEventHandler;
+class Transform;
 
 enum PossibleOrientation : short 
 {
@@ -23,6 +24,7 @@ private:
 	void UpdateOrientation(int aX, int aY);
 
 	PossibleOrientation m_currentOrientation = up;
+	Transform* m_transform{ nullptr };
 	WindowEventHandler* m_windowEventHandler{ nullptr };
 	EventIndex m_eMouseMovementIndex;
 };

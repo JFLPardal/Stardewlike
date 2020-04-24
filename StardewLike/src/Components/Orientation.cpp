@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "Orientation.h"
+
 #include "WindowEventHandler.h"
+#include "GameObject.h"
+#include "Transform.h"
 
 Orientation::Orientation(WindowEventHandler* aWindowEventHandler)
 {
@@ -12,6 +15,7 @@ Orientation::Orientation(WindowEventHandler* aWindowEventHandler)
 void Orientation::Start()
 {
 	m_eMouseMovementIndex = m_windowEventHandler->m_onMouseMoveEvent->AddCallback(MOUSE_MOVED(&Orientation::UpdateOrientation));
+	m_transform = m_owner->GetComponent<Transform>();
 }
 
 void Orientation::Update()
@@ -25,7 +29,17 @@ PossibleOrientation Orientation::GetOrientation() const
 
 void Orientation::UpdateOrientation(int aX, int aY)
 {
-	printf("updating orientation! %d %d\n", aX, aY);
+	int objectX = m_transform->GetPosition().x;
+	int objectY = m_transform->GetPosition().y;
+
+	int deltaX = aX - objectX;
+	int deltaY = aY - objectY;
+
+	if (abs(deltaX) >= abs(deltaY))
+		m_currentOrientation = (deltaX > 0) ? right : left;
+	else
+		m_currentOrientation = (deltaY > 0) ? down : up; // y increases from the top of the screen to the bottom
+
 }
 
 Orientation::~Orientation()
