@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 
+class Orientation;
 
 /*
 	SpriteRenderer is responsible for drawing the 'GameObject' it is attached to,
@@ -20,8 +21,9 @@ public:
 private:
 	void SetSpriteBasedOnDirection(short aX, short aY);
 	// TODO optimize, this should store a pointer to a texture and all textures should be stored in a single class
-	sf::Texture m_Texture;
-	sf::Sprite  m_Sprite;
+	sf::Texture m_texture;
+	sf::Sprite  m_sprite;
 	Transform* m_transform{nullptr};
 	EventIndex m_eMoveKeyPressedIndex;
+	Orientation* m_orientation{ nullptr };
 };

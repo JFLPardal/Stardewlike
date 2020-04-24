@@ -33,26 +33,10 @@ void Window::ProcessEvent(sf::Event & aEvent)
 	}
 	if (aEvent.type == sf::Event::MouseMoved)
 	{
-		//printf("mouse moved: %d %d\n", aEvent.mouseMove.x, aEvent.mouseMove.y);
+		printf("mouse moved: %d %d\n", aEvent.mouseMove.x, aEvent.mouseMove.y);
 	}
 }
-/*
-void Window::Draw(const std::vector<sf::Drawable*>& aDrawableEntities)
-{
-	m_Window.clear();
-	for (auto& gameObject : aDrawableEntities)
-		m_Window.draw(*gameObject);
-	m_Window.display();
-}*/
-/*
-void Window::Draw(const std::vector<std::shared_ptr<DrawableEntity>>& aDrawableEntities)
-{
-	m_Window.clear();
-	for (auto& entity : aDrawableEntities)
-		m_Window.draw(*entity);
-	m_Window.display();
-}
-*/
+
 void Window::Draw(const std::vector<std::unique_ptr<GameObject>>& aGameObjects)
 {
 	m_Window.clear();

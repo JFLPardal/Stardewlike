@@ -10,6 +10,7 @@
 #include "Components/Transform.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/Input.h"
+#include "Components/Orientation.h"
 
 void InitPlayerComponents(GameObject& player);
 
@@ -62,6 +63,7 @@ void InitPlayerComponents(GameObject& player)
 {
 	player.AddComponent<Transform>(); // TODO move add transform to the GO constructor
 	player.AddComponent<Input>();
+	player.AddComponent<Orientation>();
 	player.AddComponent<SpriteRenderer>("assets\\cherry.png");
 	player.Start();
 }

@@ -1,14 +1,31 @@
 #pragma once
 
 /*
-	This class is responsible for storing all the callback functions that should be called when a given action of interest (event) 
-	happens in the game. This is a (very inefficient )homebrew version of an Observer.
+	This class is responsible for storing all the callback functions that should be called when a given action of interest (Event) 
+	happens in the game. This is a (very inefficient) homebrew version of an Observer.
+
+	To add a new Event (trigger side):
+
+		* create a  class that has this one as a pointer member variable with the signature of the callback as the template; 
+			p.e. std::unique_ptr<IEvent<void(short,short)>> OnInputMoveEvent;
+
+		* on the new class define the macro that encapsulates the callback's signature; 
+			p.e. #define MOVE_KEY_PRESSED(callbackFunction) std::function<void(short, short)>(std::bind(callbackFunction, this, std::placeholders::_1, std::placeholders::_2))
+
+	To add a new Observer:
+
+		* on the class that has the function that should be called when an event happens, define a 'EventIndex' member variable that will hold an index;
+			p.e. EventIndex m_eMoveKeyPressedIndex;
+
+		* in the 'Start' function of the component class initialize the EventIndex by calling 'AddCallback' to the 'Component' that has the event of interest
+			p.e. m_eMoveKeyPressedIndex = m_owner->GetComponent<Input>()->OnInputMoveEvent->AddCallback(MOVE_KEY_PRESSED(&Transform::UpdateMovement));
+
+		* in the destructor of the component call 'RemoveCallback' on the same function that was previously registered, with the 'EventIndex' as the arg
+			p.e. m_owner->GetComponent<Input>()->OnInputMoveEvent->RemoveCallback(m_eMoveKeyPressedIndex);
 
 	 TODO very inefficient way of doing the removal, the index is nulled and is not reused, furthermore, 
 	 every time a function is added there is a risk of needing to reallocate the vector that holds the callbacks
 */
-
-typedef size_t EventIndex;
 
 template <typename FuncSignature>
 class IEvent

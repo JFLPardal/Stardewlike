@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\Components\Component.cpp" />
     <ClCompile Include="src\Components\Input.cpp" />
+    <ClCompile Include="src\Components\Orientation.cpp" />
     <ClCompile Include="src\Components\SpriteRenderer.cpp" />
     <ClCompile Include="src\Components\Transform.cpp" />
     <ClCompile Include="src\DrawableEntity.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\Orientation.h" />
     <ClInclude Include="src\IEvent.h" />
     <ClInclude Include="src\Components\Input.h" />
     <ClInclude Include="src\Components\Component.h" />
