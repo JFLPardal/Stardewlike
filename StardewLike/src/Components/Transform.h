@@ -14,10 +14,10 @@ public:
 	void Start() override;
 	void Update() override;
 	
-	inline void UpdateMovement(short x, short y);
-	
 	inline sf::Vector2f GetPosition() { return m_transform.getPosition(); }
 private:
+	inline void UpdateMovement(short x, short y);
+
 	EventIndex m_eMoveKeyPressedIndex;
 	sf::Transformable m_transform;
 };

@@ -26,6 +26,7 @@
 	 TODO very inefficient way of doing the removal, the index is nulled and is not reused, furthermore, 
 	 every time a function is added there is a risk of needing to reallocate the vector that holds the callbacks
 */
+typedef size_t EventIndex;
 
 template <typename FuncSignature>
 class IEvent
@@ -34,14 +35,14 @@ public:
 	// ATTENTION: call this function with the event's macro, defined in the header file, of the Component you are trying to use
 	EventIndex AddCallback(std::function<FuncSignature> aFunctionToAdd)
 	{
-		printf("function added to the OnInputMove\n");
+		printf("function added to event\n");
 		m_CallbacksList.emplace_back(aFunctionToAdd);
 		return m_CallbacksList.size() - 1; // risky, if the RemoveObserver function deletes the item instead of just = nullptr, this can be a problem
 	}
 
 	void RemoveCallback(int aIndexToRemove)
 	{
-		printf("function removed to the OnInputMove\n");
+		printf("function removed from event\n");
 		m_CallbacksList[aIndexToRemove] = nullptr;
 	}
 

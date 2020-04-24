@@ -5,9 +5,9 @@
 	This is the base class for all the components on the engine.
 */
 
-typedef size_t EventIndex;
-
 class GameObject;
+
+typedef size_t EventIndex;
 
 class Component
 {

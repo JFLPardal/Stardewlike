@@ -7,8 +7,8 @@
 
 
 Input::Input()
+	:OnInputMoveEvent (std::make_unique<IEvent<void(short, short)>>())
 {
-	OnInputMoveEvent = std::make_unique<IEvent<void(short, short)>>();
 	printf("input\n");
 }
 

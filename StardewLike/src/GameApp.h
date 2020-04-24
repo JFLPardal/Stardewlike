@@ -23,6 +23,8 @@ public:
 	void Update();
 	void Draw() const;
 private:
+	void InitPlayerComponents(GameObject& aPlayer);
+
 	Window& m_GameWindow;
 	Tilemap* m_Tilemap;
 	//std::vector<sf::Drawable*> m_Drawables;

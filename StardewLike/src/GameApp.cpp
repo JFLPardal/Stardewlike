@@ -12,7 +12,14 @@
 #include "Components/Input.h"
 #include "Components/Orientation.h"
 
-void InitPlayerComponents(GameObject& player);
+void GameApp::InitPlayerComponents(GameObject& aPlayer)
+{
+	aPlayer.AddComponent<Transform>(); // TODO move add transform to the GO constructor
+	aPlayer.AddComponent<Input>();
+	aPlayer.AddComponent<Orientation>(m_GameWindow.GetWindowEventHandler());
+	aPlayer.AddComponent<SpriteRenderer>("assets\\cherry.png");
+	aPlayer.Start();
+}
 
 GameApp::GameApp(Window& aWindow)
 	:m_GameWindow(aWindow)
@@ -59,20 +66,6 @@ GameApp::GameApp(Window& aWindow)
 	m_GameObjects.push_back(std::move(player));
 }
 
-void InitPlayerComponents(GameObject& player)
-{
-	player.AddComponent<Transform>(); // TODO move add transform to the GO constructor
-	player.AddComponent<Input>();
-	player.AddComponent<Orientation>();
-	player.AddComponent<SpriteRenderer>("assets\\cherry.png");
-	player.Start();
-}
-
-GameApp::~GameApp()
-{
-	delete m_Tilemap;
-}
-
 void GameApp::Update()
 {
 	for (auto& gameObject : m_GameObjects)
@@ -86,4 +79,9 @@ void GameApp::Draw() const
 	//m_GameWindow.Draw(m_Tilemap);
 	//m_GameWindow.Draw(m_Drawables);
 	m_GameWindow.Draw(m_GameObjects);
+}
+
+GameApp::~GameApp()
+{
+	delete m_Tilemap;
 }
