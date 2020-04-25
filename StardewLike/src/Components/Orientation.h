@@ -10,7 +10,7 @@ enum PossibleOrientation : short
 	up, right, down, left
 };
 
-class Orientation : public Component
+class Orientation : public IComponent
 {
 public:
 	explicit Orientation(WindowEventHandler* aWindow);

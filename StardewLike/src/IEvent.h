@@ -17,7 +17,7 @@
 		* on the class that has the function that should be called when an event happens, define a 'EventIndex' member variable that will hold an index;
 			p.e. EventIndex m_eMoveKeyPressedIndex;
 
-		* in the 'Start' function of the component class initialize the EventIndex by calling 'AddCallback' to the 'Component' that has the event of interest
+		* in the 'Start' function of the component class initialize the EventIndex by calling 'AddCallback' to the 'IComponent' that has the event of interest
 			p.e. m_eMoveKeyPressedIndex = m_owner->GetComponent<Input>()->OnInputMoveEvent->AddCallback(MOVE_KEY_PRESSED(&Transform::UpdateMovement));
 
 		* in the destructor of the component call 'RemoveCallback' on the same function that was previously registered, with the 'EventIndex' as the arg

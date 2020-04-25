@@ -12,11 +12,6 @@ Input::Input()
 	printf("input\n");
 }
 
-Input::~Input()
-{
-	printf("destroyed input component\n");
-}
-
 // xInput and yInput MUST be a value [0,1]
 void Input::Update()
 {
@@ -31,4 +26,9 @@ void Input::Update()
 	assert(xInput <= 1 && yInput <= 1);
 	if (xInput != 0 || yInput != 0)
 		OnInputMoveEvent->TriggerEvent<short, short>(xInput, yInput);
+}
+
+Input::~Input()
+{
+	printf("destroyed input component\n");
 }

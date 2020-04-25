@@ -4,7 +4,7 @@
 
 /*
 	GameObject is the class that represents any entity on the game.
-	It consists in a collection of 'Component's that make up this GO, as well as some functionality like 
+	It consists in a collection of 'IComponent's that make up this GO, as well as some functionality like 
 	adding and removing components from a GO.
 */
 
@@ -42,14 +42,14 @@ public:
 	template <typename T, typename... TArgs>
 	T& AddComponent(TArgs&&... args)	// TODO same component can be added twice to the same object
 	{
-		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
+		static_assert(std::is_base_of<IComponent, T>::value, "GetComponent must be called on a IComponent type");
 		
 		m_componentTypeIdList.push_back(std::move(GetTypeId<T>()));
 
 		// instantiate the component
 		T* newComponent(new T(std::forward<TArgs>(args)...));
 		newComponent->SetOwner(*this);
-		std::unique_ptr<Component> newComponentPtr { newComponent };
+		std::unique_ptr<IComponent> newComponentPtr { newComponent };
 		
 		// add it to the component list
 		m_componentList.emplace_back(std::move(newComponentPtr));
@@ -59,7 +59,7 @@ public:
 	template<typename T>
 	T* GetComponent()
 	{
-		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
+		static_assert(std::is_base_of<IComponent, T>::value, "GetComponent must be called on a IComponent type");
 		unsigned int thisComponentTypeId = GetTypeId<T>();
 		for (ComponentTypeId& componentTypeId : m_componentTypeIdList)
 		{
@@ -75,6 +75,6 @@ public:
 
 private:
 	SpriteRenderer* m_renderer = nullptr;
-	std::vector<std::unique_ptr<Component>> m_componentList; // TODO encapsulate this in a IComponentList
 	std::vector<ComponentTypeId> m_componentTypeIdList; // this is being deleted before all the components can be unregistered
+	std::vector<std::unique_ptr<IComponent>> m_componentList; // TODO encapsulate this in a IComponentList
 };

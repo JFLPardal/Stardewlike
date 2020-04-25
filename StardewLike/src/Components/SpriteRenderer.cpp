@@ -72,6 +72,5 @@ SpriteRenderer::~SpriteRenderer()
 {
 	auto InputComponent = m_owner->GetComponent<Input>();
 	if (InputComponent) InputComponent->OnInputMoveEvent->RemoveCallback(m_eMoveKeyPressedIndex);
-
 	printf("destroyed spriteRenderer component\n");
 }

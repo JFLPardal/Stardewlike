@@ -9,7 +9,7 @@ class Orientation;
 */
 class Transform;
 
-class SpriteRenderer : public Component, public sf::Drawable
+class SpriteRenderer : public IComponent, public sf::Drawable
 {
 public:
 	SpriteRenderer(const char* spriteFilePath);

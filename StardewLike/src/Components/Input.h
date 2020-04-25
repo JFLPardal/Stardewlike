@@ -11,7 +11,7 @@
 
 #define MOVE_KEY_PRESSED(callbackFunction) std::function<void(short, short)>(std::bind(callbackFunction, this, std::placeholders::_1, std::placeholders::_2))
 
-class Input : public Component
+class Input : public IComponent
 {
 public:
 	Input();

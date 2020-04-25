@@ -15,9 +15,9 @@
 void GameApp::InitPlayerComponents(GameObject& aPlayer)
 {
 	aPlayer.AddComponent<Transform>(); // TODO move add transform to the GO constructor
-	aPlayer.AddComponent<Input>();
 	aPlayer.AddComponent<Orientation>(m_GameWindow.GetWindowEventHandler());
 	aPlayer.AddComponent<SpriteRenderer>("assets\\cherry.png");
+	aPlayer.AddComponent<Input>();
 	aPlayer.Start();
 }
 

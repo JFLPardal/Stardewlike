@@ -30,7 +30,14 @@ void Window::Draw(const std::vector<std::unique_ptr<GameObject>>& aGameObjects)
 	m_Window.clear();
 	for (auto& gameObject : aGameObjects)
 		m_Window.draw(gameObject->GetRenderer());
-		//if(gameObject->IsDrawable())
+	m_Window.display();
+}
+
+void Window::Draw(const std::vector<sf::Drawable*>& aDrawableEntities)
+{
+	m_Window.clear();
+	for (auto& gameObject : aDrawableEntities)
+		m_Window.draw(*gameObject);
 	m_Window.display();
 }
 

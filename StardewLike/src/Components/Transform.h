@@ -5,7 +5,7 @@
 	Transform is responsible for updating the position, scale and rotation of the GO it is attached to.
 */
 
-class Transform : public Component
+class Transform : public IComponent
 {
 public:
 	Transform();

@@ -2,7 +2,7 @@
 
 class Window;
 class Tilemap;
-class DrawableEntity;
+//class DrawableEntity;
 class GameObject;
 
 /*
@@ -28,6 +28,6 @@ private:
 	Window& m_GameWindow;
 	Tilemap* m_Tilemap;
 	//std::vector<sf::Drawable*> m_Drawables;
-	std::vector<std::shared_ptr<DrawableEntity>> m_Drawables; // TODO for now, delete this and on draw see if m_gameObjects has drawable component, if it does, draw it
+	//std::vector<std::shared_ptr<DrawableEntity>> m_Drawables; // TODO for now, delete this and on draw see if m_gameObjects has drawable component, if it does, draw it
 	std::vector<std::unique_ptr<GameObject>> m_GameObjects;
 };

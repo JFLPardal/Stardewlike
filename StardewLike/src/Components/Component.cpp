@@ -3,16 +3,16 @@
 
 #include "GameObject.h"
 
-Component::Component()
+IComponent::IComponent()
 {
-	printf("creating Component: ");
+	printf("creating IComponent: ");
 }
 
-void Component::Start()
+void IComponent::Start()
 {
 }
 
-void Component::SetOwner(GameObject& aOwner)
+void IComponent::SetOwner(GameObject& aOwner)
 { 
 	m_owner = &aOwner; 
 }

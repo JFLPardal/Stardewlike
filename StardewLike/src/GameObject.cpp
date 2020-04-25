@@ -3,12 +3,6 @@
 
 #include "Components/SpriteRenderer.h"
 
-GameObject::~GameObject()
-{
-	//delete m_renderer;
-	printf("destroyed GO\n");
-}
-
 void GameObject::Start()
 {
 	for (auto& component : m_componentList)
@@ -31,3 +25,8 @@ void GameObject::Draw()
 {
 	if (m_isDrawable) m_renderer->Draw();
 }*/
+
+GameObject::~GameObject()
+{
+	printf("destroyed GO\n");
+}
