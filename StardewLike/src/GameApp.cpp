@@ -1,20 +1,16 @@
 #include "pch.h"
-
 #include "GameApp.h"
 
-#include <SFML/Graphics.hpp>
 #include "Window.h"
 #include "Tilemap.h"
-#include "DrawableEntity.h"
 #include "GameObject.h"
 #include "Components/Transform.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/Input.h"
 #include "Components/Orientation.h"
 
-void GameApp::InitPlayerComponents(GameObject& aPlayer)
+void GameApp::InitPlayerComponents(GameObject& aPlayer)	// TODO this should be done in some external file, like XML or something
 {
-	aPlayer.AddComponent<Transform>(); // TODO move add transform to the GO constructor
 	aPlayer.AddComponent<Orientation>(m_GameWindow.GetWindowEventHandler());
 	aPlayer.AddComponent<SpriteRenderer>("assets\\cherry.png");
 	aPlayer.AddComponent<Input>();
@@ -24,45 +20,16 @@ void GameApp::InitPlayerComponents(GameObject& aPlayer)
 GameApp::GameApp(Window& aWindow)
 	:m_GameWindow(aWindow)
 {
-	// map
+	// create and load map
 	m_Tilemap = new Tilemap();
-	// original map
-	/*const int map[] =
-	{
-		0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-		0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0,
-		1, 1, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3,
-		0, 1, 0, 0, 2, 0, 3, 3, 3, 0, 1, 1, 1, 0, 0, 0,
-		0, 1, 1, 0, 3, 3, 3, 0, 0, 0, 1, 1, 1, 2, 0, 0,
-		0, 0, 1, 0, 3, 0, 2, 2, 0, 0, 1, 1, 1, 1, 2, 0,
-		2, 0, 1, 0, 3, 0, 2, 2, 2, 0, 1, 1, 1, 1, 1, 1,
-		0, 0, 1, 0, 3, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1,
-	};*/
-	const int map[] =
-	{
-		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-		1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-		1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-		1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-		1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-		1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-		1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	};
-	m_Tilemap->Load("assets\\tileset.png", sf::Vector2u(32,32), map, 16, 8);
-	//m_Drawables.push_back(m_Tilemap);
-	
-	//create cherry object
-	//std::shared_ptr<DrawableEntity> cherry01 = std::make_shared<DrawableEntity>("assets\\cherry.png");
+	m_Tilemap->Load("assets\\tileset.png", sf::Vector2u(32,32), 16, 8);
 
-	// create Game Entities
-	std::unique_ptr<GameObject> player = std::make_unique<GameObject>();
-	
-	// component testing
+	// TODO this and the 'move game entities...' should be done in one go to make sure the programmer doesn't forget to add the GO to the structure
+	// create Game Entities 
+	std::unique_ptr<GameObject> player = std::make_unique<GameObject>(200, 50);
 	InitPlayerComponents(*player);
 
-	//m_GameObjects.push_back(std::move(player));
-	//m_Drawables.push_back(cherry01);
+	// move game entities to the m_gameObjects structure
 	m_GameObjects.push_back(std::move(player));
 }
 
@@ -76,8 +43,7 @@ void GameApp::Update()
 
 void GameApp::Draw() const
 {
-	//m_GameWindow.Draw(m_Tilemap);
-	//m_GameWindow.Draw(m_Drawables);
+	m_GameWindow.Draw(m_Tilemap);
 	m_GameWindow.Draw(m_GameObjects);
 }
 

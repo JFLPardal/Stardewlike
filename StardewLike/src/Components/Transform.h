@@ -8,7 +8,7 @@
 class Transform : public IComponent
 {
 public:
-	Transform();
+	Transform(int aInitialX, int aInitialY);
 	~Transform();
 
 	void Start() override;
@@ -18,6 +18,6 @@ public:
 private:
 	inline void UpdateMovement(short x, short y);
 
-	EventIndex m_eMoveKeyPressedIndex;
+	EventIndex m_moveKeyPressedIndex;
 	sf::Transformable m_transform;
 };

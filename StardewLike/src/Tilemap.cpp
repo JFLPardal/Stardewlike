@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Tilemap.h"
 
-bool Tilemap::Load(const std::string& aTileset, sf::Vector2u aTileSize, const int* aTiles, unsigned int aWidth, unsigned int aHeight)
+bool Tilemap::Load(const std::string& aTileset, sf::Vector2u aTileSize, unsigned int aWidth, unsigned int aHeight)
 {
 	// load tileset
 	if (! m_Tileset.loadFromFile(aTileset))
@@ -17,7 +17,7 @@ bool Tilemap::Load(const std::string& aTileset, sf::Vector2u aTileSize, const in
 		for (size_t j = 0; j < aHeight; ++j)
 		{
 			// get current tile number
-			int tileNumber = aTiles[i + j * aWidth];
+			int tileNumber = map[i + j * aWidth];
 
 			// find its position in the tileset texture
 			int tu = tileNumber % (m_Tileset.getSize().x / aTileSize.x);

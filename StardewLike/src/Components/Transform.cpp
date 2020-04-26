@@ -4,15 +4,15 @@
 #include "GameObject.h"
 #include "Input.h"
 
-Transform::Transform()
+Transform::Transform(int aInitialX, int aInitialY)
 {
-	m_transform.setPosition(500, 500);
+	m_transform.setPosition(aInitialX, aInitialY);
 	printf("transform\n");
 }
 
 void Transform::Start()
 {
-	m_eMoveKeyPressedIndex = m_owner->GetComponent<Input>()->OnInputMoveEvent->AddCallback(MOVE_KEY_PRESSED(&Transform::UpdateMovement));
+	m_moveKeyPressedIndex = m_owner->GetComponent<Input>()->OnMovementKeyPressedEvent->AddCallback(MOVEMENT_KEY_PRESSED(&Transform::UpdateMovement));
 }
 
 void Transform::UpdateMovement(short aX, short aY)
@@ -31,6 +31,6 @@ void Transform::Update()
 Transform::~Transform()
 {
 	auto InputComponent = m_owner->GetComponent<Input>();
-	if (InputComponent) InputComponent->OnInputMoveEvent->RemoveCallback(m_eMoveKeyPressedIndex);
+	if (InputComponent) InputComponent->OnMovementKeyPressedEvent->RemoveCallback(m_moveKeyPressedIndex);
 	printf("destroyed transform\n");
 }

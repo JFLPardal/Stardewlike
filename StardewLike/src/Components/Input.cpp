@@ -2,12 +2,10 @@
 #include "Input.h"
 
 #include "SFML/Window/Keyboard.hpp"
-#include "SFML/Graphics/Rect.hpp"
 #include "IEvent.h"
 
-
 Input::Input()
-	:OnInputMoveEvent (std::make_unique<IEvent<void(short, short)>>())
+	:OnMovementKeyPressedEvent (std::make_unique<MovementKeyPressedEvent>())
 {
 	printf("input\n");
 }
@@ -25,10 +23,10 @@ void Input::Update()
 
 	assert(xInput <= 1 && yInput <= 1);
 	if (xInput != 0 || yInput != 0)
-		OnInputMoveEvent->TriggerEvent<short, short>(xInput, yInput);
+		OnMovementKeyPressedEvent->TriggerEvent<short, short>(xInput, yInput);
 }
 
 Input::~Input()
 {
-	printf("destroyed input component\n");
+	printf("destroyed input\n");
 }

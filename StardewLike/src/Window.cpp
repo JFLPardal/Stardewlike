@@ -1,22 +1,20 @@
 #include "pch.h"
 #include "Window.h"
 
-#include "GameApp.h"
-#include "DrawableEntity.h"
 #include "GameObject.h"
 #include "WindowEventHandler.h"
 
 Window::Window()
 	:m_isOpen(true)
-	,m_Window(sf::VideoMode(1024, 768), "Nice Window :')")
+	,m_window(sf::VideoMode(1024, 768), "Nice Window :')")
 	,m_windowEventHandler(new WindowEventHandler())
 {
-	m_Window.setVerticalSyncEnabled(true);
+	m_window.setVerticalSyncEnabled(true);
 }
 
 bool Window::PollEvent(sf::Event& aEvent)
 {
-	return m_Window.pollEvent(aEvent);
+	return m_window.pollEvent(aEvent);
 }
 
 void Window::ProcessEvent(sf::Event& aEvent)
@@ -25,20 +23,19 @@ void Window::ProcessEvent(sf::Event& aEvent)
 		m_isOpen = false;
 }
 
-void Window::Draw(const std::vector<std::unique_ptr<GameObject>>& aGameObjects)
+void Window::Draw(const sf::Drawable* const aDrawble)
 {
-	m_Window.clear();
-	for (auto& gameObject : aGameObjects)
-		m_Window.draw(gameObject->GetRenderer());
-	m_Window.display();
+	m_window.clear();
+		m_window.draw(*aDrawble);
+	//m_window.display();
 }
 
-void Window::Draw(const std::vector<sf::Drawable*>& aDrawableEntities)
+void Window::Draw(const std::vector<std::unique_ptr<GameObject>>& aGameObjects)
 {
-	m_Window.clear();
-	for (auto& gameObject : aDrawableEntities)
-		m_Window.draw(*gameObject);
-	m_Window.display();
+	//m_window.clear();
+	for (auto& gameObject : aGameObjects)
+		m_window.draw(gameObject->GetRenderer());
+	m_window.display();
 }
 
 Window::~Window()

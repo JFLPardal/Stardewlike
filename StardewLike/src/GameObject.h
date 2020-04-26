@@ -6,6 +6,8 @@
 	GameObject is the class that represents any entity on the game.
 	It consists in a collection of 'IComponent's that make up this GO, as well as some functionality like 
 	adding and removing components from a GO.
+
+	When a GO is created, Transform is automatically added to it.
 */
 
 typedef unsigned int ComponentTypeId;
@@ -30,20 +32,21 @@ inline ComponentTypeId GetTypeId()
 class GameObject
 {
 public:
+	GameObject(int aInitialX = 100, int aInitialY = 100);
 	~GameObject();
 	
 	void Start();
 	void Update();
-	//void Draw();
 
 	inline bool IsDrawable() const { return m_renderer != nullptr; }
 	sf::Drawable& GetRenderer() const { return static_cast<sf::Drawable&>(*m_renderer); }
 
 	template <typename T, typename... TArgs>
-	T& AddComponent(TArgs&&... args)	// TODO same component can be added twice to the same object
+	T& AddComponent(TArgs&&... args)
 	{
 		static_assert(std::is_base_of<IComponent, T>::value, "GetComponent must be called on a IComponent type");
-		
+		assert(GetComponent<T>() == nullptr && "GameObject can't have 2 instances of the same Component");
+
 		m_componentTypeIdList.push_back(std::move(GetTypeId<T>()));
 
 		// instantiate the component
@@ -60,21 +63,21 @@ public:
 	T* GetComponent()
 	{
 		static_assert(std::is_base_of<IComponent, T>::value, "GetComponent must be called on a IComponent type");
+
 		unsigned int thisComponentTypeId = GetTypeId<T>();
 		for (ComponentTypeId& componentTypeId : m_componentTypeIdList)
 		{
 			if (thisComponentTypeId == componentTypeId) 
 			{
-				auto ptr(m_componentList[thisComponentTypeId].get());
+				IComponent* ptr(m_componentList[thisComponentTypeId].get());
 				return static_cast<T*>(ptr);
 			}
 		}
 		return nullptr;
 	}
 
-
 private:
 	SpriteRenderer* m_renderer = nullptr;
-	std::vector<ComponentTypeId> m_componentTypeIdList; // this is being deleted before all the components can be unregistered
-	std::vector<std::unique_ptr<IComponent>> m_componentList; // TODO encapsulate this in a IComponentList
+	std::vector<ComponentTypeId> m_componentTypeIdList;
+	std::vector<std::unique_ptr<IComponent>> m_componentList; // TODO encapsulate this in a IComponentList - not that easy because it is being used in template functions
 };

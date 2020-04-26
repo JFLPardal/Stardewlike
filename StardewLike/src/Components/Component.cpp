@@ -8,10 +8,6 @@ IComponent::IComponent()
 	printf("creating IComponent: ");
 }
 
-void IComponent::Start()
-{
-}
-
 void IComponent::SetOwner(GameObject& aOwner)
 { 
 	m_owner = &aOwner; 

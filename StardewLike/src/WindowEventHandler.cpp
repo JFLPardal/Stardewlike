@@ -2,11 +2,11 @@
 #include "WindowEventHandler.h"
 
 WindowEventHandler::WindowEventHandler()
-	:m_onMouseMoveEvent(std::make_unique<IEvent<void(int, int)>>())
+	:m_onMouseMoveEvent(std::make_unique<MouseMovedEvent>())
 {
 }
 
-bool WindowEventHandler::ProcessEvent(const sf::Event & aEvent)
+bool WindowEventHandler::ProcessEvent(const sf::Event& aEvent)
 {
 	bool m_isOpen = true;
 

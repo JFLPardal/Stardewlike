@@ -2,15 +2,11 @@
 
 /*
 	Window is a wrapper around the function calls to the SFML library needed to create and 
-	draw to a window.
-
-	// TODO extract this from this class
-	Additionally it is responsible for polling the events that happen on the window like mouse movement,
-	keys pressed or windows resizing.
+	draw to a window. Additionally, it is responsible for forwarding Window events to a class 
+	where they should be treated. This events include mouse movement and clicks, keyboard input,
+	window moved, resized, etc...
 */
 
-class GameApp;
-//class DrawableEntity;
 class GameObject;
 class WindowEventHandler;
 
@@ -24,14 +20,13 @@ public:
 	bool PollEvent(sf::Event& aEvent);
 	void ProcessEvent(sf::Event& aEvent);
 
-	//void Draw(const std::vector<std::shared_ptr<DrawableEntity>>& aDrawableEntities);
-	void Draw(const std::vector<std::unique_ptr<GameObject>>& aGameObjects);
-	void Draw(const std::vector<sf::Drawable*>& aGameObjects);
+	void Draw(const sf::Drawable* const aDrawble);								// used to draw generic sf::Drawable
+	void Draw(const std::vector<std::unique_ptr<GameObject>>& aGameObjects);	// used to draw GameObjects
 
 	WindowEventHandler* GetWindowEventHandler() const { return m_windowEventHandler; }
 private:
 	bool m_isOpen = false;
-	sf::RenderWindow m_Window;
+	sf::RenderWindow m_window;
 	WindowEventHandler* m_windowEventHandler{ nullptr };
 };
 

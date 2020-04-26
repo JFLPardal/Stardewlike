@@ -7,7 +7,7 @@
 */
 #define MOUSE_MOVED(callbackFunction) std::function<void(int, int)>(std::bind(callbackFunction, this, std::placeholders::_1, std::placeholders::_2))
 
-//typedef IEvent<void(short, short)> MouseMoveEvent;
+typedef IEvent<void(int, int)> MouseMovedEvent;
 
 class WindowEventHandler
 {
@@ -17,5 +17,5 @@ public:
 	// return false if the Quit Window event was processed, true otherwise
 	bool ProcessEvent(const sf::Event& aEvent);
 
-	std::unique_ptr<IEvent<void(int, int)>> m_onMouseMoveEvent;
+	std::unique_ptr<MouseMovedEvent> m_onMouseMoveEvent;
 };

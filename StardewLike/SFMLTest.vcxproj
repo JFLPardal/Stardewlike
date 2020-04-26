@@ -24,7 +24,6 @@
     <ClCompile Include="src\Components\Orientation.cpp" />
     <ClCompile Include="src\Components\SpriteRenderer.cpp" />
     <ClCompile Include="src\Components\Transform.cpp" />
-    <ClCompile Include="src\DrawableEntity.cpp" />
     <ClCompile Include="src\GameApp.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -46,7 +45,6 @@
     <ClInclude Include="src\Components\SpriteRenderer.h" />
     <ClInclude Include="src\Components\Transform.h" />
     <ClInclude Include="src\GameObject.h" />
-    <ClInclude Include="src\DrawableEntity.h" />
     <ClInclude Include="src\GameApp.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\Tilemap.h" />

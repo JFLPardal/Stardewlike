@@ -2,6 +2,12 @@
 #include "GameObject.h"
 
 #include "Components/SpriteRenderer.h"
+#include "Components/Transform.h"
+
+GameObject::GameObject(int aInitialX, int aInitialY)
+{
+	AddComponent<Transform>(aInitialX, aInitialY);
+}
 
 void GameObject::Start()
 {
@@ -19,12 +25,6 @@ void GameObject::Update()
 		component->Update();
 	}
 }
-/*
-// draw should only be called if the GO has a SpriteRenderer component. In future, this component should be a drawbleComponent, to include p.e. text drawing
-void GameObject::Draw()
-{
-	if (m_isDrawable) m_renderer->Draw();
-}*/
 
 GameObject::~GameObject()
 {

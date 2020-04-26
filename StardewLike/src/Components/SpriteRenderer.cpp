@@ -8,23 +8,16 @@
 
 SpriteRenderer::SpriteRenderer(const char* spriteFilePath)
 {
-	printf(" spriteRenderer with sprite %s\n", spriteFilePath);
-	if (!m_texture.loadFromFile(spriteFilePath))
-	{
-		printf("texture not loaded\n");
-	}
-
+	assert(m_texture.loadFromFile(spriteFilePath) && "texture not loaded");
 	// create sprite based on texture
 	m_sprite.setTexture(m_texture);
 	m_sprite.setOrigin(.5f * m_texture.getSize().x, .5f * m_texture.getSize().y);
 	m_sprite.setScale(.05f, .05f);
-
 }
 
 void SpriteRenderer::Start()
 {
 	m_transform = m_owner->GetComponent<Transform>();
-	m_eMoveKeyPressedIndex = m_owner->GetComponent<Input>()->OnInputMoveEvent->AddCallback(MOVE_KEY_PRESSED(&SpriteRenderer::SetSpriteBasedOnDirection));
 	m_orientation = m_owner->GetComponent<Orientation>();
 }
 
@@ -56,21 +49,7 @@ void SpriteRenderer::draw(sf::RenderTarget& aTarget, sf::RenderStates aStates) c
 	aTarget.draw(m_sprite, aStates);
 }
 
-void SpriteRenderer::SetSpriteBasedOnDirection(short aX, short aY)
-{
-	/*if (aX > 0)
-	{
-		m_sprite.setColor(sf::Color::Cyan);
-	}
-	else
-	{
-		m_sprite.setColor(sf::Color::Magenta);
-	}*/
-}
-
 SpriteRenderer::~SpriteRenderer()
 {
-	auto InputComponent = m_owner->GetComponent<Input>();
-	if (InputComponent) InputComponent->OnInputMoveEvent->RemoveCallback(m_eMoveKeyPressedIndex);
-	printf("destroyed spriteRenderer component\n");
+	printf("destroyed spriteRenderer\n");
 }
