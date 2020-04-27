@@ -5,6 +5,14 @@
 #include "GameObject.h"
 #include "Transform.h"
 
+std::map<PossibleOrientation, sf::Vector2i> directionToGridIncrement
+{
+	{up		, sf::Vector2i(0, -1) },
+	{right	, sf::Vector2i(+1, 0) },
+	{down	, sf::Vector2i(0, +1) },
+	{left	, sf::Vector2i(-1, 0) }
+};
+
 Orientation::Orientation(WindowEventHandler* aWindowEventHandler)
 {
 	assert(aWindowEventHandler != nullptr && "WindowEventHandler passed to Orientation Component is null");
@@ -16,6 +24,12 @@ void Orientation::Start()
 	m_mouseMovedIndex = m_windowEventHandler->m_onMouseMoveEvent->AddCallback(MOUSE_MOVED(&Orientation::UpdateOrientation));
 	m_transform = m_owner->GetComponent<Transform>();
 }
+
+sf::Vector2i Orientation::GetOrientationAsGridIncrement() const
+{
+	return directionToGridIncrement[m_currentOrientation]; 
+}
+
 
 void Orientation::UpdateOrientation(int aX, int aY)
 {

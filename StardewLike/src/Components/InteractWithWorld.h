@@ -7,6 +7,8 @@
 */
 
 class WindowEventHandler;
+class Transform;
+class Orientation;
 
 class InteractWithWorld : public Component
 {
@@ -20,4 +22,6 @@ private:
 
 	WindowEventHandler* m_windowEventHandler{ nullptr };
 	EventIndex m_mouseLeftClickedIndex;
+	Transform* m_transform;
+	Orientation* m_orientation;
 };

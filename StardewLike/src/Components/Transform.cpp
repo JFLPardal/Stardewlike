@@ -15,6 +15,11 @@ void Transform::Start()
 	m_moveKeyPressedIndex = m_owner->GetComponent<Input>()->OnMovementKeyPressedEvent->AddCallback(MOVEMENT_KEY_PRESSED(&Transform::UpdateMovement));
 }
 
+sf::Vector2i Transform::GetPositionInGrid() const
+{
+	return sf::Vector2i();
+}
+
 void Transform::UpdateMovement(short aX, short aY)
 {
 	// the first case is so that it is not necessary to use a square root to normalize the arguments, but this forces aX and aY to be between 0 and 1!
