@@ -24,10 +24,6 @@ void Transform::UpdateMovement(short aX, short aY)
 		m_transform.move(aX, aY);
 }
 
-void Transform::Update()
-{
-}
-
 Transform::~Transform()
 {
 	auto InputComponent = m_owner->GetComponent<Input>();

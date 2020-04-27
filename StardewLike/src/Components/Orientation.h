@@ -19,14 +19,13 @@ enum PossibleOrientation : short
 	up, right, down, left
 };
 
-class Orientation : public IComponent
+class Orientation : public Component
 {
 public:
 	explicit Orientation(WindowEventHandler* aWindow);
 	~Orientation();
 
 	void Start() override;
-	void Update() override;
 
 	PossibleOrientation GetOrientation() const { return m_currentOrientation; }
 private:

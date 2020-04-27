@@ -4,7 +4,7 @@
 
 /*
 	GameObject is the class that represents any entity on the game.
-	It consists in a collection of 'IComponent's that make up this GO, as well as some functionality like 
+	It consists in a collection of 'Component's that make up this GO, as well as some functionality like 
 	adding and removing components from a GO.
 
 	When a GO is created, Transform is automatically added to it.
@@ -44,7 +44,7 @@ public:
 	template <typename T, typename... TArgs>
 	T& AddComponent(TArgs&&... args)
 	{
-		static_assert(std::is_base_of<IComponent, T>::value, "GetComponent must be called on a IComponent type");
+		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
 		assert(GetComponent<T>() == nullptr && "GameObject can't have 2 instances of the same Component");
 
 		m_componentTypeIdList.push_back(std::move(GetTypeId<T>()));
@@ -52,7 +52,7 @@ public:
 		// instantiate the component
 		T* newComponent(new T(std::forward<TArgs>(args)...));
 		newComponent->SetOwner(*this);
-		std::unique_ptr<IComponent> newComponentPtr { newComponent };
+		std::unique_ptr<Component> newComponentPtr { newComponent };
 		
 		// add it to the component list
 		m_componentList.emplace_back(std::move(newComponentPtr));
@@ -62,14 +62,14 @@ public:
 	template<typename T>
 	T* GetComponent()
 	{
-		static_assert(std::is_base_of<IComponent, T>::value, "GetComponent must be called on a IComponent type");
+		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
 
 		unsigned int thisComponentTypeId = GetTypeId<T>();
 		for (ComponentTypeId& componentTypeId : m_componentTypeIdList)
 		{
 			if (thisComponentTypeId == componentTypeId) 
 			{
-				IComponent* ptr(m_componentList[thisComponentTypeId].get());
+				Component* ptr(m_componentList[thisComponentTypeId].get());
 				return static_cast<T*>(ptr);
 			}
 		}
@@ -79,5 +79,5 @@ public:
 private:
 	SpriteRenderer* m_renderer = nullptr;
 	std::vector<ComponentTypeId> m_componentTypeIdList;
-	std::vector<std::unique_ptr<IComponent>> m_componentList; // TODO encapsulate this in a IComponentList - not that easy because it is being used in template functions
+	std::vector<std::unique_ptr<Component>> m_componentList; // TODO encapsulate this in a IComponentList - not that easy because it is being used in template functions
 };

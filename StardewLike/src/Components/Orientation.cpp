@@ -7,7 +7,7 @@
 
 Orientation::Orientation(WindowEventHandler* aWindowEventHandler)
 {
-	assert(aWindowEventHandler != nullptr && "WindowEventHandler passed to Orientation IComponent is null");
+	assert(aWindowEventHandler != nullptr && "WindowEventHandler passed to Orientation Component is null");
 	m_windowEventHandler = aWindowEventHandler;
 }
 
@@ -15,10 +15,6 @@ void Orientation::Start()
 {
 	m_mouseMovedIndex = m_windowEventHandler->m_onMouseMoveEvent->AddCallback(MOUSE_MOVED(&Orientation::UpdateOrientation));
 	m_transform = m_owner->GetComponent<Transform>();
-}
-
-void Orientation::Update()
-{
 }
 
 void Orientation::UpdateOrientation(int aX, int aY)

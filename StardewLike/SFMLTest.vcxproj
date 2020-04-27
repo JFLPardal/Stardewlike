@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\Components\Component.cpp" />
     <ClCompile Include="src\Components\Input.cpp" />
+    <ClCompile Include="src\Components\InteractWithWorld.cpp" />
     <ClCompile Include="src\Components\Orientation.cpp" />
     <ClCompile Include="src\Components\SpriteRenderer.cpp" />
     <ClCompile Include="src\Components\Transform.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="src\WindowEventHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\InteractWithWorld.h" />
     <ClInclude Include="src\Components\Orientation.h" />
     <ClInclude Include="src\IEvent.h" />
     <ClInclude Include="src\Components\Input.h" />

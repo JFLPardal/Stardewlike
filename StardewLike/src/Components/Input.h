@@ -13,7 +13,7 @@
 
 typedef IEvent<void(short, short)> MovementKeyPressedEvent;
 
-class Input : public IComponent
+class Input : public Component
 {
 public:
 	Input();

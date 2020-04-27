@@ -6,8 +6,10 @@
 	like mouse movement, mouse click, keyboard key pressed, window resize and so forth
 */
 #define MOUSE_MOVED(callbackFunction) std::function<void(int, int)>(std::bind(callbackFunction, this, std::placeholders::_1, std::placeholders::_2))
+#define MOUSE_LEFT_CLICKED(callbackFunction) std::function<void(int, int)>(std::bind(callbackFunction, this, std::placeholders::_1, std::placeholders::_2))
 
 typedef IEvent<void(int, int)> MouseMovedEvent;
+typedef IEvent<void(int, int)> MouseLeftClikedEvent;
 
 class WindowEventHandler
 {
@@ -18,4 +20,5 @@ public:
 	bool ProcessEvent(const sf::Event& aEvent);
 
 	std::unique_ptr<MouseMovedEvent> m_onMouseMoveEvent;
+	std::unique_ptr<MouseLeftClikedEvent> m_onMouseLeftClickedEvent;
 };

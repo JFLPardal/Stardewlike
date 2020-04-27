@@ -2,7 +2,8 @@
 #include "WindowEventHandler.h"
 
 WindowEventHandler::WindowEventHandler()
-	:m_onMouseMoveEvent(std::make_unique<MouseMovedEvent>())
+	: m_onMouseMoveEvent(std::make_unique<MouseMovedEvent>())
+	, m_onMouseLeftClickedEvent(std::make_unique<MouseLeftClikedEvent>())
 {
 }
 
@@ -20,6 +21,10 @@ bool WindowEventHandler::ProcessEvent(const sf::Event& aEvent)
 	}
 	if (aEvent.type == sf::Event::MouseButtonPressed)
 	{
+		if (aEvent.mouseButton.button == sf::Mouse::Button::Left)
+		{
+			m_onMouseLeftClickedEvent->TriggerEvent(aEvent.mouseButton.x, aEvent.mouseButton.y);
+		}
 		//printf("mouse pressed: %d %d %d\n", aEvent.mouseButton.x, aEvent.mouseButton.y, aEvent.mouseButton.button);
 	}
 	if (aEvent.type == sf::Event::MouseMoved)

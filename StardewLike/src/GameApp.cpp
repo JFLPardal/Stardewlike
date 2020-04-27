@@ -8,12 +8,14 @@
 #include "Components/SpriteRenderer.h"
 #include "Components/Input.h"
 #include "Components/Orientation.h"
+#include "Components/InteractWithWorld.h"
 
 void GameApp::InitPlayerComponents(GameObject& aPlayer)	// TODO this should be done in some external file, like XML or something
 {
 	aPlayer.AddComponent<Orientation>(m_GameWindow.GetWindowEventHandler());
 	aPlayer.AddComponent<SpriteRenderer>("assets\\cherry.png");
 	aPlayer.AddComponent<Input>();
+	aPlayer.AddComponent<InteractWithWorld>(m_GameWindow.GetWindowEventHandler());
 	aPlayer.Start();
 }
 
