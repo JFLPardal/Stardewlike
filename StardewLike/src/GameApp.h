@@ -25,6 +25,6 @@ private:
 	void InitPlayerComponents(GameObject& aPlayer);
 
 	Window& m_GameWindow;
-	Tilemap* m_Tilemap;
-	std::vector<std::unique_ptr<GameObject>> m_GameObjects;
+	Tilemap* m_Tilemap;										// | these should be abstracted into a 'Level' script
+	std::vector<std::unique_ptr<GameObject>> m_GameObjects;	// |
 };

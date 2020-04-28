@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "Input.h"
+#include "GridRepresentation.h"
 
 Transform::Transform(int aInitialX, int aInitialY)
 {
@@ -17,7 +18,9 @@ void Transform::Start()
 
 sf::Vector2i Transform::GetPositionInGrid() const
 {
-	return sf::Vector2i();
+	auto gridPosition = GridRepresentation::GridPosition(m_transform.getPosition());
+	printf("grid position is: [%d , %d]\n", gridPosition.x, gridPosition.y);
+	return gridPosition;
 }
 
 void Transform::UpdateMovement(short aX, short aY)

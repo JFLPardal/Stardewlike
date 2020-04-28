@@ -28,6 +28,7 @@
     <ClCompile Include="src\GameApp.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\GridRepresentation.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -48,6 +49,7 @@
     <ClInclude Include="src\Components\Transform.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\GameApp.h" />
+    <ClInclude Include="src\GridRepresentation.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\Tilemap.h" />
     <ClInclude Include="src\Window.h" />
