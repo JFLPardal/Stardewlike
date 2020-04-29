@@ -15,8 +15,7 @@ public:
 
 	GameObject* GetGameObject() const { return m_GameObject; }
 
-	// TODO extract these magic numbers FOR THE LOVE OF GOOOOOOD, 32 is the number of tiles per row
-	friend bool operator<(const TileInfo& ti1, const TileInfo& ti2);
+	friend bool operator<(const TileInfo& aTile1, const TileInfo& aTile2);
 private:
 	GameObject* m_GameObject;
 	sf::Vector2i m_gridPosition;

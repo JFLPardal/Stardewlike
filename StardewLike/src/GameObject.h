@@ -1,7 +1,7 @@
 #pragma once
 #include "Components/Component.h"
 #include "Components/SpriteRenderer.h"
-
+#include "Constants.h"
 /*
 	GameObject is the class that represents any entity on the game.
 	It consists in a collection of 'Component's that make up this GO, as well as some functionality like 
@@ -32,7 +32,7 @@ inline ComponentTypeId GetTypeId()
 class GameObject
 {
 public:
-	GameObject(int aInitialX = 100, int aInitialY = 100);
+	GameObject(int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y);
 	~GameObject();
 	
 	void Start();

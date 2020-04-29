@@ -11,7 +11,7 @@ class GameObject;
 class Component
 {
 public:
-	virtual ~Component() { printf("^destroyed Component^\n"); }
+	virtual ~Component() { printf("^destroyed component^\n"); }
 
 	virtual void Start() {};
 	virtual void Update() {};

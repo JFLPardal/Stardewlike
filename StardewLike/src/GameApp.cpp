@@ -47,11 +47,11 @@ GameApp::GameApp(Window& aWindow)
 {
 	// create and load map
 	m_Tilemap = new Tilemap();
-	m_Tilemap->Load("assets\\tileset.png", sf::Vector2u(32,32), 16, 8);
+	m_Tilemap->Load("assets\\tileset.png", sf::Vector2u(32,32), 16, 8); // TODO if this is not deleted, extract numbers to 'Constants'
 
 	// TODO this and the 'move game entities...' should be done in one go to make sure the programmer doesn't forget to add the GO to the structure
 	// create Game Entities 
-	std::unique_ptr<GameObject> player = std::make_unique<GameObject>(200, 50);
+	std::unique_ptr<GameObject> player = std::make_unique<GameObject>();
 	InitPlayerComponents(*player);
 
 	// move game entities to the m_gameObjects structure

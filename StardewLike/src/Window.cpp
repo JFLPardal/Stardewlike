@@ -3,10 +3,11 @@
 
 #include "GameObject.h"
 #include "WindowEventHandler.h"
+#include "Constants.h"
 
 Window::Window()
 	:m_isOpen(true)
-	,m_window(sf::VideoMode(1024, 768), "Nice Window :')")
+	,m_window(sf::VideoMode(WINDOW_W, WINDOW_H), WINDOW_NAME)
 	,m_windowEventHandler(new WindowEventHandler())
 {
 	m_window.setVerticalSyncEnabled(true);

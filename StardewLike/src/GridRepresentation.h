@@ -16,9 +16,4 @@ public:
 
 	static sf::Vector2i GridPosition(float aScreenPosX, float aScreenPosY);
 	static sf::Vector2i GridPosition(sf::Vector2f aScreenPos);
-private:
-	static constexpr int m_tileWidth	= 32;
-	static constexpr int m_tileHeight	= 32;
-	static constexpr int m_gridWidth	= 1024 / m_tileWidth;	// add these values to 'Constants.h"
-	static constexpr int m_gridHeight	= 768 / m_tileHeight;	// add these values to 'Constants.h"
 };
