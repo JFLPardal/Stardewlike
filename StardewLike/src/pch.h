@@ -7,6 +7,7 @@
 // data structures
 #include <memory>
 #include <vector>
+#include <set>
 
 // streams
 #include <iostream>

@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Tilemap.h"
 #include "GameObject.h"
+#include "TileData.h"
 #include "Components/Transform.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/Input.h"
@@ -17,10 +18,32 @@ void GameApp::InitPlayerComponents(GameObject& aPlayer)	// TODO this should be d
 	aPlayer.AddComponent<Input>();
 	aPlayer.AddComponent<InteractWithWorld>(m_GameWindow.GetWindowEventHandler());
 	aPlayer.Start();
+
+
+	auto v(sf::Vector2i(0, 0));
+	auto v1(sf::Vector2i(3, 15));
+	auto v2(sf::Vector2i(0, 2));
+	auto data = m_tileData->CheckForGameObjectOnTile(v);
+	if (data == nullptr)
+		printf("[1st] no data\n");
+	std::unique_ptr<GameObject> testObj = std::make_unique<GameObject>();
+	m_tileData->AddToGrid(testObj.get(), v);
+
+	auto data2 = m_tileData->CheckForGameObjectOnTile(v);
+	if (data2 == nullptr)
+		printf("[2st] no data\n");
+	else
+		printf("[2st] added :D\n");
+
+
+	m_tileData->AddToGrid(nullptr, v1);
+	m_tileData->AddToGrid(nullptr, v2);
+
 }
 
 GameApp::GameApp(Window& aWindow)
-	:m_GameWindow(aWindow)
+	: m_GameWindow(aWindow)
+	, m_tileData(new TileData())
 {
 	// create and load map
 	m_Tilemap = new Tilemap();
@@ -52,4 +75,5 @@ void GameApp::Draw() const
 GameApp::~GameApp()
 {
 	delete m_Tilemap;
+	delete m_tileData;
 }

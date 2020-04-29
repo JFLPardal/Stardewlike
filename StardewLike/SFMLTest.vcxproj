@@ -35,9 +35,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\TileInfo.cpp" />
     <ClCompile Include="src\Tilemap.cpp" />
     <ClCompile Include="src\Window.cpp" />
     <ClCompile Include="src\WindowEventHandler.cpp" />
+    <ClCompile Include="src\TileData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Components\InteractWithWorld.h" />
@@ -51,9 +53,11 @@
     <ClInclude Include="src\GameApp.h" />
     <ClInclude Include="src\GridRepresentation.h" />
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\TileInfo.h" />
     <ClInclude Include="src\Tilemap.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\WindowEventHandler.h" />
+    <ClInclude Include="src\TileData.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

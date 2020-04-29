@@ -20,14 +20,14 @@ void InteractWithWorld::Start()
 
 void InteractWithWorld::Interact(int aScreenCoordsX, int aScreenCoordsY)
 {
-	// get player's position in grid
 	auto positionInGrid = m_transform->GetPositionInGrid();
-	// get player's orientation in increment
 	auto orientationAsGridIncrement = m_orientation->GetOrientationAsGridIncrement();
-	printf("(%d , %d)\n", orientationAsGridIncrement.x, orientationAsGridIncrement.y);
-	//interact with that position
+
+	printf("orientation: (%d , %d)\n", orientationAsGridIncrement.x, orientationAsGridIncrement.y);
+
 	auto gridPositionToInteract = positionInGrid + orientationAsGridIncrement;
-	//  ...GridInteract(gridPositionToInteract);
+	printf("interact with: (%d , %d)\n", gridPositionToInteract.x, gridPositionToInteract.y);
+	// mapData.Interact(gridPositionToInteract);
 }
 
 InteractWithWorld::~InteractWithWorld()
