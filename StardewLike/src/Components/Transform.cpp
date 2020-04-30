@@ -14,13 +14,14 @@ Transform::Transform(int aInitialX, int aInitialY)
 
 void Transform::Start()
 {
-	m_moveKeyPressedIndex = m_owner->GetComponent<Input>()->OnMovementKeyPressedEvent->AddCallback(MOVEMENT_KEY_PRESSED(&Transform::UpdateMovement));
+	if(m_owner->GetComponent<Input>())
+		m_moveKeyPressedIndex = m_owner->GetComponent<Input>()->OnMovementKeyPressedEvent->AddCallback(MOVEMENT_KEY_PRESSED(&Transform::UpdateMovement));
 }
 
 sf::Vector2i Transform::GetPositionInGrid() const
 {
-	auto gridPosition = GridRepresentation::GridPosition(m_transform.getPosition());
-	printf("grid position is: [%d , %d]\n", gridPosition.x, gridPosition.y);
+	auto gridPosition = GridRepresentation::ScreenToGridPosition(m_transform.getPosition());
+	//printf("grid position is: [%d , %d]\n", gridPosition.x, gridPosition.y);
 	return gridPosition;
 }
 

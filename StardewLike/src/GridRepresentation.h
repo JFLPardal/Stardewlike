@@ -14,6 +14,7 @@ class GridRepresentation
 public:
 	GridRepresentation() = delete;
 
-	static sf::Vector2i GridPosition(float aScreenPosX, float aScreenPosY);
-	static sf::Vector2i GridPosition(sf::Vector2f aScreenPos);
+	static sf::Vector2i ScreenToGridPosition(float aScreenPosX, float aScreenPosY);
+	static sf::Vector2i ScreenToGridPosition(sf::Vector2f aScreenPos);
+	static sf::Vector2f GridToScreenPosition(sf::Vector2i aGridPos);
 };

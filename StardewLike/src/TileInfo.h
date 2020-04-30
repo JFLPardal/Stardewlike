@@ -11,12 +11,12 @@ class TileInfo
 {
 public:
 	TileInfo(GameObject* aGameObject, const sf::Vector2i& aGridIndex);
-	~TileInfo() = default;
+	~TileInfo();
 
-	GameObject* GetGameObject() const { return m_GameObject; }
+	GameObject* GetGameObject() const { return m_GameObject.get(); }
 
 	friend bool operator<(const TileInfo& aTile1, const TileInfo& aTile2);
 private:
-	GameObject* m_GameObject;
+	std::shared_ptr<GameObject> m_GameObject;
 	sf::Vector2i m_gridPosition;
 };

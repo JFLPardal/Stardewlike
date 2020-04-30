@@ -57,10 +57,10 @@
     <ClCompile Include="src\GridRepresentation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TileData.cpp">
+    <ClCompile Include="src\TileInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TileInfo.cpp">
+    <ClCompile Include="src\GameObjectGridMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,13 +107,13 @@
     <ClInclude Include="src\GridRepresentation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\TileData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\TileInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObjectGridMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

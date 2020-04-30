@@ -33,6 +33,7 @@ class GameObject
 {
 public:
 	GameObject(int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y);
+	GameObject(sf::Vector2i aGridPosition);
 	~GameObject();
 	
 	void Start();
@@ -65,13 +66,15 @@ public:
 		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
 
 		unsigned int thisComponentTypeId = GetTypeId<T>();
+		size_t index = 0;
 		for (ComponentTypeId& componentTypeId : m_componentTypeIdList)
 		{
 			if (thisComponentTypeId == componentTypeId) 
 			{
-				Component* ptr(m_componentList[thisComponentTypeId].get());
+				Component* ptr(m_componentList[index].get());
 				return static_cast<T*>(ptr);
 			}
+			index++;
 		}
 		return nullptr;
 	}

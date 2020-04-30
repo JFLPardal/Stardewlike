@@ -9,7 +9,15 @@ TileInfo::TileInfo(GameObject* aGameObject, const sf::Vector2i& aGridPosition)
 	, m_gridPosition(aGridPosition)
 {}
 
+
 bool operator<(const TileInfo& aTile1, const TileInfo& aTile2)
 {
 	return aTile1.m_gridPosition.y * NUM_COLUMNS_IN_WINDOW + aTile1.m_gridPosition.x < aTile2.m_gridPosition.y * NUM_COLUMNS_IN_WINDOW + aTile2.m_gridPosition.x;
+}
+
+// this is new'd in 'InteractWithWorld::Interact'
+TileInfo::~TileInfo()
+{
+	printf("tileInfo destroyed\n");
+	//delete m_GameObject;
 }

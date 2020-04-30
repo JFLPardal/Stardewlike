@@ -31,11 +31,19 @@ void Window::Draw(const sf::Drawable* const aDrawble)
 	//m_window.display();
 }
 
-void Window::Draw(const std::vector<std::unique_ptr<GameObject>>& aGameObjects)
+void Window::Draw(const std::vector<std::shared_ptr<GameObject>>& aGameObjects)
 {
 	//m_window.clear();
 	for (auto& gameObject : aGameObjects)
-		m_window.draw(gameObject->GetRenderer());
+		if(gameObject->IsDrawable())
+			m_window.draw(gameObject->GetRenderer());
+	//m_window.display();
+}
+
+void Window::Draw(const std::unique_ptr<GameObject>& aGameObject)
+{
+	//m_window.clear();
+	m_window.draw(aGameObject->GetRenderer());
 	m_window.display();
 }
 

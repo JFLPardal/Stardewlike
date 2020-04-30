@@ -12,7 +12,7 @@ class Orientation;
 class SpriteRenderer : public Component, public sf::Drawable
 {
 public:
-	SpriteRenderer(const char* spriteFilePath);
+	SpriteRenderer(const char* spriteFilePath, bool aKeepOriginalScale = true);
 	~SpriteRenderer();
 	
 	void Start() override;

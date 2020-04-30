@@ -2,18 +2,18 @@
 #include "TileInfo.h"
 
 /*
-	TileData is responsible for holding all the tiles on the level
+	GameObjectGridMap is responsible for holding all the tiles on the level
 	that have some GameObject on them, as well as providing functionality 
 	like adding and removing these GameObjects from the world.
 */
 
 class GameObject;
 
-class TileData
+class GameObjectGridMap
 {
 public:
-	TileData() = default;
-	~TileData() = default;
+	GameObjectGridMap() = default;
+	~GameObjectGridMap() = default;
 
 	GameObject* CheckForGameObjectOnTile(const sf::Vector2i& aGridIndexToCheck);
 

@@ -6,19 +6,21 @@
 #include "Input.h"	
 #include "Orientation.h"
 
-SpriteRenderer::SpriteRenderer(const char* spriteFilePath)
+SpriteRenderer::SpriteRenderer(const char* spriteFilePath, bool aKeepOriginalScale)
 {
 	assert(m_texture.loadFromFile(spriteFilePath) && "texture not loaded");
 	// create sprite based on texture
 	m_sprite.setTexture(m_texture);
 	m_sprite.setOrigin(.5f * m_texture.getSize().x, .5f * m_texture.getSize().y);
-	m_sprite.setScale(.05f, .05f);
+	if(!aKeepOriginalScale)
+		m_sprite.setScale(.05f, .05f);
 }
 
 void SpriteRenderer::Start()
 {
 	m_transform = m_owner->GetComponent<Transform>();
 	m_orientation = m_owner->GetComponent<Orientation>();
+	printf("called start\n");
 }
 
 void SpriteRenderer::Update()
@@ -26,21 +28,24 @@ void SpriteRenderer::Update()
 	m_sprite.setPosition(m_transform->GetPosition());
 	
 	// update sprite based on mouse position relative to this sprite
-	auto currentOrientation = m_orientation->GetOrientation();
-	switch (currentOrientation)
+	if(m_orientation)
 	{
-	case up:
-		m_sprite.setColor(sf::Color::Cyan);
-		break;
-	case right:
-		m_sprite.setColor(sf::Color::Magenta);
-		break;
-	case down:
-		m_sprite.setColor(sf::Color::Yellow);
-		break;
-	case left:
-		m_sprite.setColor(sf::Color::White);
-		break;
+		auto currentOrientation = m_orientation->GetOrientation();
+		switch (currentOrientation)
+		{
+		case up:
+			m_sprite.setColor(sf::Color::Cyan);
+			break;
+		case right:
+			m_sprite.setColor(sf::Color::Magenta);
+			break;
+		case down:
+			m_sprite.setColor(sf::Color::Yellow);
+			break;
+		case left:
+			m_sprite.setColor(sf::Color::White);
+			break;
+		}
 	}
 }
 
