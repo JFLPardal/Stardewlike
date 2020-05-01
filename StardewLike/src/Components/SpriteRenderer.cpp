@@ -9,6 +9,7 @@
 SpriteRenderer::SpriteRenderer(const char* spriteFilePath, bool aKeepOriginalScale)
 {
 	assert(m_texture.loadFromFile(spriteFilePath) && "texture not loaded");
+	printf("sprite renderer\n");
 	// create sprite based on texture
 	m_sprite.setTexture(m_texture);
 	m_sprite.setOrigin(.5f * m_texture.getSize().x, .5f * m_texture.getSize().y);
@@ -20,7 +21,6 @@ void SpriteRenderer::Start()
 {
 	m_transform = m_owner->GetComponent<Transform>();
 	m_orientation = m_owner->GetComponent<Orientation>();
-	printf("called start\n");
 }
 
 void SpriteRenderer::Update()

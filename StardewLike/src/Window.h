@@ -20,9 +20,9 @@ public:
 	bool PollEvent(sf::Event& aEvent);
 	void ProcessEvent(sf::Event& aEvent);
 
-	void Draw(const sf::Drawable* const aDrawble);								// used to draw generic sf::Drawable
+	void Draw(const sf::Drawable* const aDrawble);								// used to draw generic sf::Drawable, this function is called by all other 'Draw' functions
 	void Draw(const std::vector<std::shared_ptr<GameObject>>& aGameObjects);	// used to draw GameObjects
-	void Draw(const std::unique_ptr<GameObject>& aGameObjects);					// used to draw one GameObject (player mostly)
+	void Draw(const std::unique_ptr<GameObject>& aGameObject);					// used to draw one GameObject (player mostly)
 
 	WindowEventHandler* GetWindowEventHandler() const { return m_windowEventHandler; }
 private:

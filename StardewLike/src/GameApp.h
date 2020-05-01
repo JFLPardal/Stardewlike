@@ -5,6 +5,8 @@
 
 	It has a 'Window' to which it will draw to, as well as a collection of entities that the game has 
 	and a structure that knows what objects are in which tiles of the map.
+	It also holds a reference to the player, as well as an observer to a 'TryCreateGameObject' event.
+
 	In the future this collection should be moved to some kind of level abstraction, and GameApp should have
 	a collection of those instead.
 */
@@ -25,7 +27,7 @@ public:
 	void Draw() const;
 private:
 	void InitPlayerComponents();
-	void CreateGameObject(GameObject* aGOtoCreate, const sf::Vector2i& aGOgridPos);
+	void CreateGameObject(std::unique_ptr<GameObject> aGOtoCreate, const sf::Vector2i& aGOgridPos);
 
 	Window& m_GameWindow;
 	Tilemap* m_Tilemap;										// | these should be abstracted into a 'Level' script

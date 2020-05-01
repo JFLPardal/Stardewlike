@@ -15,6 +15,7 @@ std::map<PossibleOrientation, sf::Vector2i> directionToGridIncrement
 
 Orientation::Orientation(WindowEventHandler* aWindowEventHandler)
 {
+	printf("orientation\n");
 	assert(aWindowEventHandler != nullptr && "WindowEventHandler passed to Orientation Component is null");
 	m_windowEventHandler = aWindowEventHandler;
 }

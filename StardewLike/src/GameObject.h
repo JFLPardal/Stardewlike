@@ -32,8 +32,8 @@ inline ComponentTypeId GetTypeId()
 class GameObject
 {
 public:
-	GameObject(int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y);
-	GameObject(sf::Vector2i aGridPosition);
+	explicit GameObject(int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y);
+	explicit GameObject(sf::Vector2i aGridPosition);
 	~GameObject();
 	
 	void Start();

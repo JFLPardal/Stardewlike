@@ -23,27 +23,19 @@ void InteractWithWorld::Start()
 
 void InteractWithWorld::Interact(int aScreenCoordsX, int aScreenCoordsY)
 {
-	auto positionInGrid = m_transform->GetPositionInGrid();
+	auto currentPositionInGrid = m_transform->GetPositionInGrid();
 	auto orientationAsGridIncrement = m_orientation->GetOrientationAsGridIncrement();
+	auto gridPositionToInteract = currentPositionInGrid + orientationAsGridIncrement;
 
-	//printf("orientation: (%d , %d)\n", orientationAsGridIncrement.x, orientationAsGridIncrement.y);
-
-	auto gridPositionToInteract = positionInGrid + orientationAsGridIncrement;
-	printf("interact with: (%d , %d)\n", gridPositionToInteract.x, gridPositionToInteract.y);
-
-	//-------------------------------------------------------------------------------------------------------------
-	auto gameObjectOnTile = m_tileData->CheckForGameObjectOnTile(gridPositionToInteract);
-	if (gameObjectOnTile == nullptr)
+	auto gameObjectOnTileToInteract = m_tileData->CheckForGameObjectOnTile(gridPositionToInteract);
+	if (gameObjectOnTileToInteract == nullptr)
 	{
 		printf("no GO on tile\n");
-		GameObject* seedForExample = new GameObject(gridPositionToInteract);
-		seedForExample->AddComponent<SpriteRenderer>("assets\\player.png");
-		seedForExample->Start();
+		std::unique_ptr<GameObject> seed = std::make_unique<GameObject>(gridPositionToInteract);
+		seed->AddComponent<SpriteRenderer>("assets\\player.png");
+		seed->Start();
 		
-		OnTryToCreateGameObjectEvent->TriggerEvent(std::move(seedForExample), gridPositionToInteract);
-		// TODO check if active item can interact with empty tile, if it can interact, else nothing happens
-		//m_tileData->AddToGrid(new GameObject(), gridPositionToInteract);
-		// TODO this  GO  instance has to be added to the vector of GO in GameApp as well
+		OnTryToCreateGameObjectEvent->TriggerEvent(std::move(seed), gridPositionToInteract);
 	}
 	else
 	{
@@ -54,4 +46,5 @@ void InteractWithWorld::Interact(int aScreenCoordsX, int aScreenCoordsY)
 InteractWithWorld::~InteractWithWorld()
 {
 	m_windowEventHandler->m_onMouseLeftClickedEvent->RemoveCallback(m_mouseLeftClickedIndex);
+	printf("destroyed interactWithWorld\n");
 }

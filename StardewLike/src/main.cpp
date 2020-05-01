@@ -18,5 +18,6 @@ int main()
 		gameApp.Update();
 		gameApp.Draw();
 	}
+	printf("----------detruction and removal of events---------");
 	return 0;
 }

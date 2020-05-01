@@ -13,9 +13,9 @@ class GameObjectGridMap;
 class Transform;
 class Orientation;
 
-typedef IEvent<void(GameObject*, const sf::Vector2i&)> TryToCreateGameObjectEvent;
+typedef IEvent<void(std::unique_ptr<GameObject>, const sf::Vector2i&)> TryToCreateGameObjectEvent;
 
-#define TRY_CREATE_GAME_OBJECT(callbackFunction) std::function<void(GameObject*, const sf::Vector2i&)>(std::bind(callbackFunction, this, std::placeholders::_1,std::placeholders::_2))
+#define TRY_CREATE_GAME_OBJECT(callbackFunction) std::function<void(std::unique_ptr<GameObject>, const sf::Vector2i&)>(std::bind(callbackFunction, this, std::placeholders::_1,std::placeholders::_2))
 
 class InteractWithWorld : public Component
 {
@@ -29,7 +29,7 @@ private:
 	void Interact(int aScreenCoordsX, int aScreenCoordsY);
 
 	WindowEventHandler* m_windowEventHandler{ nullptr };
-	GameObjectGridMap* m_tileData{ nullptr };
+	GameObjectGridMap* m_GOgridMap{ nullptr };
 	EventIndex m_mouseLeftClickedIndex;
 	Transform* m_transform;
 	Orientation* m_orientation;
