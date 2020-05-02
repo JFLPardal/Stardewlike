@@ -43,7 +43,7 @@ public:
 	void RemoveCallback(int aIndexToRemove)
 	{
 		printf("function removed from event\n");
-		m_CallbacksList[aIndexToRemove] = nullptr;
+		m_CallbacksList.at(aIndexToRemove) = nullptr;
 	}
 
 	template <typename... FuncArgs>

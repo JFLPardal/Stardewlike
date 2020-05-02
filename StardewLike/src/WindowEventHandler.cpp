@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "WindowEventHandler.h"
 
-WindowEventHandler::WindowEventHandler()
+WindowEventHandler::WindowEventHandler() noexcept
 	: m_onMouseMoveEvent(std::make_unique<MouseMovedEvent>())
 	, m_onMouseLeftClickedEvent(std::make_unique<MouseLeftClikedEvent>())
 {

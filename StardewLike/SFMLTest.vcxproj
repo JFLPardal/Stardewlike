@@ -115,18 +115,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)StardewLike\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)StardewLike\$(Configuration)\intermediate\</IntDir>
-    <CodeAnalysisRuleSet>CppRuleset.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>pointers.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)StardewLike\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)StardewLike\$(Configuration)\intermediate\</IntDir>
-    <CodeAnalysisRuleSet>CppRuleset.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>CppCoreCheckRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <CodeAnalysisRuleSet>CppRuleset.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>pointers.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <CodeAnalysisRuleSet>CppRuleset.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>pointers.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -134,10 +136,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)StardewLike\src;$(SolutionDir)SFML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)GSL\include\;$(SolutionDir)StardewLike\src;$(SolutionDir)SFML\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <EnablePREfast>true</EnablePREfast>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -168,10 +172,12 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)StardewLike\src;$(SolutionDir)SFML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)GSL\include\;$(SolutionDir)StardewLike\src;$(SolutionDir)SFML\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=0;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <EnablePREfast>true</EnablePREfast>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

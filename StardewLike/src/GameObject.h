@@ -12,7 +12,7 @@
 
 typedef unsigned int ComponentTypeId;
 
-inline ComponentTypeId GetNextTypeId()
+inline ComponentTypeId GetNextTypeId() noexcept
 {
 	static ComponentTypeId componentTypeId = 0;
 	return componentTypeId++;
@@ -32,32 +32,31 @@ inline ComponentTypeId GetTypeId()
 class GameObject
 {
 public:
-	explicit GameObject(int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y);
-	explicit GameObject(sf::Vector2i aGridPosition);
+	explicit GameObject(int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y) noexcept;
+	explicit GameObject(sf::Vector2i aGridPosition) noexcept;
 	~GameObject();
 	
 	void Start();
 	void Update();
 
-	inline bool IsDrawable() const { return m_renderer != nullptr; }
-	sf::Drawable& GetRenderer() const { return static_cast<sf::Drawable&>(*m_renderer); }
+	inline bool IsDrawable() const noexcept { return m_renderer != nullptr; }
+	sf::Drawable& GetRenderer() const noexcept { return static_cast<sf::Drawable&>(*m_renderer); }
 
 	template <typename T, typename... TArgs>
-	T& AddComponent(TArgs&&... args)
+	T* AddComponent(TArgs&&... args)
 	{
 		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
 		assert(GetComponent<T>() == nullptr && "GameObject can't have 2 instances of the same Component");
 
 		m_componentTypeIdList.push_back(std::move(GetTypeId<T>()));
-
-		// instantiate the component
-		T* newComponent(new T(std::forward<TArgs>(args)...));
+				
+		std::unique_ptr<Component> newComponent = std::make_unique<T>(std::forward<TArgs>(args)...);
 		newComponent->SetOwner(*this);
-		std::unique_ptr<Component> newComponentPtr { newComponent };
-		
+
 		// add it to the component list
-		m_componentList.emplace_back(std::move(newComponentPtr));
-		return *newComponent;
+		m_componentList.emplace_back(std::move(newComponent));
+
+		return static_cast<T*>(m_componentList.at(m_componentList.size()-1).get());
 	}
 
 	template<typename T>
@@ -71,7 +70,7 @@ public:
 		{
 			if (thisComponentTypeId == componentTypeId) 
 			{
-				Component* ptr(m_componentList[index].get());
+				Component* ptr(m_componentList.at(index).get());
 				return static_cast<T*>(ptr);
 			}
 			index++;

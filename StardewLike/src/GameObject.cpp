@@ -5,12 +5,12 @@
 #include "Components/Transform.h"
 #include "GridRepresentation.h"
 
-GameObject::GameObject(int aInitialX, int aInitialY)
+GameObject::GameObject(int aInitialX, int aInitialY) noexcept
 {
 	AddComponent<Transform>(aInitialX, aInitialY);
 }
 
-GameObject::GameObject(sf::Vector2i aGridPosition)
+GameObject::GameObject(sf::Vector2i aGridPosition) noexcept
 {
 	auto positionInScreenSpace = GridRepresentation::GridToScreenPosition(aGridPosition);
 	AddComponent<Transform>(positionInScreenSpace.x, positionInScreenSpace.y);
@@ -35,5 +35,7 @@ void GameObject::Update()
 
 GameObject::~GameObject()
 {
-	printf("destroyed GO\n");
+	static int numbah = 0;
+	printf("destroyed GO %d\n", numbah);
+	numbah++;
 }

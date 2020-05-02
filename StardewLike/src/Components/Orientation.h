@@ -27,7 +27,7 @@ public:
 
 	void Start() override;
 
-	PossibleOrientation GetOrientation() const { return m_currentOrientation; }
+	PossibleOrientation GetOrientation() const noexcept { return m_currentOrientation; }
 	sf::Vector2i GetOrientationAsGridIncrement() const;
 private:
 	void UpdateOrientation(int aX, int aY);
@@ -35,5 +35,5 @@ private:
 	PossibleOrientation m_currentOrientation = up;
 	Transform* m_transform{ nullptr };
 	WindowEventHandler* m_windowEventHandler{ nullptr };
-	EventIndex m_mouseMovedIndex;
+	EventIndex m_mouseMovedIndex = -1;
 };

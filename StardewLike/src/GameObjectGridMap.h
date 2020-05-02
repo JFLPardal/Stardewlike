@@ -17,7 +17,7 @@ public:
 
 	GameObject* CheckForGameObjectOnTile(const sf::Vector2i& aGridIndexToCheck);
 
-	void AddToGrid(GameObject* aObjectToAdd, sf::Vector2i aGridIndex);
+	void AddToGrid(std::shared_ptr<GameObject> aObjectToAdd, sf::Vector2i aGridIndex);
 private:
 	std::set<TileInfo> m_tileInfo;
 };

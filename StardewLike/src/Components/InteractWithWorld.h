@@ -30,7 +30,7 @@ private:
 
 	WindowEventHandler* m_windowEventHandler{ nullptr };
 	GameObjectGridMap* m_GOgridMap{ nullptr };
-	EventIndex m_mouseLeftClickedIndex;
-	Transform* m_transform;
-	Orientation* m_orientation;
+	EventIndex m_mouseLeftClickedIndex = -1;
+	Transform* m_transform{ nullptr };
+	Orientation* m_orientation{ nullptr };
 };

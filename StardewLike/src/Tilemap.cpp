@@ -1,6 +1,30 @@
 #include "pch.h"
 #include "Tilemap.h"
 
+/*std::vector<int> tileMap =
+{
+	0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0,
+	1, 1, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3,
+	0, 1, 0, 0, 2, 0, 3, 3, 3, 0, 1, 1, 1, 0, 0, 0,
+	0, 1, 1, 0, 3, 3, 3, 0, 0, 0, 1, 1, 1, 2, 0, 0,
+	0, 0, 1, 0, 3, 0, 2, 2, 0, 0, 1, 1, 1, 1, 2, 0,
+	2, 0, 1, 0, 3, 0, 2, 2, 2, 0, 1, 1, 1, 1, 1, 1,
+	0, 0, 1, 0, 3, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1,
+};*/
+
+std::vector<int> tileMap =
+{
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+};
+
 bool Tilemap::Load(const std::string& aTileset, sf::Vector2u aTileSize, unsigned int aWidth, unsigned int aHeight)
 {
 	// load tileset
@@ -17,7 +41,7 @@ bool Tilemap::Load(const std::string& aTileset, sf::Vector2u aTileSize, unsigned
 		for (size_t j = 0; j < aHeight; ++j)
 		{
 			// get current tile number
-			int tileNumber = map[i + j * aWidth];
+			int tileNumber = tileMap.at(i + j * aWidth);
 
 			// find its position in the tileset texture
 			int tu = tileNumber % (m_Tileset.getSize().x / aTileSize.x);
@@ -25,7 +49,7 @@ bool Tilemap::Load(const std::string& aTileset, sf::Vector2u aTileSize, unsigned
 
 			// get a pointer to the current tile's quad
 			sf::Vertex* quad = &m_Vertices[(i + j * aWidth) * 4];
-
+			
 			// define its 4 corner
 			quad[0].position = sf::Vector2f(i * aTileSize.x, j * aTileSize.y);
 			quad[1].position = sf::Vector2f((i + 1) * aTileSize.x, j * aTileSize.y);

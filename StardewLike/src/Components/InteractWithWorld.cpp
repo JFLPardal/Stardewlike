@@ -7,10 +7,10 @@
 #include "GameObject.h"
 #include "GameObjectGridMap.h"
 
-InteractWithWorld::InteractWithWorld(WindowEventHandler* aWindowEventHandler, GameObjectGridMap& aTileData)
+InteractWithWorld::InteractWithWorld(WindowEventHandler* aWindowEventHandler, GameObjectGridMap& aGameObjectgridMap)
 	: OnTryToCreateGameObjectEvent(std::make_unique<TryToCreateGameObjectEvent>())
 	, m_windowEventHandler(aWindowEventHandler)
-	, m_tileData(&aTileData)
+	, m_GOgridMap(&aGameObjectgridMap)
 {
 }
 
@@ -27,7 +27,7 @@ void InteractWithWorld::Interact(int aScreenCoordsX, int aScreenCoordsY)
 	auto orientationAsGridIncrement = m_orientation->GetOrientationAsGridIncrement();
 	auto gridPositionToInteract = currentPositionInGrid + orientationAsGridIncrement;
 
-	auto gameObjectOnTileToInteract = m_tileData->CheckForGameObjectOnTile(gridPositionToInteract);
+	const auto gameObjectOnTileToInteract = m_GOgridMap->CheckForGameObjectOnTile(gridPositionToInteract);
 	if (gameObjectOnTileToInteract == nullptr)
 	{
 		printf("no GO on tile\n");

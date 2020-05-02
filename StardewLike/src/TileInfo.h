@@ -10,12 +10,12 @@ class GameObject;
 class TileInfo
 {
 public:
-	TileInfo(GameObject* aGameObject, const sf::Vector2i& aGridIndex);
+	TileInfo(std::shared_ptr<GameObject> aGameObject, const sf::Vector2i& aGridIndex) noexcept;
 	~TileInfo();
 
-	GameObject* GetGameObject() const { return m_GameObject.get(); }
+	GameObject* GetGameObject() const noexcept { return m_GameObject.get(); }
 
-	friend bool operator<(const TileInfo& aTile1, const TileInfo& aTile2);
+	friend bool operator<(const TileInfo& aTile1, const TileInfo& aTile2) noexcept;
 private:
 	std::shared_ptr<GameObject> m_GameObject;
 	sf::Vector2i m_gridPosition;

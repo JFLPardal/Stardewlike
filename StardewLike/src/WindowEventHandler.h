@@ -14,7 +14,8 @@ typedef IEvent<void(int, int)> MouseLeftClikedEvent;
 class WindowEventHandler
 {
 public:
-	WindowEventHandler();
+	WindowEventHandler() noexcept;
+	~WindowEventHandler() = default;
 
 	// return false if the Quit Window event was processed, true otherwise
 	bool ProcessEvent(const sf::Event& aEvent);

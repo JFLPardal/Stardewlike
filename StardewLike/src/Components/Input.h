@@ -16,7 +16,7 @@ typedef IEvent<void(short, short)> MovementKeyPressedEvent;
 class Input : public Component
 {
 public:
-	Input();
+	Input() noexcept;
 	~Input();
 
 	void Update() override;

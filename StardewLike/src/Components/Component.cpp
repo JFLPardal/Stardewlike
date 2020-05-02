@@ -3,12 +3,12 @@
 
 #include "GameObject.h"
 
-Component::Component()
+Component::Component() noexcept
 {
 	printf("creating Component: ");
 }
 
-void Component::SetOwner(GameObject& aOwner)
+void Component::SetOwner(GameObject& aOwner) noexcept
 { 
 	m_owner = &aOwner; 
 }

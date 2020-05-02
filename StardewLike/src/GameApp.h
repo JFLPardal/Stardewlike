@@ -29,10 +29,10 @@ private:
 	void InitPlayerComponents();
 	void CreateGameObject(std::unique_ptr<GameObject> aGOtoCreate, const sf::Vector2i& aGOgridPos);
 
-	Window& m_GameWindow;
-	Tilemap* m_Tilemap;										// | these should be abstracted into a 'Level' script
-	GameObjectGridMap* m_GOgridMap;							// |
-	std::vector<std::shared_ptr<GameObject>> m_GameObjects;	// |
-	EventIndex m_tryCreateGameObjectIndex;
+	Window& m_gameWindow;
+	std::unique_ptr<Tilemap> m_tilemap;						// | these should be abstracted into a 'Level' script
+	std::unique_ptr<GameObjectGridMap> m_GOgridMap;			// |
+	std::vector<std::shared_ptr<GameObject>> m_gameObjects;	// |
+	EventIndex m_tryCreateGameObjectIndex = -1;
 	std::unique_ptr<GameObject> m_player;
 };

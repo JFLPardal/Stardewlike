@@ -13,11 +13,11 @@ class Component
 public:
 	virtual ~Component() { printf("^destroyed component^\n"); }
 
-	virtual void Start() {};
+	virtual void Start()  {};
 	virtual void Update() {};
-	void SetOwner(GameObject& aOwner);
+	void SetOwner(GameObject& aOwner) noexcept;
 protected:
-	Component();
+	Component() noexcept;
 
 	GameObject* m_owner{nullptr};
 };

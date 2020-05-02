@@ -4,7 +4,7 @@
 #include "SFML/Window/Keyboard.hpp"
 #include "IEvent.h"
 
-Input::Input()
+Input::Input() noexcept 
 	:OnMovementKeyPressedEvent (std::make_unique<MovementKeyPressedEvent>())
 {
 	printf("input\n");

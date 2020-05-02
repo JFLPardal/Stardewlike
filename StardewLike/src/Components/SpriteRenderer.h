@@ -17,7 +17,7 @@ public:
 	
 	void Start() override;
 	void Update() override;
-	void draw(sf::RenderTarget& aTarget, sf::RenderStates aStates) const;
+	void draw(sf::RenderTarget& aTarget, sf::RenderStates aStates) const override;
 private:
 	// TODO optimize, this should store a pointer to a texture and all textures should be stored in a single class
 	sf::Texture m_texture;
