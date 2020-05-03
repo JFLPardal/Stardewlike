@@ -41,11 +41,11 @@ bool Tilemap::Load(const std::string& aTileset, sf::Vector2u aTileSize, unsigned
 		for (size_t j = 0; j < aHeight; ++j)
 		{
 			// get current tile number
-			int tileNumber = tileMap.at(i + j * aWidth);
+			const int tileNumber = tileMap.at(i + j * aWidth);
 
 			// find its position in the tileset texture
-			int tu = tileNumber % (m_Tileset.getSize().x / aTileSize.x);
-			int tv = tileNumber / (m_Tileset.getSize().x / aTileSize.x);
+			const int tu = tileNumber % (m_Tileset.getSize().x / aTileSize.x);
+			const int tv = tileNumber / (m_Tileset.getSize().x / aTileSize.x);
 
 			// get a pointer to the current tile's quad
 			sf::Vertex* quad = &m_Vertices[(i + j * aWidth) * 4];

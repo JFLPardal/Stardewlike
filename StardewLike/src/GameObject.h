@@ -4,7 +4,7 @@
 #include "Constants.h"
 /*
 	GameObject is the class that represents any entity on the game.
-	It consists in a collection of 'Component's that make up this GO, as well as some functionality like 
+	It consists in a collection of 'Component's that make up this GO, as well as some functionality like
 	adding and removing components from a GO.
 
 	When a GO is created, Transform is automatically added to it.
@@ -35,7 +35,7 @@ public:
 	explicit GameObject(int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y) noexcept;
 	explicit GameObject(sf::Vector2i aGridPosition) noexcept;
 	~GameObject();
-	
+
 	void Start();
 	void Update();
 
@@ -49,14 +49,14 @@ public:
 		assert(GetComponent<T>() == nullptr && "GameObject can't have 2 instances of the same Component");
 
 		m_componentTypeIdList.push_back(std::move(GetTypeId<T>()));
-				
+
 		std::unique_ptr<Component> newComponent = std::make_unique<T>(std::forward<TArgs>(args)...);
 		newComponent->SetOwner(*this);
 
 		// add it to the component list
 		m_componentList.emplace_back(std::move(newComponent));
 
-		return static_cast<T*>(m_componentList.at(m_componentList.size()-1).get());
+		return static_cast<T*>(m_componentList.at(m_componentList.size() - 1).get());
 	}
 
 	template<typename T>
@@ -64,14 +64,14 @@ public:
 	{
 		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
 
-		unsigned int thisComponentTypeId = GetTypeId<T>();
+		const unsigned int thisComponentTypeId = GetTypeId<T>();
 		size_t index = 0;
-		for (ComponentTypeId& componentTypeId : m_componentTypeIdList)
+		for (const ComponentTypeId& componentTypeId : m_componentTypeIdList)
 		{
-			if (thisComponentTypeId == componentTypeId) 
+			if (thisComponentTypeId == componentTypeId)
 			{
 				Component* ptr(m_componentList.at(index).get());
-				return static_cast<T*>(ptr);
+				return dynamic_cast<T*>(ptr);
 			}
 			index++;
 		}

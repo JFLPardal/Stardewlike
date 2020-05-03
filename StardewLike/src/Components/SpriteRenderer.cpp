@@ -30,7 +30,7 @@ void SpriteRenderer::Update()
 	// update sprite based on mouse position relative to this sprite
 	if(m_orientation)
 	{
-		auto currentOrientation = m_orientation->GetOrientation();
+		const auto currentOrientation = m_orientation->GetOrientation();
 		switch (currentOrientation)
 		{
 		case up:

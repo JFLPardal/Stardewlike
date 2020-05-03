@@ -8,9 +8,29 @@
 
 Transform::Transform(int aInitialX, int aInitialY)
 {
-	m_transform.setPosition(aInitialX, aInitialY);
+	m_transform.setPosition(static_cast<float>(aInitialX), static_cast<float>(aInitialY));
 	printf("transform\n");
 }
+
+/*
+<template ComponentType>
+	class EventInfo
+	{
+		EventInfo<ComponentType>(GameObject& owner, &function functionToCall)
+		{
+			m_caller = owner->GetComponent<ComponentType>();
+			m_index = m_caller->Event->AddCallback(MOVEMENT_KEY_PRESSED(&Transform::UpdateMovement));
+		}
+
+		~EventInfo()
+		{
+			m_caller->OnMovementKeyPressedEvent->RemoveCallback(m_index);
+		}
+		T 
+		Component& m_caller;
+		size_t m_index;
+	}
+*/
 
 void Transform::Start()
 {

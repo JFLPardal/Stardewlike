@@ -5,7 +5,7 @@
 #include "GameObject.h"
 #include "Transform.h"
 
-std::map<PossibleOrientation, sf::Vector2i> directionToGridIncrement
+const std::map<PossibleOrientation, sf::Vector2i> directionToGridIncrement
 {
 	{up		, sf::Vector2i(0, -1) },
 	{right	, sf::Vector2i(+1, 0) },
@@ -28,17 +28,17 @@ void Orientation::Start()
 
 sf::Vector2i Orientation::GetOrientationAsGridIncrement() const
 {
-	return directionToGridIncrement[m_currentOrientation]; 
+	return directionToGridIncrement.at(m_currentOrientation);
 }
 
 
 void Orientation::UpdateOrientation(int aX, int aY)
 {
-	int objectX = m_transform->GetPosition().x;
-	int objectY = m_transform->GetPosition().y;
+	const int objectX = static_cast<int>(m_transform->GetPosition().x);
+	const int objectY = static_cast<int>(m_transform->GetPosition().y);
 
-	int deltaX = aX - objectX;
-	int deltaY = aY - objectY;
+	const int deltaX = aX - objectX;
+	const int deltaY = aY - objectY;
 
 	if (abs(deltaX) >= abs(deltaY))
 		m_currentOrientation = (deltaX > 0) ? right : left;

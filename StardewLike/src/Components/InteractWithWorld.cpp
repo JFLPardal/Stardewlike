@@ -23,9 +23,9 @@ void InteractWithWorld::Start()
 
 void InteractWithWorld::Interact(int aScreenCoordsX, int aScreenCoordsY)
 {
-	auto currentPositionInGrid = m_transform->GetPositionInGrid();
-	auto orientationAsGridIncrement = m_orientation->GetOrientationAsGridIncrement();
-	auto gridPositionToInteract = currentPositionInGrid + orientationAsGridIncrement;
+	const auto currentPositionInGrid = m_transform->GetPositionInGrid();
+	const auto orientationAsGridIncrement = m_orientation->GetOrientationAsGridIncrement();
+	const auto gridPositionToInteract = currentPositionInGrid + orientationAsGridIncrement;
 
 	const auto gameObjectOnTileToInteract = m_GOgridMap->CheckForGameObjectOnTile(gridPositionToInteract);
 	if (gameObjectOnTileToInteract == nullptr)
