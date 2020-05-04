@@ -22,7 +22,9 @@
     <ClCompile Include="src\Components\Component.cpp" />
     <ClCompile Include="src\Components\Input.cpp" />
     <ClCompile Include="src\Components\InteractWithWorld.cpp" />
+    <ClCompile Include="src\Components\Inventory.cpp" />
     <ClCompile Include="src\Components\Orientation.cpp" />
+    <ClCompile Include="src\Components\Seed.cpp" />
     <ClCompile Include="src\Components\SpriteRenderer.cpp" />
     <ClCompile Include="src\Components\Transform.cpp" />
     <ClCompile Include="src\GameApp.cpp" />
@@ -43,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Components\InteractWithWorld.h" />
+    <ClInclude Include="src\Components\Inventory.h" />
     <ClInclude Include="src\Components\Orientation.h" />
+    <ClInclude Include="src\Components\Seed.h" />
     <ClInclude Include="src\Constants.h" />
     <ClInclude Include="src\IEvent.h" />
     <ClInclude Include="src\Components\Input.h" />
@@ -53,6 +57,7 @@
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\GameApp.h" />
     <ClInclude Include="src\GridRepresentation.h" />
+    <ClInclude Include="src\IInteractable.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\TileInfo.h" />
     <ClInclude Include="src\Tilemap.h" />

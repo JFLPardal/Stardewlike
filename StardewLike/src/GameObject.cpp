@@ -4,6 +4,7 @@
 #include "Components/SpriteRenderer.h"
 #include "Components/Transform.h"
 #include "GridRepresentation.h"
+#include "IInteractable.h"
 
 GameObject::GameObject(int aInitialX, int aInitialY) noexcept
 {
@@ -23,6 +24,16 @@ void GameObject::Start()
 		component->Start();
 	}
 	m_renderer = GetComponent<SpriteRenderer>();
+	for (auto& component : m_componentList)
+	{
+		auto componentAsInteractable = dynamic_cast<IInteractable*>(component.get());
+		if (componentAsInteractable)
+		{
+			m_interactable = componentAsInteractable;
+			printf("found it :3\n");
+			return;
+		}
+	}
 }
 
 void GameObject::Update()

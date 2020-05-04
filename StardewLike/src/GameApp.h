@@ -25,9 +25,11 @@ public:
 
 	void Update();
 	void Draw() const;
-private:
-	void InitPlayerComponents();
 	void CreateGameObject(std::unique_ptr<GameObject> aGOtoCreate, const sf::Vector2i& aGOgridPos);
+private:
+	
+	void InitPlayerComponents();
+	void SubscribeToPlayerEvents();
 
 	Window& m_gameWindow;
 	std::unique_ptr<Tilemap> m_tilemap;						// | these should be abstracted into a 'Level' script

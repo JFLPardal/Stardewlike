@@ -16,6 +16,7 @@ public:
 	~GameObjectGridMap() = default;
 
 	GameObject* CheckForGameObjectOnTile(const sf::Vector2i& aGridIndexToCheck);
+	//TileInfo* GetTile(const sf::Vector2i& aGridIndexToGet);
 
 	void AddToGrid(std::shared_ptr<GameObject> aObjectToAdd, sf::Vector2i aGridIndex);
 private:

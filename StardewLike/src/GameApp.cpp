@@ -10,17 +10,7 @@
 #include "Components/Input.h"
 #include "Components/Orientation.h"
 #include "Components/InteractWithWorld.h"
-
-void GameApp::InitPlayerComponents()	// TODO this should be done in some external file, like XML or something
-{
-	m_player->AddComponent<Orientation>(m_gameWindow.GetWindowEventHandler());
-	m_player->AddComponent<SpriteRenderer>("assets\\cherry.png", false);
-	m_player->AddComponent<Input>();
-	m_player->AddComponent<InteractWithWorld>(m_gameWindow.GetWindowEventHandler(), *m_GOgridMap);
-	m_player->Start();
-
-	m_tryCreateGameObjectIndex = m_player->GetComponent<InteractWithWorld>()->OnTryToCreateGameObjectEvent->AddCallback(TRY_CREATE_GAME_OBJECT(&GameApp::CreateGameObject));
-}
+#include "Components/Inventory.h"
 
 GameApp::GameApp(Window& aWindow)
 	: m_gameWindow(aWindow)
@@ -31,6 +21,22 @@ GameApp::GameApp(Window& aWindow)
 	m_tilemap->Load("assets\\tileset.png", sf::Vector2u(32,32), 16, 8); // TODO if this is not deleted, extract numbers to 'Constants'
 		
 	InitPlayerComponents();
+	SubscribeToPlayerEvents();
+}
+
+void GameApp::InitPlayerComponents()	// TODO this should be done in some external file, like XML or something
+{
+	m_player->AddComponent<Orientation>(m_gameWindow.GetWindowEventHandler());
+	m_player->AddComponent<SpriteRenderer>("assets\\cherry.png", false);
+	m_player->AddComponent<Input>();
+	m_player->AddComponent<InteractWithWorld>(m_gameWindow.GetWindowEventHandler(), *m_GOgridMap);
+	m_player->AddComponent<Inventory>();
+	m_player->Start();
+}
+
+void GameApp::SubscribeToPlayerEvents()
+{
+	m_tryCreateGameObjectIndex = m_player->GetComponent<InteractWithWorld>()->OnTryToCreateGameObjectEvent->AddCallback(TRY_CREATE_GAME_OBJECT(&GameApp::CreateGameObject));
 }
 
 void GameApp::Update()

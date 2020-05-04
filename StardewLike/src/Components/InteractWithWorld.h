@@ -12,6 +12,7 @@ class WindowEventHandler;
 class GameObjectGridMap;
 class Transform;
 class Orientation;
+class Inventory;
 
 typedef IEvent<void(std::unique_ptr<GameObject>, const sf::Vector2i&)> TryToCreateGameObjectEvent;
 
@@ -33,4 +34,5 @@ private:
 	EventIndex m_mouseLeftClickedIndex = -1;
 	Transform* m_transform{ nullptr };
 	Orientation* m_orientation{ nullptr };
+	Inventory* m_inventory{ nullptr };
 };

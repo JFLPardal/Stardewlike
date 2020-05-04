@@ -10,6 +10,8 @@
 	When a GO is created, Transform is automatically added to it.
 */
 
+class IInteractable;
+
 typedef unsigned int ComponentTypeId;
 
 inline ComponentTypeId GetNextTypeId() noexcept
@@ -41,6 +43,7 @@ public:
 
 	inline bool IsDrawable() const noexcept { return m_renderer != nullptr; }
 	sf::Drawable& GetRenderer() const noexcept { return static_cast<sf::Drawable&>(*m_renderer); }
+	IInteractable* GetInteractable() const { return m_interactable; }
 
 	template <typename T, typename... TArgs>
 	T* AddComponent(TArgs&&... args)
@@ -79,7 +82,8 @@ public:
 	}
 
 private:
-	SpriteRenderer* m_renderer = nullptr;
+	SpriteRenderer* m_renderer{ nullptr };
+	IInteractable* m_interactable{ nullptr };
 	std::vector<ComponentTypeId> m_componentTypeIdList;
 	std::vector<std::unique_ptr<Component>> m_componentList; // TODO encapsulate this in a IComponentList - not that easy because it is being used in template functions
 };
