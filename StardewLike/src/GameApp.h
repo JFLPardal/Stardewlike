@@ -25,7 +25,7 @@ public:
 
 	void Update();
 	void Draw() const;
-	void CreateGameObject(std::unique_ptr<GameObject> aGOtoCreate, const sf::Vector2i& aGOgridPos);
+	void CreateGameObject(std::shared_ptr<GameObject> aGOtoCreate, const sf::Vector2i& aGOgridPos);
 private:
 	
 	void InitPlayerComponents();

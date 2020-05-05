@@ -8,8 +8,9 @@ public:
 	~Seed() { printf("destroyed seed\n"); }
 
 	void PopulateInteractables() override;
+	
 	void InteractWith(GameObject* aObjectToInteractWith, GameObjectGridMap& aGridMap) override;
+	
 	void InteractWithEmpty(GameObject* aObject, GameObjectGridMap& aGridMap);
-private:
-	GameObject* m_seed{ nullptr };
+	void InteractWithSeed(GameObject* aObject, GameObjectGridMap& aGridMap);
 };

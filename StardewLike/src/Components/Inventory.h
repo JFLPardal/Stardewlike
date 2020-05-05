@@ -12,7 +12,7 @@ class Inventory : public Component
 {
 public:
 	Inventory();
-	// don't change the object pointed to
+	// don't allow changes to the object pointed to
 	GameObject* const ObjectBeingHeld() const { return m_objectBeingHeld.get(); }
 private:
 	std::unique_ptr<GameObject> m_objectBeingHeld;

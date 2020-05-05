@@ -10,8 +10,8 @@ sf::Vector2i GridRepresentation::ScreenToGridPosition(sf::Vector2f aScreenPos)
 
 sf::Vector2f GridRepresentation::GridToScreenPosition(sf::Vector2i aGridPos)
 {
-	return sf::Vector2f(static_cast<float>(aGridPos.x * TILE_W),
-						static_cast<float>(aGridPos.y * TILE_H));
+	return sf::Vector2f(static_cast<float>(aGridPos.x * TILE_W) + TILE_W * .5f,
+						static_cast<float>(aGridPos.y * TILE_H) + TILE_H * .5f);
 }
 
 sf::Vector2i GridRepresentation::ScreenToGridPosition(float aScreenPosX, float aScreenPosY)

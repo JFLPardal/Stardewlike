@@ -13,6 +13,10 @@ enum InteractableType
 	seed
 };
 
+typedef std::function<void(GameObject*, GameObjectGridMap&)> InteractionFuncToCall;
+
+#define FUNC_TO_CALLBACK(callbackFunction) InteractionFuncToCall(std::bind(callbackFunction, this, std::placeholders::_1, std::placeholders::_2))
+
 class IInteractable : public Component
 {
 public:
@@ -20,6 +24,6 @@ public:
 	InteractableType GetInteractableType() const { return m_type; }
 protected:
 	virtual void PopulateInteractables() = 0;
-	std::vector<std::pair<InteractableType, std::function<void(GameObject*, GameObjectGridMap&)>>> m_interactableTypes;
+	std::vector<std::pair<InteractableType, InteractionFuncToCall>> m_interactableTypes;
 	InteractableType m_type = notDefined;
 };

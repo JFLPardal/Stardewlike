@@ -1,6 +1,5 @@
 #pragma once
 #include "Component.h"
-#include "IEvent.h"
 
 /*
 	InteractWithWorld is responsible for the attempt of the player to interact with the world
@@ -14,10 +13,6 @@ class Transform;
 class Orientation;
 class Inventory;
 
-typedef IEvent<void(std::unique_ptr<GameObject>, const sf::Vector2i&)> TryToCreateGameObjectEvent;
-
-#define TRY_CREATE_GAME_OBJECT(callbackFunction) std::function<void(std::unique_ptr<GameObject>, const sf::Vector2i&)>(std::bind(callbackFunction, this, std::placeholders::_1,std::placeholders::_2))
-
 class InteractWithWorld : public Component
 {
 public:
@@ -25,7 +20,6 @@ public:
 	~InteractWithWorld();
 
 	void Start() override;
-	std::unique_ptr<TryToCreateGameObjectEvent> OnTryToCreateGameObjectEvent;
 private:
 	void Interact(int aScreenCoordsX, int aScreenCoordsY);
 

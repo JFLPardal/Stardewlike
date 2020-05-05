@@ -1,0 +1,32 @@
+The purpose of this document is for me to reflect about thoughts I have during the development
+of this project, thoughts that sometimes would come and go without giving them the appropriate
+thought. 
+The idea is that if I have a document where I write this down I will get in the habit 
+of bringing these ideas to light, and reflect more seriously about them, potentially finding flaws
+in my thought process or on the methods that I am using to solve problem. 
+Additionally, writing these down will, hopefully, help me express myself more clearly with the 
+exact words I want instead of some half-assed wording like it happens when I just think about something.
+
+
+Things that I should have used:
+
+* namespaces - at the time I am writing this, the project has 39 c++ code files, and not using namespaces
+    to define to which domain each class belongs to is starting to be a problem, since it is being hard to track
+    if 2 concepts that I am trying to make communicate with each other should even be communicating (either directly
+    referencing each other or indirectly throught some intermediate layer). Grouping concepts in namespaces would make this
+    easier to understand since I would been faced with the questions: "should these 2 namespaces know about each other?", 
+    and it would make it easier to track dependencies a given namespace would have on another and if those dependencies made sense.
+
+  Material to help solve this: Reread Code Complete chapter related with domain separation  
+
+
+* class interaction diagrams - in relation with the point about using namespaces, a problem that I had in some points of
+    the development was feeling like I lost track of what classes were depending on other classes and if each class was
+    depending strictly on classes that it should. 
+    Sometimes I added communication between classes that were not intended to communicate (directly at least) because
+    I did not think throughly about the communication needed between classes for a given solution, 
+    and since I was so far down the rabbit hole I just hacked it.
+
+  Material to help solve this: Check if VS has some tool/extension to help create diagram classes with connections 
+    between the classes of a project in a richer way than their default 'Class Diagram' does.
+

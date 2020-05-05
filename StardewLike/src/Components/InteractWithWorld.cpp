@@ -11,8 +11,7 @@
 #include "Seed.h"
 
 InteractWithWorld::InteractWithWorld(WindowEventHandler* aWindowEventHandler, GameObjectGridMap& aGameObjectgridMap)
-	: OnTryToCreateGameObjectEvent(std::make_unique<TryToCreateGameObjectEvent>())
-	, m_windowEventHandler(aWindowEventHandler)
+	: m_windowEventHandler(aWindowEventHandler)
 	, m_GOgridMap(&aGameObjectgridMap)
 {
 }
@@ -27,35 +26,23 @@ void InteractWithWorld::Start()
 
 void InteractWithWorld::Interact(int aScreenCoordsX, int aScreenCoordsY)
 {
-	// get the tile to interact with
 	const auto currentPositionInGrid = m_transform->GetPositionInGrid();
 	const auto orientationAsGridIncrement = m_orientation->GetOrientationAsGridIncrement();
 	const auto gridPositionToInteract = currentPositionInGrid + orientationAsGridIncrement;
+	GameObject* gameObjectOnTileToInteract = m_GOgridMap->CheckForGameObjectOnTile(gridPositionToInteract);
 
-	const auto gameObjectOnTileToInteract = m_GOgridMap->CheckForGameObjectOnTile(gridPositionToInteract);
-
-	m_inventory->ObjectBeingHeld()->GetInteractable()->InteractWith(gameObjectOnTileToInteract, *m_GOgridMap);
-	/*if (gameObjectOnTileToInteract == nullptr)
+	// this is needed for those Interactable that can interact with an empty tile. They need the grid position the player is interacting with
+	if (gameObjectOnTileToInteract == nullptr)
 	{
-		printf("no GO on tile\n");
-		//can activeItem interact with nullptr?
-			// yes -> interact
-			// else -> return
-		
-			// ask the inventory what the active item is 
-		std::unique_ptr<GameObject> seed = std::make_unique<GameObject>(gridPositionToInteract);
-		seed->AddComponent<SpriteRenderer>("assets\\player.png");
-		seed->Start();
+		GameObject nullGOJustGridPosition = GameObject(gridPositionToInteract);
+		gameObjectOnTileToInteract = &nullGOJustGridPosition;
 
-		OnTryToCreateGameObjectEvent->TriggerEvent(std::move(seed), gridPositionToInteract);
+		m_inventory->ObjectBeingHeld()->GetInteractable()->InteractWith(gameObjectOnTileToInteract, *m_GOgridMap);
 	}
 	else
 	{
-		printf("GO on tile\n");
-		// can aGOtoInteractWith interact with activeItem?
-			// yes -> interact
-			// else -> return
-	}*/
+		m_inventory->ObjectBeingHeld()->GetInteractable()->InteractWith(gameObjectOnTileToInteract, *m_GOgridMap);
+	}
 }
 
 InteractWithWorld::~InteractWithWorld()

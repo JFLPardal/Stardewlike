@@ -4,6 +4,11 @@
 #include "TileInfo.h"
 #include "GameObject.h"
 
+GameObjectGridMap::GameObjectGridMap()
+	: OnTryToCreateGameObjectEvent(std::make_unique<TryToCreateGameObjectEvent>())
+{
+}
+
 GameObject* GameObjectGridMap::CheckForGameObjectOnTile(const sf::Vector2i& aGridIndexToCheck)
 {
 	auto tileToGet = m_tileInfo.find(TileInfo(nullptr, aGridIndexToCheck));
@@ -24,5 +29,6 @@ TileInfo* GameObjectGridMap::GetTile(const sf::Vector2i& aGridIndexToGet)
 void GameObjectGridMap::AddToGrid(std::shared_ptr<GameObject> aObjectToAdd, sf::Vector2i aGridIndex)
 {
 	//assert(aObjectToAdd != nullptr && "Can't add nullptr GameObject to the GameObjectGridMap");
+	OnTryToCreateGameObjectEvent->TriggerEvent(aObjectToAdd, aGridIndex);
 	m_tileInfo.emplace(std::move(TileInfo(aObjectToAdd, aGridIndex)));
 }
