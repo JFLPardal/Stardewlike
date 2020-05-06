@@ -49,6 +49,7 @@
     <ClInclude Include="src\Components\Orientation.h" />
     <ClInclude Include="src\Components\Seed.h" />
     <ClInclude Include="src\Constants.h" />
+    <ClInclude Include="src\Enums.h" />
     <ClInclude Include="src\IEvent.h" />
     <ClInclude Include="src\Components\Input.h" />
     <ClInclude Include="src\Components\Component.h" />

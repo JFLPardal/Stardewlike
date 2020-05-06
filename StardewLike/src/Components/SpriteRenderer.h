@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include "Enums.h"
 
 /*
 	SpriteRenderer is responsible for drawing the 'GameObject' it is attached to,
@@ -19,6 +20,8 @@ public:
 	void Update() override;
 	void draw(sf::RenderTarget& aTarget, sf::RenderStates aStates) const override;
 private:
+	void OrientationChanged(PossibleOrientation aNewOrientation);
+	static std::map<PossibleOrientation, sf::Vector2i> orientationToSpriteIndex;
 	// TODO optimize, this should store a pointer to a texture and all textures should be stored in a single class
 	sf::Texture m_texture;
 	sf::Sprite  m_sprite;

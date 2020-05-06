@@ -27,7 +27,7 @@ GameApp::GameApp(Window& aWindow)
 void GameApp::InitPlayerComponents()	// TODO this should be done in some external file, like XML or something
 {
 	m_player->AddComponent<Orientation>(m_gameWindow.GetWindowEventHandler());
-	m_player->AddComponent<SpriteRenderer>("assets\\cherry.png", false);
+	m_player->AddComponent<SpriteRenderer>("assets\\player_sheet.png", true);
 	m_player->AddComponent<Input>();
 	m_player->AddComponent<InteractWithWorld>(m_gameWindow.GetWindowEventHandler(), *m_GOgridMap);
 	m_player->AddComponent<Inventory>();

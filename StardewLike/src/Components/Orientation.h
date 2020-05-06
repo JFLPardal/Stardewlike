@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "IEvent.h"
-
+#include "Enums.h"
 /*
 	Orientation is responsible for storing the GO's orientation.
 	This represents which of the 4 possible directions this GO is facing.
@@ -13,11 +13,6 @@
 
 class WindowEventHandler;
 class Transform;
-
-enum PossibleOrientation : short 
-{
-	up, right, down, left
-};
 
 class Orientation : public Component
 {
