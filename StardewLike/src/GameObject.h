@@ -81,7 +81,10 @@ public:
 		return nullptr;
 	}
 
+
 private:
+	void RemoveAllComponents();
+
 	SpriteRenderer* m_renderer{ nullptr };
 	IInteractable* m_interactable{ nullptr };
 	std::vector<ComponentTypeId> m_componentTypeIdList;

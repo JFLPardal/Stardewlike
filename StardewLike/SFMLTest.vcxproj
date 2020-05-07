@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Components\Animator.cpp" />
     <ClCompile Include="src\Components\Component.cpp" />
     <ClCompile Include="src\Components\Input.cpp" />
     <ClCompile Include="src\Components\InteractWithWorld.cpp" />
@@ -44,6 +45,7 @@
     <ClCompile Include="src\GameObjectGridMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\Animator.h" />
     <ClInclude Include="src\Components\InteractWithWorld.h" />
     <ClInclude Include="src\Components\Inventory.h" />
     <ClInclude Include="src\Components\Orientation.h" />

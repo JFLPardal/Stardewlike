@@ -9,6 +9,7 @@
 
 class Transform;
 class Orientation;
+class Animator;
 
 class SpriteRenderer : public Component, public sf::Drawable
 {
@@ -20,11 +21,10 @@ public:
 	void Update() override;
 	void draw(sf::RenderTarget& aTarget, sf::RenderStates aStates) const override;
 private:
-	void OrientationChanged(PossibleOrientation aNewOrientation);
-	static std::map<PossibleOrientation, sf::Vector2i> orientationToSpriteIndex;
 	// TODO optimize, this should store a pointer to a texture and all textures should be stored in a single class
 	sf::Texture m_texture;
 	sf::Sprite  m_sprite;
-	Transform* m_transform{nullptr};
+	Animator* m_animator{ nullptr };
+	Transform* m_transform{ nullptr };
 	Orientation* m_orientation{ nullptr };
 };

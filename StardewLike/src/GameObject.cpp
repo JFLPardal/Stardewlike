@@ -44,8 +44,15 @@ void GameObject::Update()
 	}
 }
 
+/// This functions assures that the components are destroyed in the reverse order they where created
+void GameObject::RemoveAllComponents()
+{
+	std::for_each(m_componentList.rbegin(), m_componentList.rend(), [](std::unique_ptr<Component>& component) {component.reset(); });
+}
+
 GameObject::~GameObject()
 {
+	RemoveAllComponents();
 	static int numbah = 0;
 	printf("destroyed GO %d\n", numbah);
 	numbah++;

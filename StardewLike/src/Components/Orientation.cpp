@@ -14,6 +14,7 @@ const std::map<PossibleOrientation, sf::Vector2i> directionToGridIncrement
 };
 
 Orientation::Orientation(WindowEventHandler* aWindowEventHandler)
+	:OnOrientationChangedEvent(std::make_unique<OrientationChangedEvent>())
 {
 	printf("orientation\n");
 	assert(aWindowEventHandler != nullptr && "WindowEventHandler passed to Orientation Component is null");
@@ -34,6 +35,8 @@ sf::Vector2i Orientation::GetOrientationAsGridIncrement() const
 
 void Orientation::UpdateOrientation(int aX, int aY)
 {
+	auto currentOrientation = m_currentOrientation;
+
 	const int objectX = static_cast<int>(m_transform->GetPosition().x);
 	const int objectY = static_cast<int>(m_transform->GetPosition().y);
 
@@ -44,6 +47,9 @@ void Orientation::UpdateOrientation(int aX, int aY)
 		m_currentOrientation = (deltaX > 0) ? right : left;
 	else
 		m_currentOrientation = (deltaY > 0) ? down : up; // y increases from the top of the screen to the bottom
+
+	if (currentOrientation != m_currentOrientation)
+		OnOrientationChangedEvent->TriggerEvent(m_currentOrientation);
 }
 
 Orientation::~Orientation()

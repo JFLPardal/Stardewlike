@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "IEvent.h"
 #include "Enums.h"
+
 /*
 	Orientation is responsible for storing the GO's orientation.
 	This represents which of the 4 possible directions this GO is facing.
@@ -14,11 +15,17 @@
 class WindowEventHandler;
 class Transform;
 
+typedef IEvent<void(PossibleOrientation)> OrientationChangedEvent;
+
+#define ORIENTATION_CHANGED(callbackFunction) std::function<void(PossibleOrientation)>(std::bind(callbackFunction,this, std::placeholders::_1 ))
+
 class Orientation : public Component
 {
 public:
 	explicit Orientation(WindowEventHandler* aWindow);
 	~Orientation();
+
+	std::unique_ptr<OrientationChangedEvent> OnOrientationChangedEvent;
 
 	void Start() override;
 
@@ -30,5 +37,5 @@ private:
 	PossibleOrientation m_currentOrientation = up;
 	Transform* m_transform{ nullptr };
 	WindowEventHandler* m_windowEventHandler{ nullptr };
-	EventIndex m_mouseMovedIndex = -1;
+	EventIndex m_mouseMovedIndex = -2;
 };

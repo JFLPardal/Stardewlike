@@ -44,7 +44,7 @@ void Seed::InteractWithEmpty(GameObject* aObject, GameObjectGridMap& aGridMap)
 	auto positionToAdd = aObject->GetComponent<Transform>()->GetPositionInGrid();
 
 	std::shared_ptr<GameObject> seed = std::make_shared<GameObject>(positionToAdd);
-	seed->AddComponent<SpriteRenderer>("assets\\player.png");
+	seed->AddComponent<SpriteRenderer>("assets\\garlic.png");
 	seed->AddComponent<Seed>();
 	seed->Start();
 

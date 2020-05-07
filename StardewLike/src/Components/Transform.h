@@ -18,6 +18,6 @@ public:
 private:
 	inline void UpdateMovement(short x, short y);
 
-	EventIndex m_moveKeyPressedIndex = -1;
+	EventIndex m_moveKeyPressedIndex = -2;
 	sf::Transformable m_transform;
 };

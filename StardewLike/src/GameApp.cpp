@@ -11,6 +11,7 @@
 #include "Components/Orientation.h"
 #include "Components/InteractWithWorld.h"
 #include "Components/Inventory.h"
+#include "Components/Animator.h"
 
 GameApp::GameApp(Window& aWindow)
 	: m_gameWindow(aWindow)
@@ -28,6 +29,7 @@ void GameApp::InitPlayerComponents()	// TODO this should be done in some externa
 {
 	m_player->AddComponent<Orientation>(m_gameWindow.GetWindowEventHandler());
 	m_player->AddComponent<SpriteRenderer>("assets\\player_sheet.png", true);
+	m_player->AddComponent<Animator>();
 	m_player->AddComponent<Input>();
 	m_player->AddComponent<InteractWithWorld>(m_gameWindow.GetWindowEventHandler(), *m_GOgridMap);
 	m_player->AddComponent<Inventory>();

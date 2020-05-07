@@ -19,7 +19,8 @@ public:
 	Input() noexcept;
 	~Input();
 
+	std::unique_ptr<MovementKeyPressedEvent> OnMovementKeyPressedEvent;
+
 	void Update() override;
 
-	std::unique_ptr<MovementKeyPressedEvent> OnMovementKeyPressedEvent;
 };
