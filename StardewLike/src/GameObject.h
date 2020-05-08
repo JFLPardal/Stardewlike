@@ -1,7 +1,10 @@
 #pragma once
 #include "Components/Component.h"
 #include "Components/SpriteRenderer.h"
+#include "StateMachine.h"
+#include "GameObjectData.h"
 #include "Constants.h"
+
 /*
 	GameObject is the class that represents any entity on the game.
 	It consists in a collection of 'Component's that make up this GO, as well as some functionality like
@@ -11,6 +14,7 @@
 */
 
 class IInteractable;
+class StateMachine;
 
 typedef unsigned int ComponentTypeId;
 
@@ -34,16 +38,19 @@ inline ComponentTypeId GetTypeId()
 class GameObject
 {
 public:
-	explicit GameObject(int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y) noexcept;
+	explicit GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y) noexcept;
+	explicit GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, sf::Vector2i aGridPosition) noexcept;
 	explicit GameObject(sf::Vector2i aGridPosition) noexcept;
 	~GameObject();
 
 	void Start();
 	void Update();
 
-	inline bool IsDrawable() const noexcept { return m_renderer != nullptr; }
-	sf::Drawable& GetRenderer() const noexcept { return static_cast<sf::Drawable&>(*m_renderer); }
-	IInteractable* GetInteractable() const { return m_interactable; }
+	inline bool IsDrawable() const noexcept		{ return m_renderer != nullptr; }
+	sf::Drawable& GetRenderer() const noexcept	{ return static_cast<sf::Drawable&>(*m_renderer); }
+	IInteractable* GetInteractable() const		{ return m_interactable; }
+	StateMachine* GetStateMachine() const		{ return m_stateMachine.get(); }
+	GameObjectData* GetData() const				{ return m_data.get(); }
 
 	template <typename T, typename... TArgs>
 	T* AddComponent(TArgs&&... args)
@@ -63,7 +70,7 @@ public:
 	}
 
 	template<typename T>
-	T* GetComponent()
+	T* GetComponent() 
 	{
 		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
 
@@ -85,6 +92,8 @@ public:
 private:
 	void RemoveAllComponents();
 
+	std::unique_ptr<StateMachine> m_stateMachine;
+	std::unique_ptr<GameObjectData> m_data;
 	SpriteRenderer* m_renderer{ nullptr };
 	IInteractable* m_interactable{ nullptr };
 	std::vector<ComponentTypeId> m_componentTypeIdList;

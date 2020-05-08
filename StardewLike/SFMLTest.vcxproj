@@ -30,6 +30,7 @@
     <ClCompile Include="src\Components\Transform.cpp" />
     <ClCompile Include="src\GameApp.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\GameObjectData.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\GridRepresentation.cpp" />
     <ClCompile Include="src\pch.cpp">
@@ -38,6 +39,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\PlayerData.cpp" />
+    <ClCompile Include="src\PlayerStateMachine.cpp" />
+    <ClCompile Include="src\SeedData.cpp" />
+    <ClCompile Include="src\SeedStateMachine.cpp" />
+    <ClCompile Include="src\StateMachine.cpp" />
     <ClCompile Include="src\TileInfo.cpp" />
     <ClCompile Include="src\Tilemap.cpp" />
     <ClCompile Include="src\Window.cpp" />
@@ -50,6 +56,12 @@
     <ClInclude Include="src\Components\Inventory.h" />
     <ClInclude Include="src\Components\Orientation.h" />
     <ClInclude Include="src\Components\Seed.h" />
+    <ClInclude Include="src\GameObjectData.h" />
+    <ClInclude Include="src\PlayerData.h" />
+    <ClInclude Include="src\PlayerStateMachine.h" />
+    <ClInclude Include="src\SeedData.h" />
+    <ClInclude Include="src\SeedStateMachine.h" />
+    <ClInclude Include="src\StateMachine.h" />
     <ClInclude Include="src\Constants.h" />
     <ClInclude Include="src\Enums.h" />
     <ClInclude Include="src\IEvent.h" />
@@ -127,19 +139,23 @@
     <OutDir>$(SolutionDir)StardewLike\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)StardewLike\$(Configuration)\intermediate\</IntDir>
     <CodeAnalysisRuleSet>pointers.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)StardewLike\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)StardewLike\$(Configuration)\intermediate\</IntDir>
     <CodeAnalysisRuleSet>CppCoreCheckRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <CodeAnalysisRuleSet>pointers.ruleset</CodeAnalysisRuleSet>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <CodeAnalysisRuleSet>pointers.ruleset</CodeAnalysisRuleSet>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

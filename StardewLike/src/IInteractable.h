@@ -1,6 +1,14 @@
 #pragma once
 #include "Components/Component.h"
 
+/*
+	IInteractable is responsible for defining the functions
+	that all Interactable entities in the game should implement.
+	
+	An IInteractable is something that the player can interact 
+	(perform some action up) with.
+*/
+
 class GameObject;
 class GameObjectGridMap;
 

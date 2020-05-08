@@ -12,12 +12,15 @@
 #include "Components/InteractWithWorld.h"
 #include "Components/Inventory.h"
 #include "Components/Animator.h"
+#include "PlayerStateMachine.h"
+#include "PlayerData.h"
+
 
 GameApp::GameApp(Window& aWindow)
 	: m_gameWindow(aWindow)
 	, m_tilemap(std::make_unique<Tilemap>())
 	, m_GOgridMap(std::make_unique<GameObjectGridMap>())
-	, m_player(std::make_unique<GameObject>())
+	, m_player(std::make_unique<GameObject>(std::make_unique<PlayerData>(), std::make_unique<PlayerStateMachine>()))
 {
 	m_tilemap->Load("assets\\tileset.png", sf::Vector2u(32,32), 16, 8); // TODO if this is not deleted, extract numbers to 'Constants'
 		

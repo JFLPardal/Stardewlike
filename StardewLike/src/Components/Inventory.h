@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+
 /*
 	Inventory is responsible for having a reference to all the items
 	the player is currently carrying and a reference to the item 

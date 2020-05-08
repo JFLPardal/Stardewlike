@@ -34,7 +34,7 @@ void InteractWithWorld::Interact(int aScreenCoordsX, int aScreenCoordsY)
 	// this is needed for those Interactable that can interact with an empty tile. They need the grid position the player is interacting with
 	if (gameObjectOnTileToInteract == nullptr)
 	{
-		GameObject nullGOJustGridPosition = GameObject(gridPositionToInteract);
+		GameObject nullGOJustGridPosition(gridPositionToInteract);
 		gameObjectOnTileToInteract = &nullGOJustGridPosition;
 
 		m_inventory->ObjectBeingHeld()->GetInteractable()->InteractWith(gameObjectOnTileToInteract, *m_GOgridMap);

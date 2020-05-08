@@ -29,7 +29,7 @@ void SpriteRenderer::Update()
 {
 	m_sprite.setPosition(m_transform->GetPosition());
 	
-	if(m_animator != nullptr)
+	if(m_animator != nullptr)// && m_animator.CurrentAnimationHasMoreThanOneFrame()
 	{
 		m_sprite.setTextureRect(m_animator->GetRectToDraw());
 	}

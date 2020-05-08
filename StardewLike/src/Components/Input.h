@@ -9,9 +9,9 @@
 	* OnMovementKeyPressedEvent: Event that is triggered when the keys on the keyboard responsible for moving the player are pressed
 */
 
-#define MOVEMENT_KEY_PRESSED(callbackFunction) std::function<void(short, short)>(std::bind(callbackFunction, this, std::placeholders::_1, std::placeholders::_2))
-
 typedef IEvent<void(short, short)> MovementKeyPressedEvent;
+
+#define MOVEMENT_KEY_PRESSED(callbackFunction) std::function<void(short, short)>(std::bind(callbackFunction, this, std::placeholders::_1, std::placeholders::_2))
 
 class Input : public Component
 {
@@ -22,5 +22,4 @@ public:
 	std::unique_ptr<MovementKeyPressedEvent> OnMovementKeyPressedEvent;
 
 	void Update() override;
-
 };

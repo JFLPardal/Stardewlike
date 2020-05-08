@@ -4,6 +4,9 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "GameObjectGridMap.h"
+#include "Animator.h"
+#include "SeedStateMachine.h"
+#include "SeedData.h"
 
 Seed::Seed()
 {
@@ -43,8 +46,11 @@ void Seed::InteractWithEmpty(GameObject* aObject, GameObjectGridMap& aGridMap)
 	printf("seed interacting with empty.\n");
 	auto positionToAdd = aObject->GetComponent<Transform>()->GetPositionInGrid();
 
-	std::shared_ptr<GameObject> seed = std::make_shared<GameObject>(positionToAdd);
-	seed->AddComponent<SpriteRenderer>("assets\\garlic.png");
+	std::shared_ptr<GameObject> seed = std::make_shared<GameObject>(std::make_unique<SeedData>(), 
+																	std::make_unique<SeedStateMachine>(), 
+																	positionToAdd);
+	seed->AddComponent<SpriteRenderer>("assets\\purple_cabbage.png");
+	seed->AddComponent<Animator>();
 	seed->AddComponent<Seed>();
 	seed->Start();
 

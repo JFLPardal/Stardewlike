@@ -30,3 +30,16 @@ Things that I should have used:
   Material to help solve this: Check if VS has some tool/extension to help create diagram classes with connections 
     between the classes of a project in a richer way than their default 'Class Diagram' does.
 
+Things that are not correct:
+
+* independent order of destruction of Components - The 'Component's on a 'GameObject' are being deleted by the reverse
+    order in which they were added. 
+    The elements of a vector (data structure I am using to hold the callback functions of an event) are deleted in 
+    the order they were created. I assumed this order  would be the sameas the order of destruction of the
+    member variables of an instance of a class: reversed from their declaration.
+    So, everywhere I was listing all of the 'Components' a 'GameObject' had, I was doing so making sure that 'Component's
+    that were triggering events were created first, to make sure the other 'Component's using these events could successfully
+    unregister on deletion, but alas, this was wrong. 
+    To remedy the situation I made sure that the destruction of the vector was done in reversed order, but this is by no means
+    a good solution. Ideally the order of destruction should not affect unregistering from events. This is another problem of 
+    the way I implemented the events.

@@ -6,9 +6,19 @@
 #include "GridRepresentation.h"
 #include "IInteractable.h"
 
-GameObject::GameObject(int aInitialX, int aInitialY) noexcept
+GameObject::GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, int aInitialX, int aInitialY) noexcept
+	: m_stateMachine(std::move(aStateMachine))
+	, m_data(std::move(aGOdata))
 {
 	AddComponent<Transform>(aInitialX, aInitialY);
+}
+
+GameObject::GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, sf::Vector2i aGridPosition) noexcept
+	: m_stateMachine(std::move(aStateMachine))
+	, m_data(std::move(aGOdata))
+{
+	auto positionInScreenSpace = GridRepresentation::GridToScreenPosition(aGridPosition);
+	AddComponent<Transform>(positionInScreenSpace.x, positionInScreenSpace.y);
 }
 
 GameObject::GameObject(sf::Vector2i aGridPosition) noexcept
@@ -30,10 +40,10 @@ void GameObject::Start()
 		if (componentAsInteractable)
 		{
 			m_interactable = componentAsInteractable;
-			printf("found it :3\n");
-			return;
+			break;
 		}
 	}
+	m_stateMachine->Start(this);
 }
 
 void GameObject::Update()
