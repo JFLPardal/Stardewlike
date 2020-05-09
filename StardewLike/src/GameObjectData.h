@@ -7,5 +7,5 @@ public:
 	GameObjectData() = default;
 	virtual ~GameObjectData() = default;
 
-	virtual std::vector<sf::Vector2i> GetAnimationState(State aState) const = 0;
+	virtual std::vector<sf::Vector2i> GetAnimationState(State aState, PossibleOrientation aOrientation = up) const = 0;
 };

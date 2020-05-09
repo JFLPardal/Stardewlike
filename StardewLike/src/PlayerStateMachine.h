@@ -7,11 +7,14 @@ class Orientation;
 class PlayerStateMachine : public StateMachine
 {
 public:
-	PlayerStateMachine() = default;
+	PlayerStateMachine();
+	~PlayerStateMachine();
 
 	void Start(GameObject* aOwner) override;
 private:
-	//void OrientationChanged(PossibleOrientation aNewOrientation);
+	void OrientationChanged(PossibleOrientation aNewOrientation);
 
-	Orientation* m_orientation{ nullptr };
+	static std::vector<State> m_possibleStates;
+	Orientation* m_orientation;
+	EventIndex m_OrientationChangedIndex = -2;
 };

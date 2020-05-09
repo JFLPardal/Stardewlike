@@ -9,6 +9,6 @@ public:
 	SeedStateMachine();
 
 	void Start(GameObject* aOwner) override;
-protected:
+private:
 	static std::vector<State> m_possibleStates;
 };
