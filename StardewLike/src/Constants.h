@@ -4,6 +4,10 @@
 constexpr int TILE_W = 32;
 constexpr int TILE_H = 32;
 
+// player (should this be moved to PlayerData?)
+constexpr float PLAYER_H_SPEED = 2.f;
+constexpr float PLAYER_V_SPEED = PLAYER_H_SPEED;
+
 // window properties
 constexpr const char WINDOW_NAME[] = "Farming";
 constexpr int WINDOW_W = 1024;
