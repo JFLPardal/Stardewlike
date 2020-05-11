@@ -3,6 +3,8 @@
 // SFML
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Transformable.hpp>
+// SFML wrapper
+#include "Wrappers/Vector2i.h"
 
 // data structures
 #include <memory>

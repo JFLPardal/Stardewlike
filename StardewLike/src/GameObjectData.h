@@ -1,11 +1,13 @@
 #pragma once
 #include "Enums.h"
+#include "Animation.h"
 
 class GameObjectData
 {
 public:
+	typedef Vector2i SpriteSheedIndex;
 	GameObjectData() = default;
 	virtual ~GameObjectData() = default;
 
-	virtual std::vector<sf::Vector2i> GetAnimationState(State aState, PossibleOrientation aOrientation = up) const = 0;
+	virtual const Animation& GetAnimationState(State aState, PossibleOrientation aOrientation = up) const = 0;
 };

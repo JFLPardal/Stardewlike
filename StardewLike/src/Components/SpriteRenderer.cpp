@@ -31,7 +31,8 @@ void SpriteRenderer::Update()
 	
 	if(m_animator != nullptr)// && m_animator.CurrentAnimationHasMoreThanOneFrame()
 	{
-		m_sprite.setTextureRect(m_animator->GetRectToDraw());
+		auto spriteSheetTile = m_animator->GetSpriteSheetTileToDraw();
+		m_sprite.setTextureRect(spriteSheetTile.GetRect());
 	}
 }
 
@@ -39,7 +40,6 @@ void SpriteRenderer::draw(sf::RenderTarget& aTarget, sf::RenderStates aStates) c
 {
 	aTarget.draw(m_sprite, aStates);
 }
-
 
 SpriteRenderer::~SpriteRenderer()
 {

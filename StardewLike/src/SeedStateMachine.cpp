@@ -14,5 +14,5 @@ SeedStateMachine::SeedStateMachine()
 void SeedStateMachine::Start(GameObject* aOwner)
 {
 	StateMachine::Start(aOwner);
-	OnStateChangeEvent->TriggerEvent(plant);
+	OnStateChangeEvent->TriggerEvent(fruit);
 }
