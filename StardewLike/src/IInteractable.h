@@ -18,7 +18,8 @@ enum InteractableType
 {
 	notDefined = -1,
 	empty,
-	seed
+	seed,
+	hoe
 };
 
 typedef std::function<void(GameObject*, GameObjectGridMap&)> InteractionFuncToCall;
@@ -28,6 +29,8 @@ typedef std::function<void(GameObject*, GameObjectGridMap&)> InteractionFuncToCa
 class IInteractable : public Component
 {
 public:
+	virtual ~IInteractable() {};
+
 	virtual void InteractWith(GameObject* aObjectToInteractWith, GameObjectGridMap& aGridMap) = 0;
 	InteractableType GetInteractableType() const { return m_type; }
 protected:

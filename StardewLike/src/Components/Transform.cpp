@@ -3,7 +3,7 @@
 
 #include "GameObject.h"
 #include "Input.h"
-#include "GridRepresentation.h"
+#include "MapRepresentation/GridRepresentation.h"
 #include "Constants.h"
 
 Transform::Transform(int aInitialX, int aInitialY)

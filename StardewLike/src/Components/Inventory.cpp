@@ -2,17 +2,43 @@
 #include "Inventory.h"
 
 #include "GameObject.h"
-#include "Seed.h"
+#include "InteractableTypes/Seed.h"
 #include "SpriteRenderer.h"
 #include "Animator.h"
-#include "SeedData.h"
-#include "SeedStateMachine.h"
+#include "GameObjectData/SeedData.h"
+#include "StateMachine/SeedStateMachine.h"
+#include "InteractableTypes/Hoe.h"
+#include "WindowEventHandler.h"
 
-Inventory::Inventory()
-	:m_objectBeingHeld(std::make_unique<GameObject>(std::make_unique<SeedData>(), std::make_unique<SeedStateMachine>(), sf::Vector2i(50, 50)))
+// 'Inventory needs to have a vector of 'GameObject's, 0 - Seed, 1 - Hoe
+// ActiveItem should be changed by clicking the buttons 1 for seed and 2 for hoe
+
+Inventory::Inventory(WindowEventHandler* aWindow)
+	:m_windowEventHandler(aWindow)
 {
-	m_objectBeingHeld->AddComponent<SpriteRenderer>("assets\\player.png");
-	m_objectBeingHeld->AddComponent<Animator>();
-	m_objectBeingHeld->AddComponent<Seed>();
-	m_objectBeingHeld->Start();
+	std::unique_ptr<GameObject> hoe = std::make_unique<GameObject>(sf::Vector2i(50, 50));
+	hoe->AddComponent<Hoe>();
+	hoe->Start();
+	m_objectsHeld.push_back(std::move(hoe));
+
+	std::unique_ptr<GameObject> seed = std::make_unique<GameObject>(std::make_unique<SeedData>(), std::make_unique<SeedStateMachine>(), sf::Vector2i(50, 50));
+	seed->AddComponent<SpriteRenderer>("assets\\player.png");
+	seed->AddComponent<Animator>();
+	seed->AddComponent<Seed>();
+	seed->Start();
+	m_objectsHeld.push_back(std::move(seed));
+
+	m_numberKeyPressedIndex = m_windowEventHandler->m_onNumberKeyPressedEvent->AddCallback(KEY_PRESSED(&Inventory::ChangeActiveItem));
+}
+
+void Inventory::ChangeActiveItem(int aNewIndex)
+{
+	printf("FWAAAAAAAAAA\n");
+	if (aNewIndex <= m_objectsHeld.size())
+		m_indexOfCurrentGO = --aNewIndex;
+}
+
+Inventory::~Inventory()
+{
+	m_windowEventHandler->m_onNumberKeyPressedEvent->RemoveCallback(m_numberKeyPressedIndex);
 }

@@ -18,7 +18,6 @@ void PlayerStateMachine::Start(GameObject* aOwner)
 {
 	StateMachine::Start(aOwner);
 	m_OrientationChangedIndex = m_owner->GetComponent<Orientation>()->OnOrientationChangedEvent->AddCallback(ORIENTATION_CHANGED(&PlayerStateMachine::OrientationChanged));
-	OnStateChangeEvent->TriggerEvent(idle);
 }
 
 void PlayerStateMachine::OrientationChanged(PossibleOrientation aNewOrientation)

@@ -26,30 +26,31 @@
     <ClCompile Include="src\Components\InteractWithWorld.cpp" />
     <ClCompile Include="src\Components\Inventory.cpp" />
     <ClCompile Include="src\Components\Orientation.cpp" />
-    <ClCompile Include="src\Components\Seed.cpp" />
+    <ClCompile Include="src\InteractableTypes\Hoe.cpp" />
+    <ClCompile Include="src\InteractableTypes\Seed.cpp" />
     <ClCompile Include="src\Components\SpriteRenderer.cpp" />
     <ClCompile Include="src\Components\Transform.cpp" />
     <ClCompile Include="src\GameApp.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
-    <ClCompile Include="src\GameObjectData.cpp" />
+    <ClCompile Include="src\GameObjectData\GameObjectData.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\GridRepresentation.cpp" />
+    <ClCompile Include="src\MapRepresentation\GridRepresentation.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\PlayerData.cpp" />
-    <ClCompile Include="src\PlayerStateMachine.cpp" />
-    <ClCompile Include="src\SeedData.cpp" />
-    <ClCompile Include="src\SeedStateMachine.cpp" />
-    <ClCompile Include="src\StateMachine.cpp" />
-    <ClCompile Include="src\TileInfo.cpp" />
-    <ClCompile Include="src\Tilemap.cpp" />
+    <ClCompile Include="src\GameObjectData\PlayerData.cpp" />
+    <ClCompile Include="src\StateMachine\PlayerStateMachine.cpp" />
+    <ClCompile Include="src\GameObjectData\SeedData.cpp" />
+    <ClCompile Include="src\StateMachine\SeedStateMachine.cpp" />
+    <ClCompile Include="src\StateMachine\StateMachine.cpp" />
+    <ClCompile Include="src\MapRepresentation\TileInfo.cpp" />
+    <ClCompile Include="src\MapRepresentation\Tilemap.cpp" />
     <ClCompile Include="src\Window.cpp" />
     <ClCompile Include="src\WindowEventHandler.cpp" />
-    <ClCompile Include="src\GameObjectGridMap.cpp" />
+    <ClCompile Include="src\MapRepresentation\GameObjectGridMap.cpp" />
     <ClCompile Include="src\Wrappers\Vector2i.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -58,13 +59,14 @@
     <ClInclude Include="src\Components\InteractWithWorld.h" />
     <ClInclude Include="src\Components\Inventory.h" />
     <ClInclude Include="src\Components\Orientation.h" />
-    <ClInclude Include="src\Components\Seed.h" />
-    <ClInclude Include="src\GameObjectData.h" />
-    <ClInclude Include="src\PlayerData.h" />
-    <ClInclude Include="src\PlayerStateMachine.h" />
-    <ClInclude Include="src\SeedData.h" />
-    <ClInclude Include="src\SeedStateMachine.h" />
-    <ClInclude Include="src\StateMachine.h" />
+    <ClInclude Include="src\InteractableTypes\Hoe.h" />
+    <ClInclude Include="src\InteractableTypes\Seed.h" />
+    <ClInclude Include="src\GameObjectData\GameObjectData.h" />
+    <ClInclude Include="src\GameObjectData\PlayerData.h" />
+    <ClInclude Include="src\StateMachine\PlayerStateMachine.h" />
+    <ClInclude Include="src\GameObjectData\SeedData.h" />
+    <ClInclude Include="src\StateMachine\SeedStateMachine.h" />
+    <ClInclude Include="src\StateMachine\StateMachine.h" />
     <ClInclude Include="src\Constants.h" />
     <ClInclude Include="src\Enums.h" />
     <ClInclude Include="src\IEvent.h" />
@@ -74,14 +76,14 @@
     <ClInclude Include="src\Components\Transform.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\GameApp.h" />
-    <ClInclude Include="src\GridRepresentation.h" />
+    <ClInclude Include="src\MapRepresentation\GridRepresentation.h" />
     <ClInclude Include="src\IInteractable.h" />
     <ClInclude Include="src\pch.h" />
-    <ClInclude Include="src\TileInfo.h" />
-    <ClInclude Include="src\Tilemap.h" />
+    <ClInclude Include="src\MapRepresentation\TileInfo.h" />
+    <ClInclude Include="src\MapRepresentation\Tilemap.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\WindowEventHandler.h" />
-    <ClInclude Include="src\GameObjectGridMap.h" />
+    <ClInclude Include="src\MapRepresentation\GameObjectGridMap.h" />
     <ClInclude Include="src\Wrappers\Vector2i.h" />
   </ItemGroup>
   <ItemGroup>

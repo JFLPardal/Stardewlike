@@ -4,6 +4,7 @@
 WindowEventHandler::WindowEventHandler() noexcept
 	: m_onMouseMoveEvent(std::make_unique<MouseMovedEvent>())
 	, m_onMouseLeftClickedEvent(std::make_unique<MouseLeftClikedEvent>())
+	, m_onNumberKeyPressedEvent(std::make_unique<KeyPressedEvent>())
 {
 }
 
@@ -17,7 +18,9 @@ bool WindowEventHandler::ProcessEvent(const sf::Event& aEvent)
 	}
 	if (aEvent.type == sf::Event::KeyPressed)
 	{
-		//printf("key pressed: %d\n", aEvent.key.code);
+		// if a number between 1 - 9 was pressed
+		if(aEvent.key.code > 26 && aEvent.key.code < 36)
+			m_onNumberKeyPressedEvent->TriggerEvent(aEvent.key.code - 26);
 	}
 	if (aEvent.type == sf::Event::MouseButtonPressed)
 	{

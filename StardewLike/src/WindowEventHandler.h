@@ -7,9 +7,11 @@
 */
 #define MOUSE_MOVED(callbackFunction) std::function<void(int, int)>(std::bind(callbackFunction, this, std::placeholders::_1, std::placeholders::_2))
 #define MOUSE_LEFT_CLICKED(callbackFunction) std::function<void(int, int)>(std::bind(callbackFunction, this, std::placeholders::_1, std::placeholders::_2))
+#define KEY_PRESSED(callbackFunction) std::function<void(int)>(std::bind(callbackFunction, this, std::placeholders::_1))
 
 typedef IEvent<void(int, int)> MouseMovedEvent;
 typedef IEvent<void(int, int)> MouseLeftClikedEvent;
+typedef IEvent<void(int)> KeyPressedEvent;
 
 class WindowEventHandler
 {
@@ -22,4 +24,5 @@ public:
 
 	std::unique_ptr<MouseMovedEvent> m_onMouseMoveEvent;
 	std::unique_ptr<MouseLeftClikedEvent> m_onMouseLeftClickedEvent;
+	std::unique_ptr<KeyPressedEvent> m_onNumberKeyPressedEvent;
 };

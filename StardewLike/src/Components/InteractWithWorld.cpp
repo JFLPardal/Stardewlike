@@ -5,10 +5,10 @@
 #include "Transform.h"
 #include "Orientation.h"
 #include "GameObject.h"
-#include "GameObjectGridMap.h"
+#include "MapRepresentation/GameObjectGridMap.h"
 #include "Inventory.h"
 #include "IInteractable.h"
-#include "Seed.h"
+#include "InteractableTypes/Seed.h"
 
 InteractWithWorld::InteractWithWorld(WindowEventHandler* aWindowEventHandler, GameObjectGridMap& aGameObjectgridMap)
 	: m_windowEventHandler(aWindowEventHandler)
@@ -31,16 +31,18 @@ void InteractWithWorld::Interact(int aScreenCoordsX, int aScreenCoordsY)
 	const auto gridPositionToInteract = currentPositionInGrid + orientationAsGridIncrement;
 	GameObject* gameObjectOnTileToInteract = m_GOgridMap->CheckForGameObjectOnTile(gridPositionToInteract);
 
-	// this is needed for those Interactable that can interact with an empty tile. They need the grid position the player is interacting with
+	// this is needed for those Interactable that can interact with an empty tile,
+	// they need the grid position the player is interacting with
 	if (gameObjectOnTileToInteract == nullptr)
 	{
 		GameObject nullGOJustGridPosition(gridPositionToInteract);
 		gameObjectOnTileToInteract = &nullGOJustGridPosition;
 
+		// TODO demeter violation
 		m_inventory->ObjectBeingHeld()->GetInteractable()->InteractWith(gameObjectOnTileToInteract, *m_GOgridMap);
 	}
 	else
-	{
+	{	// TODO demeter violation
 		m_inventory->ObjectBeingHeld()->GetInteractable()->InteractWith(gameObjectOnTileToInteract, *m_GOgridMap);
 	}
 }

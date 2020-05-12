@@ -2,11 +2,11 @@
 #include "Seed.h"
 
 #include "GameObject.h"
-#include "Transform.h"
-#include "GameObjectGridMap.h"
-#include "Animator.h"
-#include "SeedStateMachine.h"
-#include "SeedData.h"
+#include "Components/Transform.h"
+#include "Components/Animator.h"
+#include "MapRepresentation/GameObjectGridMap.h"
+#include "StateMachine/SeedStateMachine.h"
+#include "GameObjectData/SeedData.h"
 
 Seed::Seed()
 {

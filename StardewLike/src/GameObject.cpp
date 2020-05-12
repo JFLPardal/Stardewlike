@@ -3,7 +3,7 @@
 
 #include "Components/SpriteRenderer.h"
 #include "Components/Transform.h"
-#include "GridRepresentation.h"
+#include "MapRepresentation/GridRepresentation.h"
 #include "IInteractable.h"
 
 GameObject::GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, int aInitialX, int aInitialY) noexcept
@@ -43,7 +43,8 @@ void GameObject::Start()
 			break;
 		}
 	}
-	m_stateMachine->Start(this);
+	if(m_stateMachine)
+		m_stateMachine->Start(this);
 }
 
 void GameObject::Update()

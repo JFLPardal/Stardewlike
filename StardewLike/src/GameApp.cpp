@@ -2,9 +2,9 @@
 #include "GameApp.h"
 
 #include "Window.h"
-#include "Tilemap.h"
+#include "MapRepresentation/Tilemap.h"
 #include "GameObject.h"
-#include "GameObjectGridMap.h"
+#include "MapRepresentation/GameObjectGridMap.h"
 #include "Components/Transform.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/Input.h"
@@ -12,8 +12,8 @@
 #include "Components/InteractWithWorld.h"
 #include "Components/Inventory.h"
 #include "Components/Animator.h"
-#include "PlayerStateMachine.h"
-#include "PlayerData.h"
+#include "StateMachine/PlayerStateMachine.h"
+#include "GameObjectData/PlayerData.h"
 
 
 GameApp::GameApp(Window& aWindow)
@@ -35,7 +35,7 @@ void GameApp::InitPlayerComponents()	// TODO this should be done in some externa
 	m_player->AddComponent<Animator>();
 	m_player->AddComponent<Input>();
 	m_player->AddComponent<InteractWithWorld>(m_gameWindow.GetWindowEventHandler(), *m_GOgridMap);
-	m_player->AddComponent<Inventory>();
+	m_player->AddComponent<Inventory>(m_gameWindow.GetWindowEventHandler());
 	m_player->Start();
 }
 

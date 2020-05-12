@@ -14,10 +14,10 @@ public:
 	Seed();
 	~Seed() { printf("destroyed seed\n"); }
 
-	void PopulateInteractables() override;
-	
 	void InteractWith(GameObject* aObjectToInteractWith, GameObjectGridMap& aGridMap) override;
-	
+protected:
+	void PopulateInteractables() override;
+private:
 	void InteractWithEmpty(GameObject* aObject, GameObjectGridMap& aGridMap);
 	void InteractWithSeed(GameObject* aObject, GameObjectGridMap& aGridMap);
 };

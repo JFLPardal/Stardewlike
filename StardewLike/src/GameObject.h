@@ -1,8 +1,8 @@
 #pragma once
 #include "Components/Component.h"
 #include "Components/SpriteRenderer.h"
-#include "StateMachine.h"
-#include "GameObjectData.h"
+#include "StateMachine/StateMachine.h"
+#include "GameObjectData/GameObjectData.h"
 #include "Constants.h"
 
 /*

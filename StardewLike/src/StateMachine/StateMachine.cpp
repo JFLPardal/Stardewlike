@@ -2,7 +2,7 @@
 #include "StateMachine.h"
 
 #include "GameObject.h"
-#include "GameObjectData.h"
+#include "GameObjectData/GameObjectData.h"
 
 StateMachine::StateMachine()
 	:OnStateChangeEvent(std::make_unique<StateChangeEvent>())

@@ -35,7 +35,7 @@ public:
 
 	void Start() override;
 	// bool CurrentAnimationHasMoreThanOneFrame() const {return m_currentAnimation.size() > 1; }
-	const SpriteSheetTile& GetSpriteSheetTileToDraw() const;
+	const SpriteSheetTile& GetSpriteSheetTileToDraw() const; 
 private:
 	void UpdateCurrentAnimation(State aNewState);
 
