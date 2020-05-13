@@ -14,6 +14,8 @@ public:
 	~TileInfo();
 
 	GameObject* GetGameObject() const noexcept { return m_GameObject.get(); }
+	std::shared_ptr<GameObject> GetGameObjectOwnership() const { return m_GameObject; }
+	sf::Vector2i GetPosition()const noexcept { return m_gridPosition; }
 
 	friend bool operator<(const TileInfo& aTile1, const TileInfo& aTile2) noexcept;
 private:

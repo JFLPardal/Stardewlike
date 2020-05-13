@@ -10,9 +10,6 @@
 #include "InteractableTypes/Hoe.h"
 #include "WindowEventHandler.h"
 
-// 'Inventory needs to have a vector of 'GameObject's, 0 - Seed, 1 - Hoe
-// ActiveItem should be changed by clicking the buttons 1 for seed and 2 for hoe
-
 Inventory::Inventory(WindowEventHandler* aWindow)
 	:m_windowEventHandler(aWindow)
 {

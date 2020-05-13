@@ -26,6 +26,7 @@ public:
 	void Update();
 	void Draw() const;
 	void CreateGameObject(std::shared_ptr<GameObject> aGOtoCreate, const sf::Vector2i& aGOgridPos);
+	void RemoveGameObject(std::shared_ptr<GameObject> aGameObjectToRemove);
 private:
 	
 	void InitPlayerComponents();
@@ -35,6 +36,8 @@ private:
 	std::unique_ptr<Tilemap> m_tilemap;						// | these should be abstracted into a 'Level' script
 	std::unique_ptr<GameObjectGridMap> m_GOgridMap;			// |
 	std::vector<std::shared_ptr<GameObject>> m_gameObjects;	// |
-	EventIndex m_tryCreateGameObjectIndex = -1;
 	std::unique_ptr<GameObject> m_player;
+	
+	EventIndex m_tryCreateGameObjectIndex = -1;
+	EventIndex m_RemoveGameObjectIndex = -1;
 };

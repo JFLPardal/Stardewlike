@@ -6,23 +6,31 @@
 #include "MapRepresentation/GridRepresentation.h"
 #include "IInteractable.h"
 
+unsigned int GameObject::m_nextID = 0;
+
 GameObject::GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, int aInitialX, int aInitialY) noexcept
 	: m_stateMachine(std::move(aStateMachine))
 	, m_data(std::move(aGOdata))
+	, m_ID(m_nextID)
 {
+	m_nextID++;
 	AddComponent<Transform>(aInitialX, aInitialY);
 }
 
 GameObject::GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, sf::Vector2i aGridPosition) noexcept
 	: m_stateMachine(std::move(aStateMachine))
 	, m_data(std::move(aGOdata))
+	, m_ID(m_nextID)
 {
+	m_nextID++;
 	auto positionInScreenSpace = GridRepresentation::GridToScreenPosition(aGridPosition);
-	AddComponent<Transform>(positionInScreenSpace.x, positionInScreenSpace.y);
+	AddComponent<Transform>(positionInScreenSpace.x, positionInScreenSpace.y); 
 }
 
 GameObject::GameObject(sf::Vector2i aGridPosition) noexcept
+	: m_ID(m_nextID)
 {
+	m_nextID++;
 	auto positionInScreenSpace = GridRepresentation::GridToScreenPosition(aGridPosition);
 	AddComponent<Transform>(positionInScreenSpace.x, positionInScreenSpace.y);
 }

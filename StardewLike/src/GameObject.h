@@ -41,6 +41,9 @@ public:
 	explicit GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y) noexcept;
 	explicit GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, sf::Vector2i aGridPosition) noexcept;
 	explicit GameObject(sf::Vector2i aGridPosition) noexcept;
+
+	friend bool operator==(const GameObject& aGO1, const GameObject& aGO2) { return aGO1.m_ID == aGO2.m_ID; }
+
 	~GameObject();
 
 	void Start();
@@ -91,7 +94,9 @@ public:
 
 private:
 	void RemoveAllComponents();
-
+	
+	static unsigned int m_nextID;
+	unsigned int m_ID;
 	std::unique_ptr<StateMachine> m_stateMachine;
 	std::unique_ptr<GameObjectData> m_data;
 	SpriteRenderer* m_renderer{ nullptr };

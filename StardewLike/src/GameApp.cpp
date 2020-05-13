@@ -42,6 +42,7 @@ void GameApp::InitPlayerComponents()	// TODO this should be done in some externa
 void GameApp::SubscribeToPlayerEvents()
 {
 	m_tryCreateGameObjectIndex = m_GOgridMap->OnTryToCreateGameObjectEvent->AddCallback(TRY_CREATE_GAME_OBJECT(&GameApp::CreateGameObject));
+	m_RemoveGameObjectIndex = m_GOgridMap->OnRemoveGameObjectEvent->AddCallback(REMOVE_GAME_OBJECT(&GameApp::RemoveGameObject));
 }
 
 void GameApp::Update()
@@ -65,9 +66,17 @@ void GameApp::CreateGameObject(std::shared_ptr<GameObject> aGOtoCreate, const sf
 	m_gameObjects.push_back(aGOtoCreate);
 }
 
+void GameApp::RemoveGameObject(std::shared_ptr<GameObject> aGameObjectToRemove)
+{
+	auto it = std::find(m_gameObjects.begin(), m_gameObjects.end(), aGameObjectToRemove);
+	if (it != m_gameObjects.end())
+		m_gameObjects.erase(it);
+}
+
 // m_GOgridMap should NOT be deleted, since it points at the same objects as m_gameObjects, when this is destroyed those 
 // heap allocated objects are destroyed as well
 GameApp::~GameApp()
 {
 	m_GOgridMap->OnTryToCreateGameObjectEvent->RemoveCallback(m_tryCreateGameObjectIndex);
+	m_GOgridMap->OnRemoveGameObjectEvent->RemoveCallback(m_RemoveGameObjectIndex);
 }

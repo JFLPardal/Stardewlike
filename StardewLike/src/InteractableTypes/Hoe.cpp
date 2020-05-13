@@ -2,6 +2,8 @@
 #include "Hoe.h"
 
 #include "GameObject.h"
+#include "MapRepresentation/GameObjectGridMap.h"
+#include "Components/Transform.h"
 
 Hoe::Hoe()
 {
@@ -36,5 +38,6 @@ void Hoe::PopulateInteractables()
 
 void Hoe::InteractWithSeed(GameObject* aObjectToInteractWith, GameObjectGridMap& aGridMap)
 {
-	printf("hoe interacting with seed\n");
+	auto seedGridPos = aObjectToInteractWith->GetComponent<Transform>()->GetPositionInGrid();
+	aGridMap.RemoveFromGrid(seedGridPos);
 }
