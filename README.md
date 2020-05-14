@@ -1,5 +1,5 @@
 # Stardewlike
-Small project where I create some of the mechanics of Stardew Valley using C++ and SFML
+Small project where I create some of the mechanics of Stardew Valley using C++ and [SFML](https://www.sfml-dev.org/index.php)
 
 ## High level tasks for this project and their current state:
 
