@@ -1,5 +1,12 @@
 #pragma once
 
+/*
+	Animation is an abstraction that defines the ways
+	an animation can be interacted with.
+	It is a collection of the points on a texture that defines each 
+	index a sprite starts at on that texture, regardless of the size of the texture
+*/
+
 class Vector2i;
 
 class Animation

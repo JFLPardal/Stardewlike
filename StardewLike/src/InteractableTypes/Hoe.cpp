@@ -16,7 +16,7 @@ void Hoe::InteractWith(GameObject* aObjectToInteractWith, GameObjectGridMap& aGr
 	if (aObjectToInteractWith->GetInteractable() == nullptr)
 	{
 		printf("no object on tile hoooooooe\n");
-	}
+	}/*
 	else
 	{
 		printf("object on tile: ");
@@ -26,18 +26,18 @@ void Hoe::InteractWith(GameObject* aObjectToInteractWith, GameObjectGridMap& aGr
 			if (interactableType.first == otherGOinteractableType)
 				interactableType.second(aObjectToInteractWith, aGridMap);
 		}
-	}
+	}*/
 }
 
 void Hoe::PopulateInteractables()
-{
+{/**
 	std::pair<InteractableType, InteractionFuncToCall> seed (seed, FUNC_TO_CALLBACK(&Hoe::InteractWithSeed));
 	m_interactableTypes.emplace_back(seed);
-	printf("populate hoe\n");
+	printf("populate hoe\n");*/
 }
 
 void Hoe::InteractWithSeed(GameObject* aObjectToInteractWith, GameObjectGridMap& aGridMap)
-{
+{/*
 	auto seedGridPos = aObjectToInteractWith->GetComponent<Transform>()->GetPositionInGrid();
-	aGridMap.RemoveFromGrid(seedGridPos);
+	aGridMap.RemoveFromGrid(seedGridPos);*/
 }

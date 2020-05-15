@@ -2,6 +2,12 @@
 #include "Enums.h"
 #include "Animation.h"
 
+/*
+	GameObjectData is responsible for defining the interface with which
+	any class is going to communicate with when trying to access that 
+	GameObjects	Data
+*/
+
 class GameObjectData
 {
 public:

@@ -35,7 +35,7 @@ sf::Vector2i Orientation::GetOrientationAsGridIncrement() const
 
 void Orientation::UpdateOrientation(int aX, int aY)
 {
-	auto currentOrientation = m_currentOrientation;
+	const auto currentOrientation = m_currentOrientation;
 
 	const int objectX = static_cast<int>(m_transform->GetPosition().x);
 	const int objectY = static_cast<int>(m_transform->GetPosition().y);

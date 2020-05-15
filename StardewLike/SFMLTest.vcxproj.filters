@@ -99,6 +99,9 @@
     <ClCompile Include="src\InteractableTypes\Hoe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\InteractableTypes\Bed.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Window.h">
@@ -192,6 +195,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\IInteractable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InteractableTypes\Bed.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

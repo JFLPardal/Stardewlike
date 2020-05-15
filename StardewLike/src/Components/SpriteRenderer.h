@@ -3,8 +3,7 @@
 #include "Enums.h"
 
 /*
-	SpriteRenderer is responsible for drawing the 'GameObject' it is attached to,
-	as well as update that GO's sprite based on conditions.	 
+	SpriteRenderer is responsible for drawing the 'GameObject' it is attached to.
 */
 
 class Transform;

@@ -26,6 +26,7 @@
     <ClCompile Include="src\Components\InteractWithWorld.cpp" />
     <ClCompile Include="src\Components\Inventory.cpp" />
     <ClCompile Include="src\Components\Orientation.cpp" />
+    <ClCompile Include="src\InteractableTypes\Bed.cpp" />
     <ClCompile Include="src\InteractableTypes\Hoe.cpp" />
     <ClCompile Include="src\InteractableTypes\Seed.cpp" />
     <ClCompile Include="src\Components\SpriteRenderer.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="src\Components\InteractWithWorld.h" />
     <ClInclude Include="src\Components\Inventory.h" />
     <ClInclude Include="src\Components\Orientation.h" />
+    <ClInclude Include="src\InteractableTypes\Bed.h" />
     <ClInclude Include="src\InteractableTypes\Hoe.h" />
     <ClInclude Include="src\InteractableTypes\Seed.h" />
     <ClInclude Include="src\GameObjectData\GameObjectData.h" />

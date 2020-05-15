@@ -30,6 +30,7 @@ public:
 private:
 	
 	void InitPlayerComponents();
+	void InitBed();
 	void SubscribeToPlayerEvents();
 
 	Window& m_gameWindow;

@@ -28,18 +28,18 @@ void GameObjectGridMap::AddToGrid(std::shared_ptr<GameObject> aObjectToAdd, sf::
 
 void GameObjectGridMap::RemoveFromGrid(sf::Vector2i aGridIndex)
 {
-	const TileInfo* d{nullptr};
+	const TileInfo* tileToRemove{nullptr};
 	for(auto& tileInfo : m_tileInfo)
 	{
 		if (tileInfo.GetPosition() == aGridIndex)
 		{
-			d = &tileInfo;
+			tileToRemove = &tileInfo;
 			break;
 		}
 	}
-	if (d != nullptr)
+	if (tileToRemove != nullptr)
 	{
-		OnRemoveGameObjectEvent->TriggerEvent(std::move(d->GetGameObjectOwnership()));
-		m_tileInfo.erase(*d);
+		OnRemoveGameObjectEvent->TriggerEvent(tileToRemove->GetGameObjectOwnership());
+		m_tileInfo.erase(*tileToRemove);
 	}
 }

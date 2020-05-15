@@ -41,9 +41,9 @@ void InteractWithWorld::Interact(int aScreenCoordsX, int aScreenCoordsY)
 		// TODO demeter violation
 		m_inventory->ObjectBeingHeld()->GetInteractable()->InteractWith(gameObjectOnTileToInteract, *m_GOgridMap);
 	}
-	else
-	{	// TODO demeter violation
-		m_inventory->ObjectBeingHeld()->GetInteractable()->InteractWith(gameObjectOnTileToInteract, *m_GOgridMap);
+	else if (gameObjectOnTileToInteract->GetInteractable() != nullptr)
+	{
+		gameObjectOnTileToInteract->GetInteractable()->InteractWith(m_inventory->ObjectBeingHeld(), *m_GOgridMap);
 	}
 }
 

@@ -2,6 +2,11 @@
 #include "StateMachine.h"
 #include "Enums.h"
 
+/*
+	PlayerStateMachine represents the various states the player can be in
+	as well as its transitions.
+*/
+
 class Orientation;
 
 class PlayerStateMachine : public StateMachine

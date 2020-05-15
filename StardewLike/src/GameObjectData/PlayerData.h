@@ -3,6 +3,11 @@
 
 typedef std::pair<State, PossibleOrientation> StatAndOrientation;
 
+/*
+	PlayerData holds the Data of the Player, like the various animations the
+	player has.
+*/
+
 class PlayerData : public GameObjectData
 {
 public:

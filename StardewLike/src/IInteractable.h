@@ -12,14 +12,16 @@
 class GameObject;
 class GameObjectGridMap;
 
-// from the point of view of the item being held
-// p.e. a seed being held can interact with an empty(soilable) tile
+// with which interactables is the new interactable going to interact?
+// IMPORTANT: if the interactable can be held by the player and it can interact 
+// with an empty tile, it should define that behaviour as well, see 'Seed::InteractWithEmpty'
 enum InteractableType
 {
 	notDefined = -1,
 	empty,
 	seed,
-	hoe
+	hoe,
+	bed
 };
 
 typedef std::function<void(GameObject*, GameObjectGridMap&)> InteractionFuncToCall;

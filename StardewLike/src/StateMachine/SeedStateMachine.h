@@ -1,6 +1,11 @@
 #pragma once
 #include "StateMachine.h"
 
+/*
+	SeedStateMachine represents the various states the Seed can be in
+	as well as its transitions.
+*/
+
 class GameObject;
 
 class SeedStateMachine : public StateMachine

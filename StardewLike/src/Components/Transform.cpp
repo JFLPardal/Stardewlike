@@ -41,7 +41,6 @@ void Transform::Start()
 sf::Vector2i Transform::GetPositionInGrid() const
 {
 	auto gridPosition = GridRepresentation::ScreenToGridPosition(m_transform.getPosition());
-	//printf("grid position is: [%d , %d]\n", gridPosition.x, gridPosition.y);
 	return gridPosition;
 }
 

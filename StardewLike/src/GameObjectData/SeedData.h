@@ -1,6 +1,12 @@
 #pragma once
 #include "GameObjectData.h"
 
+
+/*
+	SeedData holds the Data of the Seed, such has the animations that
+	the Seed has
+*/
+
 class SeedData : public GameObjectData
 {
 public:

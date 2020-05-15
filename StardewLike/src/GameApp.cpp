@@ -12,8 +12,10 @@
 #include "Components/InteractWithWorld.h"
 #include "Components/Inventory.h"
 #include "Components/Animator.h"
+#include "InteractableTypes/Bed.h"
 #include "StateMachine/PlayerStateMachine.h"
 #include "GameObjectData/PlayerData.h"
+#include "MapRepresentation/GridRepresentation.h"
 
 
 GameApp::GameApp(Window& aWindow)
@@ -25,6 +27,7 @@ GameApp::GameApp(Window& aWindow)
 	m_tilemap->Load("assets\\tileset.png", sf::Vector2u(32,32), 16, 8); // TODO if this is not deleted, extract numbers to 'Constants'
 		
 	InitPlayerComponents();
+	InitBed();
 	SubscribeToPlayerEvents();
 }
 
@@ -37,6 +40,16 @@ void GameApp::InitPlayerComponents()	// TODO this should be done in some externa
 	m_player->AddComponent<InteractWithWorld>(m_gameWindow.GetWindowEventHandler(), *m_GOgridMap);
 	m_player->AddComponent<Inventory>(m_gameWindow.GetWindowEventHandler());
 	m_player->Start();
+}
+
+void GameApp::InitBed()
+{
+	std::shared_ptr<GameObject> bed = std::make_shared<GameObject>(sf::Vector2i(0, 0));
+	bed->AddComponent<SpriteRenderer>("assets\\player_sheet.png", true);
+	bed->AddComponent<Bed>();
+	bed->Start();
+	m_gameObjects.emplace_back(bed);
+	m_GOgridMap->AddToGrid(bed, GridRepresentation::ScreenToGridPosition(1, 1));
 }
 
 void GameApp::SubscribeToPlayerEvents()
@@ -68,13 +81,11 @@ void GameApp::CreateGameObject(std::shared_ptr<GameObject> aGOtoCreate, const sf
 
 void GameApp::RemoveGameObject(std::shared_ptr<GameObject> aGameObjectToRemove)
 {
-	auto it = std::find(m_gameObjects.begin(), m_gameObjects.end(), aGameObjectToRemove);
-	if (it != m_gameObjects.end())
-		m_gameObjects.erase(it);
+	auto iteratorForGOtoRemove = std::find(m_gameObjects.begin(), m_gameObjects.end(), aGameObjectToRemove);
+	if (iteratorForGOtoRemove != m_gameObjects.end())
+		m_gameObjects.erase(iteratorForGOtoRemove);
 }
 
-// m_GOgridMap should NOT be deleted, since it points at the same objects as m_gameObjects, when this is destroyed those 
-// heap allocated objects are destroyed as well
 GameApp::~GameApp()
 {
 	m_GOgridMap->OnTryToCreateGameObjectEvent->RemoveCallback(m_tryCreateGameObjectIndex);

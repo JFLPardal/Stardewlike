@@ -18,8 +18,10 @@ void Seed::PopulateInteractables()
 {
 	std::pair<InteractableType, InteractionFuncToCall> empty (empty, FUNC_TO_CALLBACK(&Seed::InteractWithEmpty));
 	std::pair<InteractableType, InteractionFuncToCall> seed	 (seed, FUNC_TO_CALLBACK(&Seed::InteractWithSeed));
+	std::pair<InteractableType, InteractionFuncToCall> hoe	 (hoe, FUNC_TO_CALLBACK(&Seed::InteractWithHoe));
 	m_interactableTypes.emplace_back(empty);
 	m_interactableTypes.emplace_back(seed);
+	m_interactableTypes.emplace_back(hoe);
 }
 
 void Seed::InteractWith(GameObject* aObjectToInteractWith, GameObjectGridMap& aGridMap)
@@ -60,4 +62,9 @@ void Seed::InteractWithEmpty(GameObject* aObject, GameObjectGridMap& aGridMap)
 void Seed::InteractWithSeed(GameObject* aObject, GameObjectGridMap& aGridMap)
 {
 	printf("seed interacting with seed\n");
+}
+
+void Seed::InteractWithHoe(GameObject* aObject, GameObjectGridMap& aGridMap)
+{
+	aGridMap.RemoveFromGrid(m_owner->GetComponent<Transform>()->GetPositionInGrid());
 }

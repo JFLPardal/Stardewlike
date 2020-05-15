@@ -2,8 +2,9 @@
 #include "Component.h"
 
 /*
-	InteractWithWorld is responsible for the attempt of the player to interact with the world
-	and will be responsible	for passing down that interaction attempt to the correct tile.
+	InteractWithWorld is responsible for calculating the tile the player 
+	is trying to interact with and call the interaction of the GO that is 
+	on that tile
 */
 
 class GameObject;
