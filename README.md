@@ -6,9 +6,9 @@ Small project where I create some of the mechanics of Stardew Valley using C++ a
  ### Engine
  * [x] Event system (homebrewed, it has some flaws)
  * [x] Game Objects are the base entities of the game and they have a collection of components
- * [x] Components have a single responsibility and purpose, they are added to a Game Object based on that GO's purpose (these include Transform, SpriteRenderer, Animator, StateMachine, etc...)
- * [ ] Time representation (used for example to influence the growth of the plant)
+ * [x] Components have a single responsibility and purpose, they are added to a Game Object based on that GO's purpose (these include Transform, SpriteRenderer, Animator, StateMachine, CollisionBoxes)
  * [ ] Collision detectition
+ * [ ] Entity that represents the days in the game
  
  ### Player Animations
  * [x] Player's sprite change based on the direction of the mouse position
@@ -25,12 +25,15 @@ Small project where I create some of the mechanics of Stardew Valley using C++ a
  * [ ] UI showing the player's inventory
  * [ ] UI showing the current held item
  
- ### Interactables (Entities that the World or Player can have on his Inventory like Tools and Seeds)
- * [x] Seeds can be added to the map if there is nothing on that tile
- * [ ] Seeds grow to Plants after some time has passed and they have been watered
- * [ ] Plants can be picked up and are added to player's inventory
+ ### Items
  * [x] Hoe can destroy Seeds that are on a given tile of the map
  * [ ] Watering Can will water Seeds that will make them grow when a day is over
+ * [x] Seed Pack that can be added to the map if there is nothing on that tile
+ 
+ ### Interactables (Entities that the World has that the Player can interact with like Seeds, Bed...)
+ * [ ] Seeds grow to Plants after the day is over and they have been watered
+ * [ ] Plants can be picked up and are added to player's inventory
+ * [ ] Bed that will finish the day, starting a new one
  
 ### Tilemap
  * [x] Tilemap is drawn
