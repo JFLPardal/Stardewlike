@@ -18,7 +18,7 @@ class GameObjectGridMap;
 enum InteractableType
 {
 	notDefined = -1,
-	empty,
+	noInteractable,
 	seed,
 	hoe,
 	bed
@@ -33,7 +33,7 @@ class IInteractable : public Component
 public:
 	virtual ~IInteractable() {};
 
-	virtual void InteractWith(GameObject* aObjectToInteractWith, GameObjectGridMap& aGridMap) = 0;
+	virtual void InteractWith(GameObject* aObjectToInteractWith, GameObjectGridMap& aGridMap);
 	InteractableType GetInteractableType() const { return m_type; }
 protected:
 	virtual void PopulateInteractables() = 0;

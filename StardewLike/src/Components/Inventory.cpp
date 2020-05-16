@@ -7,18 +7,18 @@
 #include "Animator.h"
 #include "GameObjectData/SeedData.h"
 #include "StateMachine/SeedStateMachine.h"
-#include "InteractableTypes/Hoe.h"
+#include "InteractableTypes/HoeDelete.h"
 #include "WindowEventHandler.h"
 
 Inventory::Inventory(WindowEventHandler* aWindow)
 	:m_windowEventHandler(aWindow)
 {
 	std::unique_ptr<GameObject> hoe = std::make_unique<GameObject>(sf::Vector2i(50, 50));
-	hoe->AddComponent<Hoe>();
+	hoe->AddComponent<HoeDelete>();
 	hoe->Start();
 	m_objectsHeld.push_back(std::move(hoe));
 
-	std::unique_ptr<GameObject> seed = std::make_unique<GameObject>(std::make_unique<SeedData>(), std::make_unique<SeedStateMachine>(), sf::Vector2i(50, 50));
+	std::unique_ptr<GameObject> seed = std::make_unique<GameObject>(std::make_unique<SeedData>(), std::make_unique<SeedStateMachine>(), 50,50);
 	seed->AddComponent<SpriteRenderer>("assets\\player.png");
 	seed->AddComponent<Animator>();
 	seed->AddComponent<Seed>();
@@ -30,7 +30,7 @@ Inventory::Inventory(WindowEventHandler* aWindow)
 
 void Inventory::ChangeActiveItem(int aNewIndex)
 {
-	printf("FWAAAAAAAAAA\n");
+	printf("changed active item\n");
 	if (aNewIndex <= m_objectsHeld.size())
 		m_indexOfCurrentGO = --aNewIndex;
 }

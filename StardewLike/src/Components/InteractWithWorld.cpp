@@ -9,6 +9,7 @@
 #include "Inventory.h"
 #include "IInteractable.h"
 #include "InteractableTypes/Seed.h"
+#include "InteractableTypes/NoInteractable.h"
 
 InteractWithWorld::InteractWithWorld(WindowEventHandler* aWindowEventHandler, GameObjectGridMap& aGameObjectgridMap)
 	: m_windowEventHandler(aWindowEventHandler)
@@ -36,10 +37,13 @@ void InteractWithWorld::Interact(int aScreenCoordsX, int aScreenCoordsY)
 	if (gameObjectOnTileToInteract == nullptr)
 	{
 		GameObject nullGOJustGridPosition(gridPositionToInteract);
+		nullGOJustGridPosition.AddComponent<NoInteractable>(gridPositionToInteract);
+		//nullGOJustGridPosition.Start();
 		gameObjectOnTileToInteract = &nullGOJustGridPosition;
 
 		// TODO demeter violation
-		m_inventory->ObjectBeingHeld()->GetInteractable()->InteractWith(gameObjectOnTileToInteract, *m_GOgridMap);
+		//m_inventory->ObjectBeingHeld()->GetInteractable()->InteractWith(gameObjectOnTileToInteract, *m_GOgridMap);
+		gameObjectOnTileToInteract->GetComponent<NoInteractable>()->InteractWith(m_inventory->ObjectBeingHeld(), *m_GOgridMap);
 	}
 	else if (gameObjectOnTileToInteract->GetInteractable() != nullptr)
 	{

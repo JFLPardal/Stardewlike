@@ -96,10 +96,16 @@
     <ClCompile Include="src\InteractableTypes\Seed.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\InteractableTypes\Hoe.cpp">
+    <ClCompile Include="src\InteractableTypes\Bed.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\InteractableTypes\Bed.cpp">
+    <ClCompile Include="src\InteractableTypes\HoeDelete.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InteractableTypes\NoInteractable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IInteractable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,13 +197,22 @@
     <ClInclude Include="src\InteractableTypes\Seed.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\InteractableTypes\Hoe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\IInteractable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\InteractableTypes\Bed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Items\Item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Items\Hoe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InteractableTypes\HoeDelete.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InteractableTypes\NoInteractable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -41,10 +41,9 @@ public:
 	explicit GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y) noexcept;
 	explicit GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, sf::Vector2i aGridPosition) noexcept;
 	explicit GameObject(sf::Vector2i aGridPosition) noexcept;
+	~GameObject();
 
 	friend bool operator==(const GameObject& aGO1, const GameObject& aGO2) { return aGO1.m_ID == aGO2.m_ID; }
-
-	~GameObject();
 
 	void Start();
 	void Update();
@@ -101,6 +100,7 @@ private:
 	std::unique_ptr<GameObjectData> m_data;
 	SpriteRenderer* m_renderer{ nullptr };
 	IInteractable* m_interactable{ nullptr };
+
 	std::vector<ComponentTypeId> m_componentTypeIdList;
 	std::vector<std::unique_ptr<Component>> m_componentList; // TODO encapsulate this in a IComponentList - not that easy because it is being used in template functions
 };
