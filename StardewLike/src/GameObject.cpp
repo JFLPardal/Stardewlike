@@ -17,22 +17,22 @@ GameObject::GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<
 	AddComponent<Transform>(aInitialX, aInitialY);
 }
 
-GameObject::GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, sf::Vector2i aGridPosition) noexcept
-	: m_stateMachine(std::move(aStateMachine))
-	, m_data(std::move(aGOdata))
-	, m_ID(m_nextID)
-{
-	m_nextID++;
-	auto positionInScreenSpace = GridRepresentation::GridToScreenPosition(aGridPosition);
-	AddComponent<Transform>(positionInScreenSpace.x, positionInScreenSpace.y); 
-}
-
-GameObject::GameObject(sf::Vector2i aGridPosition) noexcept
+GameObject::GameObject(Vector2i aGridPosition) noexcept
 	: m_ID(m_nextID)
 {
 	m_nextID++;
 	auto positionInScreenSpace = GridRepresentation::GridToScreenPosition(aGridPosition);
 	AddComponent<Transform>(positionInScreenSpace.x, positionInScreenSpace.y);
+}
+
+GameObject::GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, Vector2i aGridPosition) noexcept
+	: GameObject(aGridPosition)
+{
+	m_stateMachine = std::move(aStateMachine);
+	m_data = std::move(aGOdata);
+	/*m_nextID++;
+	auto positionInScreenSpace = GridRepresentation::GridToScreenPosition(aGridPosition);
+	AddComponent<Transform>(positionInScreenSpace.x, positionInScreenSpace.y); */
 }
 
 void GameObject::Start()

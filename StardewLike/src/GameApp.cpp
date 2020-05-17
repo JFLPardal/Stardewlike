@@ -74,7 +74,7 @@ void GameApp::Draw() const
 	m_gameWindow.Draw(*m_player);
 }
 
-void GameApp::CreateGameObject(std::shared_ptr<GameObject> aGOtoCreate, const sf::Vector2i& aGOgridPos)
+void GameApp::CreateGameObject(std::shared_ptr<GameObject> aGOtoCreate, const Vector2i& aGOgridPos)
 {
 	m_gameObjects.push_back(aGOtoCreate);
 }

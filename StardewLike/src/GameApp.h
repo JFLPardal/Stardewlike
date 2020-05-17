@@ -25,7 +25,7 @@ public:
 
 	void Update();
 	void Draw() const;
-	void CreateGameObject(std::shared_ptr<GameObject> aGOtoCreate, const sf::Vector2i& aGOgridPos);
+	void CreateGameObject(std::shared_ptr<GameObject> aGOtoCreate, const Vector2i& aGOgridPos);
 	void RemoveGameObject(std::shared_ptr<GameObject> aGameObjectToRemove);
 private:
 	

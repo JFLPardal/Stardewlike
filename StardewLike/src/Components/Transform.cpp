@@ -38,7 +38,7 @@ void Transform::Start()
 		m_moveKeyPressedIndex = m_owner->GetComponent<Input>()->OnMovementKeyPressedEvent->AddCallback(MOVEMENT_KEY_PRESSED(&Transform::UpdateMovement));
 }
 
-sf::Vector2i Transform::GetPositionInGrid() const
+Vector2i Transform::GetPositionInGrid() const
 {
 	auto gridPosition = GridRepresentation::ScreenToGridPosition(m_transform.getPosition());
 	return gridPosition;

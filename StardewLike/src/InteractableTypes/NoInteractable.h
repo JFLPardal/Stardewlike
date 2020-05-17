@@ -11,7 +11,7 @@ class NoInteractable : public IInteractable
 {
 public:
 	NoInteractable(Vector2i aGridPosition);
-	NoInteractable(float aGridPositionX, float aGridPositionY);
+	NoInteractable(int aGridPositionX, int aGridPositionY);
 	~NoInteractable() {	printf("destroyed NoInteractable.\n"); }
 
 	InteractableType GetInteractableType() const { return m_type; }

@@ -15,3 +15,9 @@ Vector2i::Vector2i(sf::Vector2i aVector)
 	: m_vec(aVector)
 {
 }
+
+Vector2i operator+(const Vector2i& aVec1, const Vector2i& aVec2)
+{
+	return Vector2i(aVec1.X() + aVec2.X() ,
+					aVec1.Y() + aVec2.Y() );
+}

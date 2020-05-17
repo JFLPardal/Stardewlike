@@ -20,5 +20,5 @@ void Seed::PopulateInteractables()
 void Seed::InteractWithHoe(GameObject* aObject, GameObjectGridMap& aGridMap)
 {
 	printf("hoe\n");
-	aGridMap.RemoveFromGrid(m_owner->GetComponent<Transform>()->GetPositionInGrid());
+	aGridMap.RemoveFromGrid(m_owner->GetGridPosition());
 }

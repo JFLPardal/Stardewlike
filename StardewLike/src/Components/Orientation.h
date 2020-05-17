@@ -30,7 +30,7 @@ public:
 	void Start() override;
 
 	PossibleOrientation GetOrientation() const noexcept { return m_currentOrientation; }
-	sf::Vector2i GetOrientationAsGridIncrement() const;
+	Vector2i GetOrientationAsGridIncrement() const;
 private:
 	void UpdateOrientation(int aX, int aY);
 

@@ -14,7 +14,7 @@ public:
 	void Start() override;
 	
 	inline sf::Vector2f GetPosition() const { return m_transform.getPosition(); }
-	sf::Vector2i GetPositionInGrid() const;
+	Vector2i GetPositionInGrid() const;
 private:
 	inline void UpdateMovement(short x, short y);
 

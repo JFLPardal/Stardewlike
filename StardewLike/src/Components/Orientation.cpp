@@ -27,7 +27,7 @@ void Orientation::Start()
 	m_transform = m_owner->GetComponent<Transform>();
 }
 
-sf::Vector2i Orientation::GetOrientationAsGridIncrement() const
+Vector2i Orientation::GetOrientationAsGridIncrement() const
 {
 	return directionToGridIncrement.at(m_currentOrientation);
 }

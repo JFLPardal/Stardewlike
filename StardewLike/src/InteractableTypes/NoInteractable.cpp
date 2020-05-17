@@ -16,7 +16,7 @@ NoInteractable::NoInteractable(Vector2i aGridPosition)
 	PopulateInteractables();
 }
 
-NoInteractable::NoInteractable(float aGridPositionX, float aGridPositionY)
+NoInteractable::NoInteractable(int aGridPositionX, int aGridPositionY)
 	: NoInteractable(Vector2i(aGridPositionX, aGridPositionY))
 {}
 

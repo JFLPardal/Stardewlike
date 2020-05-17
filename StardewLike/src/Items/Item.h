@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Components/Component.h"
 /*
 	Item are the GameObjects that the Player can carry on his
 	inventory.
@@ -11,7 +11,7 @@ enum ItemType
 	hoe = 1 , wateringCan
 };
 
-class Item
+class Item : public Component
 {
 public:
 	ItemType GetItemType() const { return m_type; }

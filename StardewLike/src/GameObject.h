@@ -1,6 +1,7 @@
 #pragma once
 #include "Components/Component.h"
 #include "Components/SpriteRenderer.h"
+#include "Components/Transform.h"
 #include "StateMachine/StateMachine.h"
 #include "GameObjectData/GameObjectData.h"
 #include "Constants.h"
@@ -39,8 +40,8 @@ class GameObject
 {
 public:
 	explicit GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, int aInitialX = DEFAULT_POS_X, int aInitialY = DEFAULT_POS_Y) noexcept;
-	explicit GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, sf::Vector2i aGridPosition) noexcept;
-	explicit GameObject(sf::Vector2i aGridPosition) noexcept;
+	explicit GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<StateMachine> aStateMachine, Vector2i aGridPosition) noexcept;
+	explicit GameObject(Vector2i aGridPosition) noexcept;
 	~GameObject();
 
 	friend bool operator==(const GameObject& aGO1, const GameObject& aGO2) { return aGO1.m_ID == aGO2.m_ID; }
@@ -72,7 +73,7 @@ public:
 	}
 
 	template<typename T>
-	T* GetComponent() 
+	T* GetComponent() const
 	{
 		static_assert(std::is_base_of<Component, T>::value, "GetComponent must be called on a Component type");
 
@@ -90,6 +91,8 @@ public:
 		return nullptr;
 	}
 
+	Vector2i GetGridPosition() const { return GetComponent<Transform>()->GetPositionInGrid(); }
+	sf::Vector2f GetScreenPosition() const { return GetComponent<Transform>()->GetPosition(); }
 
 private:
 	void RemoveAllComponents();

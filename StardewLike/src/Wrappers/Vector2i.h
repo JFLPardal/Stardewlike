@@ -14,6 +14,8 @@ public:
 	int X() const { return m_vec.x; }
 	int Y() const { return m_vec.y; }
 
+	friend Vector2i operator+(const Vector2i& aVec1, const Vector2i& aVec2);
+
 	const sf::Vector2i& GetVector() const { return m_vec; }
 private:
 	sf::Vector2i m_vec;
