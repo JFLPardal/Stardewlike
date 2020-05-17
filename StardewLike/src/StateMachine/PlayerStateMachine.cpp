@@ -6,12 +6,12 @@
 
 std::vector<State> PlayerStateMachine::m_possibleStates =
 {
-	walk, idle
+	State::walk, State::idle
 };
 
 PlayerStateMachine::PlayerStateMachine()
 {
-	m_currentState = idle;
+	m_currentState = State::idle;
 }
 
 void PlayerStateMachine::Start(GameObject* aOwner)

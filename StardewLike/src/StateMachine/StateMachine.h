@@ -28,5 +28,5 @@ public:
 protected:
 	GameObject* m_owner;
 	GameObjectData* m_data;
-	State m_currentState = idle;
+	State m_currentState = State::idle;
 };

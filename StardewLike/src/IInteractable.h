@@ -1,6 +1,6 @@
 #pragma once
+#include "Enums.h"
 #include "Components/Component.h"
-
 /*
 	IInteractable is responsible for defining the functions
 	that all Interactable entities in the game should implement.
@@ -12,15 +12,11 @@
 class GameObject;
 class GameObjectGridMap;
 
-// with which interactables is the new interactable going to interact?
-// IMPORTANT: if the interactable can be held by the player and it can interact 
-// with an empty tile, it should define that behaviour as well, see 'Seed::InteractWithEmpty'
-enum InteractableType
+enum class InteractableType
 {
 	notDefined = -1,
 	noInteractable,
 	seed,
-	hoe,
 	bed
 };
 
@@ -37,6 +33,6 @@ public:
 	InteractableType GetInteractableType() const { return m_type; }
 protected:
 	virtual void PopulateInteractables() = 0;
-	std::vector<std::pair<InteractableType, InteractionFuncToCall>> m_interactableTypes;
-	InteractableType m_type = notDefined;
+	std::vector<std::pair<ItemType, InteractionFuncToCall>> m_interactionWithItems;
+	InteractableType m_type = InteractableType::notDefined;
 };

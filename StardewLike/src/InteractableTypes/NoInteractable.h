@@ -19,5 +19,5 @@ protected:
 	virtual void PopulateInteractables() override;
 private:
 	Vector2i m_gridPosition;
-	void InteractWithSeed(GameObject* aSeedToInteractWith, GameObjectGridMap& aGridMap);
+	void InteractWithSeedPack(GameObject* aSeedToInteractWith, GameObjectGridMap& aGridMap);
 };

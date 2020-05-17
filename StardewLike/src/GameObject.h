@@ -14,8 +14,9 @@
 	When a GO is created, Transform is automatically added to it.
 */
 
-class IInteractable;
 class StateMachine;
+class IInteractable;
+class Item;
 
 typedef unsigned int ComponentTypeId;
 
@@ -49,10 +50,11 @@ public:
 	void Start();
 	void Update();
 
-	inline bool IsDrawable() const noexcept		{ return m_renderer != nullptr; }
-	sf::Drawable& GetRenderer() const noexcept	{ return static_cast<sf::Drawable&>(*m_renderer); }
-	IInteractable* GetInteractable() const		{ return m_interactable; }
-	StateMachine* GetStateMachine() const		{ return m_stateMachine.get(); }
+	inline bool		IsDrawable() const noexcept		{ return m_renderer != nullptr; }
+	sf::Drawable&	GetRenderer() const noexcept	{ return static_cast<sf::Drawable&>(*m_renderer); }
+	IInteractable*	GetInteractable() const		{ return m_interactable; }
+	Item*			GetItem() const				{ return m_item; }
+	StateMachine*	GetStateMachine() const		{ return m_stateMachine.get(); }
 	GameObjectData* GetData() const				{ return m_data.get(); }
 
 	template <typename T, typename... TArgs>
@@ -103,6 +105,7 @@ private:
 	std::unique_ptr<GameObjectData> m_data;
 	SpriteRenderer* m_renderer{ nullptr };
 	IInteractable* m_interactable{ nullptr };
+	Item* m_item{ nullptr };
 
 	std::vector<ComponentTypeId> m_componentTypeIdList;
 	std::vector<std::unique_ptr<Component>> m_componentList; // TODO encapsulate this in a IComponentList - not that easy because it is being used in template functions

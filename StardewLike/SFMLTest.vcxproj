@@ -28,7 +28,6 @@
     <ClCompile Include="src\Components\Orientation.cpp" />
     <ClCompile Include="src\IInteractable.cpp" />
     <ClCompile Include="src\InteractableTypes\Bed.cpp" />
-    <ClCompile Include="src\InteractableTypes\HoeDelete.cpp" />
     <ClCompile Include="src\InteractableTypes\NoInteractable.cpp" />
     <ClCompile Include="src\InteractableTypes\Seed.cpp" />
     <ClCompile Include="src\Components\SpriteRenderer.cpp" />
@@ -64,12 +63,12 @@
     <ClInclude Include="src\Components\Orientation.h" />
     <ClInclude Include="src\InteractableTypes\Bed.h" />
     <ClInclude Include="src\InteractableTypes\NoInteractable.h" />
-    <ClInclude Include="src\InteractableTypes\HoeDelete.h" />
     <ClInclude Include="src\InteractableTypes\Seed.h" />
     <ClInclude Include="src\GameObjectData\GameObjectData.h" />
     <ClInclude Include="src\GameObjectData\PlayerData.h" />
     <ClInclude Include="src\Items\Hoe.h" />
     <ClInclude Include="src\Items\Item.h" />
+    <ClInclude Include="src\Items\SeedPack.h" />
     <ClInclude Include="src\StateMachine\PlayerStateMachine.h" />
     <ClInclude Include="src\GameObjectData\SeedData.h" />
     <ClInclude Include="src\StateMachine\SeedStateMachine.h" />

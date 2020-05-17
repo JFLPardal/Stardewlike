@@ -5,6 +5,7 @@
 #include "Components/Transform.h"
 #include "MapRepresentation/GridRepresentation.h"
 #include "IInteractable.h"
+#include "Items/Item.h"
 
 unsigned int GameObject::m_nextID = 0;
 
@@ -30,9 +31,6 @@ GameObject::GameObject(std::unique_ptr<GameObjectData> aGOdata, std::unique_ptr<
 {
 	m_stateMachine = std::move(aStateMachine);
 	m_data = std::move(aGOdata);
-	/*m_nextID++;
-	auto positionInScreenSpace = GridRepresentation::GridToScreenPosition(aGridPosition);
-	AddComponent<Transform>(positionInScreenSpace.x, positionInScreenSpace.y); */
 }
 
 void GameObject::Start()
@@ -42,17 +40,28 @@ void GameObject::Start()
 		component->Start();
 	}
 	m_renderer = GetComponent<SpriteRenderer>();
+	if (m_stateMachine)
+		m_stateMachine->Start(this);
+	// check if GO has interactable type
 	for (auto& component : m_componentList)
 	{
 		auto componentAsInteractable = dynamic_cast<IInteractable*>(component.get());
 		if (componentAsInteractable)
 		{
 			m_interactable = componentAsInteractable;
-			break;
+			return;
 		}
 	}
-	if(m_stateMachine)
-		m_stateMachine->Start(this);
+	//check if object has item
+	for (auto& component : m_componentList)
+	{
+		auto componentAsItem = dynamic_cast<Item*>(component.get());
+		if (componentAsItem)
+		{
+			m_item = componentAsItem;
+			return;
+		}
+	}
 }
 
 void GameObject::Update()

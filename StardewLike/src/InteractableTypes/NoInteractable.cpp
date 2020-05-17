@@ -22,13 +22,13 @@ NoInteractable::NoInteractable(int aGridPositionX, int aGridPositionY)
 
 void NoInteractable::PopulateInteractables()
 {
-	std::pair<InteractableType, InteractionFuncToCall> seed (seed, FUNC_TO_CALLBACK(&NoInteractable::InteractWithSeed));
-	m_interactableTypes.emplace_back(seed);
+	std::pair<ItemType, InteractionFuncToCall> seedPack (ItemType::seedPack, FUNC_TO_CALLBACK(&NoInteractable::InteractWithSeedPack));
+	m_interactionWithItems.emplace_back(seedPack);
 }
 
-void NoInteractable::InteractWithSeed(GameObject* aSeedToInteractWith, GameObjectGridMap& aGridMap)
+void NoInteractable::InteractWithSeedPack(GameObject* aSeedToInteractWith, GameObjectGridMap& aGridMap)
 {
-	printf("no interactable.\n");
+	printf("no interactable, creating seed from seedPack.\n");
 	std::shared_ptr<GameObject> seed = std::make_shared<GameObject>(std::make_unique<SeedData>(),
 																	std::make_unique<SeedStateMachine>(),
 																	m_gridPosition.GetVector());

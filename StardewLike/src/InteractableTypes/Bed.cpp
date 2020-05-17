@@ -11,8 +11,9 @@ Bed::Bed()
 
 void Bed::PopulateInteractables()
 {
-	std::pair<InteractableType, InteractionFuncToCall> empty(hoe, FUNC_TO_CALLBACK(&Bed::InteractWithEmpty));
-	m_interactableTypes.emplace_back(empty);
+	// TODO  this pair is used just for testing, change it 
+	std::pair<ItemType, InteractionFuncToCall> empty(ItemType::hoe, FUNC_TO_CALLBACK(&Bed::InteractWithEmpty));
+	m_interactionWithItems.emplace_back(empty);
 }
 
 void Bed::InteractWith(GameObject* aObjectToInteractWith, GameObjectGridMap& aGridMap)

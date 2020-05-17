@@ -7,10 +7,10 @@
 
 const std::map<PossibleOrientation, sf::Vector2i> directionToGridIncrement
 {
-	{up		, sf::Vector2i(0, -1) },
-	{right	, sf::Vector2i(+1, 0) },
-	{down	, sf::Vector2i(0, +1) },
-	{left	, sf::Vector2i(-1, 0) }
+	{PossibleOrientation::up	, sf::Vector2i(0, -1) },
+	{PossibleOrientation::right	, sf::Vector2i(+1, 0) },
+	{PossibleOrientation::down	, sf::Vector2i(0, +1) },
+	{PossibleOrientation::left	, sf::Vector2i(-1, 0) }
 };
 
 Orientation::Orientation(WindowEventHandler* aWindowEventHandler)
@@ -44,9 +44,9 @@ void Orientation::UpdateOrientation(int aX, int aY)
 	const int deltaY = aY - objectY;
 
 	if (abs(deltaX) >= abs(deltaY))
-		m_currentOrientation = (deltaX > 0) ? right : left;
+		m_currentOrientation = (deltaX > 0) ? PossibleOrientation::right : PossibleOrientation::left;
 	else
-		m_currentOrientation = (deltaY > 0) ? down : up; // y increases from the top of the screen to the bottom
+		m_currentOrientation = (deltaY > 0) ? PossibleOrientation::down : PossibleOrientation::up; // y increases from the top of the screen to the bottom
 
 	if (currentOrientation != m_currentOrientation)
 		OnOrientationChangedEvent->TriggerEvent(m_currentOrientation);

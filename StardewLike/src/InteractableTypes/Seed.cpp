@@ -13,8 +13,8 @@ Seed::Seed()
 
 void Seed::PopulateInteractables()
 {
-	std::pair<InteractableType, InteractionFuncToCall> hoe (hoe, FUNC_TO_CALLBACK(&Seed::InteractWithHoe));
-	m_interactableTypes.emplace_back(hoe);
+	std::pair<ItemType, InteractionFuncToCall> hoe (ItemType::hoe, FUNC_TO_CALLBACK(&Seed::InteractWithHoe));
+	m_interactionWithItems.emplace_back(hoe);
 }
 
 void Seed::InteractWithHoe(GameObject* aObject, GameObjectGridMap& aGridMap)

@@ -2,18 +2,19 @@
 #include "IInteractable.h"
 
 #include "GameObject.h"
+#include "Items/Item.h"
 
 void IInteractable::InteractWith(GameObject* aObjectOnTileToInteractWith, GameObjectGridMap& aGridMap)
 {
-	if (aObjectOnTileToInteractWith->GetInteractable() != nullptr)
+	auto itemComponent = aObjectOnTileToInteractWith->GetItem();
+	if (itemComponent != nullptr)
 	{
 		printf("interacting with: ");
-		// TODO change hereeeeeeeeee
-		const auto otherGOinteractableType = aObjectOnTileToInteractWith->GetInteractable()->GetInteractableType();
-		for (auto& interactableType : m_interactableTypes)
+		const auto itemType = itemComponent->GetItemType();
+		for (auto& interactableItem : m_interactionWithItems)
 		{
-			if (interactableType.first == otherGOinteractableType)
-				interactableType.second(aObjectOnTileToInteractWith, aGridMap);
+			if (interactableItem.first == itemType)
+				interactableItem.second(aObjectOnTileToInteractWith, aGridMap);
 		}
 	}
 }

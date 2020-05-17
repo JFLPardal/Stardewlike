@@ -15,5 +15,5 @@ public:
 	GameObjectData() = default;
 	virtual ~GameObjectData() = default;
 
-	virtual const Animation& GetAnimationState(State aState, PossibleOrientation aOrientation = up) const = 0;
+	virtual const Animation& GetAnimationState(State aState, PossibleOrientation aOrientation = PossibleOrientation::up) const = 0;
 };

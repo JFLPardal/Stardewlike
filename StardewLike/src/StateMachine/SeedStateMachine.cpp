@@ -3,16 +3,16 @@
 
 std::vector<State> SeedStateMachine::m_possibleStates =
 {
-	buried, plant, fruit
+	State::buried, State::plant, State::fruit
 };
 
 SeedStateMachine::SeedStateMachine()
 {
-	m_currentState = buried;
+	m_currentState = State::buried;
 }
 
 void SeedStateMachine::Start(GameObject* aOwner)
 {
 	StateMachine::Start(aOwner);
-	OnStateChangeEvent->TriggerEvent(fruit);
+	OnStateChangeEvent->TriggerEvent(State::fruit);
 }

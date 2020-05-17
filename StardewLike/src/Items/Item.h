@@ -1,15 +1,10 @@
 #pragma once
+#include "Enums.h"
 #include "Components/Component.h"
 /*
 	Item are the GameObjects that the Player can carry on his
 	inventory.
 */
-
-enum ItemType
-{
-	notDefined = -1,
-	hoe = 1 , wateringCan
-};
 
 class Item : public Component
 {

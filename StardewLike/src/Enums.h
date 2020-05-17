@@ -1,12 +1,19 @@
 #pragma once
 
-enum PossibleOrientation : short
+enum class PossibleOrientation : short
 {
 	up, right, down, left
 };
 
-enum State
+enum class State
 {
 	idle, walk,
 	buried, plant, fruit
+};
+
+enum class ItemType
+{
+	notDefined = -1,
+	hoe = 1, wateringCan,
+	seedPack
 };

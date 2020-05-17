@@ -34,7 +34,7 @@ public:
 private:
 	void UpdateOrientation(int aX, int aY);
 
-	PossibleOrientation m_currentOrientation = up;
+	PossibleOrientation m_currentOrientation = PossibleOrientation::up;
 	Transform* m_transform{ nullptr };
 	WindowEventHandler* m_windowEventHandler{ nullptr };
 	EventIndex m_mouseMovedIndex = -2;
