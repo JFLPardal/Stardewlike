@@ -16,7 +16,7 @@
 #include "StateMachine/PlayerStateMachine.h"
 #include "GameObjectData/PlayerData.h"
 #include "MapRepresentation/GridRepresentation.h"
-
+#include "Calendar.h"
 
 GameApp::GameApp(Window& aWindow)
 	: m_gameWindow(aWindow)
@@ -48,6 +48,7 @@ void GameApp::InitBed()
 	bed->AddComponent<SpriteRenderer>("assets\\player_sheet.png", true);
 	bed->AddComponent<Bed>();
 	bed->Start();
+	m_calendar = std::make_unique<Calendar>(bed.get()->GetComponent<Bed>());
 	m_gameObjects.emplace_back(bed);
 	m_GOgridMap->AddToGrid(bed, GridRepresentation::ScreenToGridPosition(1, 1));
 }

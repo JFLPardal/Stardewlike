@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Animation.cpp" />
+    <ClCompile Include="src\Calendar.cpp" />
     <ClCompile Include="src\Components\Animator.cpp" />
     <ClCompile Include="src\Components\Component.cpp" />
     <ClCompile Include="src\Components\Input.cpp" />
@@ -56,6 +57,7 @@
     <ClCompile Include="src\Wrappers\Vector2i.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Calendar.h" />
     <ClInclude Include="src\Animation.h" />
     <ClInclude Include="src\Components\Animator.h" />
     <ClInclude Include="src\Components\InteractWithWorld.h" />

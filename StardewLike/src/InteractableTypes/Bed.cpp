@@ -4,6 +4,7 @@
 #include "GameObject.h"
 
 Bed::Bed()
+	: m_OnDayOverEvent(std::make_unique<DayOverEvent>())
 {
 	m_type = InteractableType::bed;
 	PopulateInteractables();
@@ -24,4 +25,5 @@ void Bed::InteractWith(GameObject* aObjectToInteractWith, GameObjectGridMap& aGr
 void Bed::InteractWithEmpty(GameObject* aObject, GameObjectGridMap& aGridMap)
 {
 	printf("bed interacted with empty");
+	m_OnDayOverEvent->TriggerEvent();
 }

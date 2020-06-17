@@ -16,6 +16,7 @@ class Window;
 class Tilemap;
 class GameObjectGridMap;
 class GameObject;
+class Calendar;
 
 class GameApp
 {
@@ -38,7 +39,8 @@ private:
 	std::unique_ptr<GameObjectGridMap> m_GOgridMap;			// |
 	std::vector<std::shared_ptr<GameObject>> m_gameObjects;	// |
 	std::unique_ptr<GameObject> m_player;
-	
+	std::unique_ptr<Calendar> m_calendar;
+
 	EventIndex m_tryCreateGameObjectIndex = -1;
 	EventIndex m_RemoveGameObjectIndex = -1;
 };
